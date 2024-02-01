@@ -1,4 +1,17 @@
-version "4.4"
+version "4.11"
 
-#include "zscript/scientistzombie.txt"
-#include "zscript/spawner.txt"
+// Base Class
+#include "zscript/sirus/monsters/FemaleKnife.zsc"
+
+// Zombie Scientists
+#include "zscript/sirus/monsters/FemaleCleaver.zsc"
+#include "zscript/sirus/monsters/FemaleSyringe.zsc"
+#include "zscript/sirus/monsters/FemaleWrench.zsc"
+#include "zscript/sirus/monsters/MaleAxe.zsc"
+#include "zscript/sirus/monsters/MaleCrowbar.zsc"
+#include "zscript/sirus/monsters/MaleHammer.zsc"
+
+#include "zscript/sirus/monsters/DeadScientists.zsc"
+
+// Spawn Handler
+#include "zscript/sirus/SpawnHandler.zsc"

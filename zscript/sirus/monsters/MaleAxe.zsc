@@ -1,0 +1,143 @@
+//Scientist w/ Axe
+//One of the much slower civvie zombies all around, but with the second most
+//damage dealt per blow. Even with blue armor, you'll feel it when he slams the
+//axe head onto your noggin. Don't let him get close.
+
+class Hideous_ZombieAxe : Hideous_ZombieLadyKnife
+{
+		default
+		{
+			//$Category "Monsters/Hideous Destructor"
+			//$Title "Possessed Scientist(Axe)"
+			//$Sprite "FSZAA1"
+			seesound "grunt/sight";
+			painsound "grunt/pain";
+			deathsound "grunt/death";
+			activesound "grunt/active";
+			health 120;
+			gibhealth 130;
+			HitObituary "%o was axe-murdered.";
+			Obituary "%o was axe-murdered.";
+			scale 1.0;
+			DropItem "HDFireAxeDropper";
+		}
+states
+{
+	spawn:
+	spawn2:
+		SCZA A 0 A_JumpIf(!bambush,"spawnwander");
+		SCZA A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		SCZA A 1 A_Look();
+		SCZA ABCD 8 A_Wander(CHF_DONTTURN);
+		SCZA A 0 A_Jump(48,"spawnstill");
+		SCZA A 0 A_Jump(48,1);
+		loop;
+		SCZA A 0 A_StartSound("grunt/sight",CHAN_VOICE);
+	spawnstill:
+		SCZA D 10 A_Jump(48,"spawnwander");
+		SCZA A 0 A_Look();
+		SCZA E 10 A_SetAngle(angle+random(-20,20));
+		SCZA EE 10 A_Look();
+		loop;
+	melee:
+		"####" E 3 A_FaceTarget();
+		"####" F 5 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(16,30)*2,"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 6;
+		"####" G 6;
+		"####" GGGG 0 A_CustomMeleeAttack(random(16,30),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 10;
+		"####" A 0 setstatelabel("see");
+	latch:
+		"####" EEF 1{
+			A_FaceTarget();
+			A_ChangeVelocity(1,0,0,CVF_RELATIVE);
+			if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("grunt/sight",CHAN_WEAPON);
+			if(!random(0,200)){
+				A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
+				A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
+				setstatelabel("see");
+				return;
+			}
+			if(
+				!target
+				||target.health<1
+				||distance3d(target)>40
+			){
+					setstatelabel("meleeend");
+					return;
+			}
+			A_ScaleVelocity(0.2,AAPTR_TARGET);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
+			A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
+		}loop;
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+			A_SetScale(0.8);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(1.0);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+	}
+}
+
+class HDFireAxeDropper:Actor
+{
+
+	states
+	{
+		spawn:
+			TNT1 A 0;
+			TNT1 A 1 {
+				string HDFireAxeName = "HDFireAxe";
+				class<Actor> cls = HDFireAxeName;
+						if(cls)
+							{
+								A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+							}
+			}
+			stop;
+	}
+}

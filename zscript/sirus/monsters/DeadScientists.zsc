@@ -1,0 +1,71 @@
+//Already Dead Scientists for frag-related funtimes
+
+class Dead_ZombieLadyKnife:Hideous_ZombieLadyKnife
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_ZombieLadyWrench:Hideous_ZombieLadyWrench
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_ZombieLadyCleaver:Hideous_ZombieLadyCleaver
+{
+		override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_ZombieLadySyringe:Hideous_ZombieLadySyringe
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_ZombieAxe:Hideous_ZombieAxe
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_ZombieCrowbar:Hideous_ZombieCrowbar
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_ZombieHammer:Hideous_ZombieHammer
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class Dead_HumanVictim:RandomSpawner
+{
+	default
+	{
+		Dropitem "Dead_ZombieLadyKnife",256,80;
+		DropItem "Dead_ZombieLadyWrench",256,80;
+		DropItem "Dead_ZombieLadyCleaver",256,80;
+		DropItem "Dead_ZombieLadySyringe",256,80;
+		DropItem "Dead_ZombieAxe",256,100;
+		DropItem "Dead_ZombieCrowbar",256,100;
+		DropItem "Dead_ZombieHammer",256,100;
+	}
+}

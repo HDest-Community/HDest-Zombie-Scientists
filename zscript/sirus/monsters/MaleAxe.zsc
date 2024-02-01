@@ -29,7 +29,7 @@ class Hideous_ZombieAxe : Hideous_ZombieLadyKnife
 			SCZA A 0 A_JumpIf(!bambush,"spawnwander");
 			SCZA A 0 A_Jump(256,"spawnstill");
 		spawnwander:
-			SCZA A 1 A_Look();
+			SCZA A 1 A_HDLook();
 			SCZA ABCD 8 A_Wander(CHF_DONTTURN);
 			SCZA A 0 A_Jump(48,"spawnstill");
 			SCZA A 0 A_Jump(48,1);
@@ -37,9 +37,9 @@ class Hideous_ZombieAxe : Hideous_ZombieLadyKnife
 			SCZA A 0 A_StartSound("grunt/sight",CHAN_VOICE);
 		spawnstill:
 			SCZA D 10 A_Jump(48,"spawnwander");
-			SCZA A 0 A_Look();
+			SCZA A 0 A_HDLook();
 			SCZA E 10 A_SetAngle(angle+random(-20,20));
-			SCZA EE 10 A_Look();
+			SCZA EE 10 A_HDLook();
 			loop;
 		melee:
 			"####" E 3 A_FaceTarget();

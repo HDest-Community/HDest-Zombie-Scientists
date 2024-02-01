@@ -47,16 +47,16 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 			FSZS A 0 A_JumpIf(!bambush,"spawnwander");
 			FSZS A 0 A_Jump(256,"spawnstill");
 		spawnwander:
-			FSZS A 1 A_Look();
+			FSZS A 1 A_HDLook();
 			FSZS ABCD 4 A_Wander(CHF_DONTTURN);
 			FSZS A 0 A_Jump(48,"spawnstill");
 			FSZS A 0 A_Jump(48,1);
 			loop;
 		spawnstill:
 			FSZS D 5 A_Jump(48,"spawnwander");
-			FSZS A 0 A_Look();
+			FSZS A 0 A_HDLook();
 			FSZS E 5 A_SetAngle(angle+random(-20,20));
-			FSZS EE 5 A_Look();
+			FSZS EE 5 A_HDLook();
 			loop;
 			see:
 			"####" A 1{bnopain=false;}

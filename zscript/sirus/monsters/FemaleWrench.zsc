@@ -20,7 +20,7 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieLadyKnife
 			FSZW A 0 A_JumpIf(!bambush,"spawnwander");
 			FSZW A 0 A_Jump(256,"spawnstill");
 		spawnwander:
-			FSZW A 1 A_Look();
+			FSZW A 1 A_HDLook();
 			FSZW ABCD 4 A_Wander(CHF_DONTTURN);
 			FSZW A 0 A_Jump(48,"spawnstill");
 			FSZW A 0 A_Jump(48,1);
@@ -28,9 +28,9 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieLadyKnife
 			FSZW A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
 		spawnstill:
 			FSZW D 10 A_Jump(48,"spawnwander");
-			FSZW A 0 A_Look();
+			FSZW A 0 A_HDLook();
 			FSZW E 10 A_SetAngle(angle+random(-20,20));
-			FSZW EE 10 A_Look();
+			FSZW EE 10 A_HDLook();
 			loop;
 		melee:
 			"####" E 4 A_FaceTarget();

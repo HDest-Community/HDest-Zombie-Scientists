@@ -28,7 +28,7 @@ class Hideous_ZombieCrowbar : Hideous_ZombieLadyKnife
 			SCZC A 0 A_JumpIf(!bambush,"spawnwander");
 			SCZC A 0 A_Jump(256,"spawnstill");
 		spawnwander:
-			SCZC A 1 A_Look();
+			SCZC A 1 A_HDLook();
 			SCZC ABCD 4 A_Wander(CHF_DONTTURN);
 			SCZC A 0 A_Jump(48,"spawnstill");
 			SCZC A 0 A_Jump(48,1);
@@ -36,9 +36,9 @@ class Hideous_ZombieCrowbar : Hideous_ZombieLadyKnife
 			SCZC A 0 A_StartSound("grunt/active",CHAN_VOICE);
 		spawnstill:
 			SCZC D 5 A_Jump(48,"spawnwander");
-			SCZC A 0 A_Look();
+			SCZC A 0 A_HDLook();
 			SCZC E 5 A_SetAngle(angle+random(-20,20));
-			SCZC EE 5 A_Look();
+			SCZC EE 5 A_HDLook();
 			loop;
 		melee:
 			"####" E 6 A_FaceTarget();

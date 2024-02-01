@@ -25,7 +25,7 @@ class Hideous_ZombieLadyCleaver : Hideous_ZombieLadyKnife
 			FSZC A 0 A_JumpIf(!bambush,"spawnwander");
 			FSZC A 0 A_Jump(256,"spawnstill");
 		spawnwander:
-			FSZC A 1 A_Look();
+			FSZC A 1 A_HDLook();
 			FSZC ABCD 8 A_Wander(CHF_DONTTURN);
 			FSZC A 0 A_Jump(48,"spawnstill");
 			FSZC A 0 A_Jump(48,1);
@@ -33,9 +33,9 @@ class Hideous_ZombieLadyCleaver : Hideous_ZombieLadyKnife
 			FSZC A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
 		spawnstill:
 			FSZC D 5 A_Jump(48,"spawnwander");
-			FSZC A 0 A_Look();
+			FSZC A 0 A_HDLook();
 			FSZC E 5 A_SetAngle(angle+random(-20,20));
-			FSZC EE 5 A_Look();
+			FSZC EE 5 A_HDLook();
 			loop;
 		melee:
 			"####" E 3 A_FaceTarget();

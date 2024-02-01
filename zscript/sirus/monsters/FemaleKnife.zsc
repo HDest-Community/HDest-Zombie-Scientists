@@ -58,7 +58,7 @@ class Hideous_ZombieLadyKnife : NinjaPirate
 			FSZK A 0 A_JumpIf(!bambush,"spawnwander");
 			FSZK A 0 A_Jump(256,"spawnstill");
 		spawnwander:
-			FSZK A 1 A_Look();
+			FSZK A 1 A_HDLook();
 			FSZK ABCD 8 A_Wander(CHF_DONTTURN);
 			FSZK A 0 A_Jump(48,"spawnstill");
 			FSZK A 0 A_Jump(48,1);
@@ -66,9 +66,9 @@ class Hideous_ZombieLadyKnife : NinjaPirate
 			FSZK A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
 		spawnstill:
 			FSZK D 10 A_Jump(48,"spawnwander");
-			FSZK A 0 A_Look();
+			FSZK A 0 A_HDLook();
 			FSZK E 10 A_SetAngle(angle+random(-20,20));
-			FSZK EE 10 A_Look();
+			FSZK EE 10 A_HDLook();
 			loop;
 		see:
 			"####" A 1 {

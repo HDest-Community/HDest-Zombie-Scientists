@@ -16,6 +16,7 @@ default
 	painsound "enemy/zombiescifemale/pain";
 	deathsound "enemy/zombiescifemale/die";
 	activesound "enemy/zombiescifemale/active";
+	deathheight 14;
 	health 90;
 	gibhealth 100;
 	height 54;
@@ -29,7 +30,7 @@ default
 	painchance 155;
 	HitObituary "%o met the shing-shing of a knife down a narrow corridor.";
 	Obituary "%o met the shing-shing of a knife down a narrow corridor.";
-	Dropitem "null", 4;
+	Dropitem "PortableStimpack", 1;
 }
 override string GetObituary(actor victim,actor inflictor,name mod,bool playerattack){
 	return Actor.GetObituary (victim, inflictor, mod, playerattack);
@@ -38,7 +39,7 @@ states{
 		falldown:
 		#### H 5;
 		#### I 5 A_Scream();
-		#### JJKKK 2 A_SetSize(-1,max(deathheight,height-10));
+		#### JJKKK 2 A_SetSize(-1,max(deathheight,height-40));
 		#### L 0 A_SetSize(-1,deathheight);
 		#### L 10 A_KnockedDown();
 		wait;

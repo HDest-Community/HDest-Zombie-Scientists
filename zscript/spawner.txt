@@ -307,7 +307,7 @@ class Hideous_NewGoreBits:HDGoreBits replaces HDGoreBits
 		dropitem "SmallBloodPool",256,8;
 		dropitem "BarrelGibs",256,8;
 		dropitem "HDCasingBits",256,32;
-		dropitem "HDFumbledShell",256,8;
+		dropitem "HDFumblingShell",256,8;
 		dropitem "HDSMGEmptyMag",256,3;
 		dropitem "HDPistolEmptyMag",256,3;
 		dropitem "LiberatorEmptyMag",96,1;
@@ -319,7 +319,7 @@ class Hideous_NewHelmFrag:HelmFrag replaces HelmFrag
 {
 	default{
 		dropitem "DecoPusher",96,20;
-		dropitem "SpiritualArmour",96,2;
+		dropitem "ShieldCore",96,2;
 		dropitem "HDFragGrenades",72,1;
 		dropitem "HD7mMag",48,1;
 		dropitem "HD4mMag",48,1;
@@ -337,7 +337,7 @@ class Hideous_NewBlueFrag:BlueFrag replaces BlueFrag
 {
 	default{
 		dropitem "DecoPusher",96,20;
-		dropitem "BluePotion",96,2;
+		dropitem "HDHealingPotion",96,2;
 		dropitem "HDFragGrenades",72,1;
 		dropitem "BFGNecroShard",96,1;
 		dropitem "Dead_HumanVictim",112,4;

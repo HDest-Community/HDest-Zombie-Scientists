@@ -1,0 +1,1209 @@
+//Zombie Scientist with Knife
+//Also serves as a base for all the others to work off of.
+
+class Hideous_ZombieLadyKnife : NinjaPirate
+{
+HDPlayerPawn tat;
+
+default
+{
+	//$Category "Monsters/Hideous Destructor"
+	//$Title "Possessed Scientist(Knife)"
+	//$Sprite "FSZKA1"
+	hdmobbase.shields 0;
+	tag "scientist";
+	seesound "enemy/zombiescifemale/see";
+	painsound "enemy/zombiescifemale/pain";
+	deathsound "enemy/zombiescifemale/die";
+	activesound "enemy/zombiescifemale/active";
+	health 90;
+	gibhealth 100;
+	height 54;
+	radius 12;
+	meleerange 40;
+	scale 0.95;
+	speed 26;
+	mass 150;
+	damage 10;
+	painchance "bashing", 20;
+	painchance 155;
+	HitObituary "%o met the shing-shing of a knife down a narrow corridor.";
+	Obituary "%o met the shing-shing of a knife down a narrow corridor.";
+	Dropitem "null", 4;
+}
+override string GetObituary(actor victim,actor inflictor,name mod,bool playerattack){
+	return Actor.GetObituary (victim, inflictor, mod, playerattack);
+}
+states{
+		falldown:
+		#### H 5;
+		#### I 5 A_Scream();
+		#### JJKKK 2 A_SetSize(-1,max(deathheight,height-10));
+		#### L 0 A_SetSize(-1,deathheight);
+		#### L 10 A_KnockedDown();
+		wait;
+	standup:
+		#### K 6;
+		#### J 0 A_Jump(160,2);
+		#### J 0 A_StartSound(seesound,CHAN_VOICE);
+		#### JI 4 A_Recoil(-0.3);
+		#### HE 6;
+		#### A 0 A_Jump(256,"see");
+	spawn:
+	spawn2:
+		FSZK A 0 A_JumpIf(!bambush,"spawnwander");
+		FSZK A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		FSZK A 1 A_Look();
+		FSZK ABCD 8 A_Wander(CHF_DONTTURN);
+		FSZK A 0 A_Jump(48,"spawnstill");
+		FSZK A 0 A_Jump(48,1);
+		loop;
+		FSZK A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
+	spawnstill:
+		FSZK D 10 A_Jump(48,"spawnwander");
+		FSZK A 0 A_Look();
+		FSZK E 10 A_SetAngle(angle+random(-20,20));
+		FSZK EE 10 A_Look();
+		loop;
+	see:
+		"####" A 1 {
+  // This checks if there's still a valid target
+  // and if the target is the right class
+  // (since monsters can infight)
+  if (target && target is "HDPlayerPawn") {
+    // this casts the variable correctly
+    // since target is an Actor class
+    // we need to specify that we're specifically
+    // casting target using the HDPlayerPawn class    
+    tat = HDPlayerPawn(target);
+		}
+	}
+		"####" A 1{bnopain=false;}
+		goto seerunnin;
+	seerunnin:
+		"####" ABCD 3 fast {hdmobai.chase(self);}
+		"####" A 1;
+		"####" A 0 {
+			if(
+				(target&&distance3d(target)>55)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		---- A 0 setstatelabel("see");
+	melee:
+		"####" E 2 A_FaceTarget();
+		"####" F 3 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(6,10)*2,"enemy/zombiescifemale/slash","skeleton/swing","piercing",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 9;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>55)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" F 9;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>55)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 9;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>55)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 9;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>55)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 10;
+		"####" A 0 setstatelabel("see");
+	latch:
+		"####" EEF 1{
+			A_FaceTarget();
+			A_ChangeVelocity(1,0,0,CVF_RELATIVE);
+			if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("enemy/zombiescifemale/see",CHAN_WEAPON);
+			if(!random(0,200)){
+				A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
+				A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
+				setstatelabel("see");
+				return;
+			}
+			if(
+				!target
+				||target.health<1
+				||distance3d(target)>25
+			){
+					setstatelabel("meleeend");
+					return;
+			}
+			A_ScaleVelocity(0.2,AAPTR_TARGET);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
+			A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
+		}loop;
+	pain:
+		"####" G 1 {
+			if(health<70)
+				A_Jump(75,"falldown");
+		}
+		"####" G 3 A_Pain();
+		goto see;
+	death:
+	deathend:
+		"####" H 8;
+		"####" I 8 A_Scream();
+		"####" J 4 {
+		A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM)
+				;}
+		"####" K 4 A_NoBlocking(false);
+		"####" L 4;
+		"####" MN 6;
+	dead:
+	death.spawndead:
+		"####" N 3 canraise A_JumpIf(floorz>pos.z-6,1);
+		loop;
+		"####" N 5 canraise A_JumpIf(floorz<=pos.z-6,"dead");
+		loop;
+	raise:
+		"####" N 4 A_SetTranslucent(1,0);
+		"####" NMLKJIHG 5;
+		goto checkraise;
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(0.95);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+	}
+}
+
+//Scientist w/ Wrench
+//Much more damaging than the knife-wielding one, but also slower to attack.
+
+class Hideous_ZombieLadyWrench : Hideous_ZombieLadyKnife
+{
+	default
+	{
+	//$Category "Monsters/Hideous Destructor"
+	//$Title "Possessed Scientist(Wrench)"
+	//$Sprite "FSZWA1"
+	HitObituary "%o had a wrench thrown in %p works.";
+	Obituary "%o had a wrench thrown in %p works.";
+	}
+states
+{
+	spawn:
+	spawn2:
+		FSZW A 0 A_JumpIf(!bambush,"spawnwander");
+		FSZW A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		FSZW A 1 A_Look();
+		FSZW ABCD 4 A_Wander(CHF_DONTTURN);
+		FSZW A 0 A_Jump(48,"spawnstill");
+		FSZW A 0 A_Jump(48,1);
+		loop;
+		FSZW A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
+	spawnstill:
+		FSZW D 10 A_Jump(48,"spawnwander");
+		FSZW A 0 A_Look();
+		FSZW E 10 A_SetAngle(angle+random(-20,20));
+		FSZW EE 10 A_Look();
+		loop;
+	melee:
+		"####" E 4 A_FaceTarget();
+		"####" F 5 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(9,20)*2,"enemy/zombiesci/meleeblow","skeleton/swing","piercing",true);
+			if(
+				(target&&distance3d(target)<70)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 5;
+		"####" G 7;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" F 5;
+		"####" G 7;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 5;
+		"####" G 7;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 5;
+		"####" G 7;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 10;
+		"####" A 0 setstatelabel("see");
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(1.0);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+}
+}
+
+//Scientist w/ Axe
+//One of the much slower civvie zombies all around, but with the second most
+//damage dealt per blow. Even with blue armor, you'll feel it when he slams the
+//axe head onto your noggin. Don't let him get close.
+
+class Hideous_ZombieAxe : Hideous_ZombieLadyKnife
+{
+		default
+		{
+			//$Category "Monsters/Hideous Destructor"
+			//$Title "Possessed Scientist(Axe)"
+			//$Sprite "FSZAA1"
+			seesound "grunt/sight";
+			painsound "grunt/pain";
+			deathsound "grunt/death";
+			activesound "grunt/active";
+			health 120;
+			gibhealth 130;
+			HitObituary "%o was axe-murdered.";
+			Obituary "%o was axe-murdered.";
+			scale 1.0;
+			DropItem "HDFireAxeDropper";
+		}
+states
+{
+	spawn:
+	spawn2:
+		SCZA A 0 A_JumpIf(!bambush,"spawnwander");
+		SCZA A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		SCZA A 1 A_Look();
+		SCZA ABCD 8 A_Wander(CHF_DONTTURN);
+		SCZA A 0 A_Jump(48,"spawnstill");
+		SCZA A 0 A_Jump(48,1);
+		loop;
+		SCZA A 0 A_StartSound("grunt/sight",CHAN_VOICE);
+	spawnstill:
+		SCZA D 10 A_Jump(48,"spawnwander");
+		SCZA A 0 A_Look();
+		SCZA E 10 A_SetAngle(angle+random(-20,20));
+		SCZA EE 10 A_Look();
+		loop;
+	melee:
+		"####" E 3 A_FaceTarget();
+		"####" F 5 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(16,30)*2,"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 6;
+		"####" G 6;
+		"####" GGGG 0 A_CustomMeleeAttack(random(16,30),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 10;
+		"####" A 0 setstatelabel("see");
+	latch:
+		"####" EEF 1{
+			A_FaceTarget();
+			A_ChangeVelocity(1,0,0,CVF_RELATIVE);
+			if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("grunt/sight",CHAN_WEAPON);
+			if(!random(0,200)){
+				A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
+				A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
+				setstatelabel("see");
+				return;
+			}
+			if(
+				!target
+				||target.health<1
+				||distance3d(target)>40
+			){
+					setstatelabel("meleeend");
+					return;
+			}
+			A_ScaleVelocity(0.2,AAPTR_TARGET);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
+			A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
+		}loop;
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+			A_SetScale(0.8);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(1.0);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+}
+}
+
+class HDFireAxeDropper:Actor
+{
+
+	states
+	{
+		spawn:
+			TNT1 A 0;
+			TNT1 A 1 {
+				string HDFireAxeName = "HDFireAxe";
+				class<Actor> cls = HDFireAxeName;
+						if(cls)
+							{
+								A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+							}
+			}
+			stop;
+	}
+}
+//Scientist w/ Crowbar
+//Best described as "Axe scientist but shittier."
+
+class Hideous_ZombieCrowbar : Hideous_ZombieLadyKnife
+{
+	default
+		{
+			//$Category "Monsters/Hideous Destructor"
+			//$Title "Possessed Scientist(Crowbar)"
+			//$Sprite "SCZCA1"
+			seesound "grunt/sight";
+			painsound "grunt/pain";
+			deathsound "grunt/death";
+			activesound "grunt/active";
+			health 100;
+			speed 20;
+			gibhealth 130;
+			HitObituary "%o didn't make it to the test chamber.";
+			Obituary "%o didn't make it to the test chamber.";
+			Scale 1.0;
+		}
+states
+{
+	spawn:
+	spawn2:
+		SCZC A 0 A_JumpIf(!bambush,"spawnwander");
+		SCZC A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		SCZC A 1 A_Look();
+		SCZC ABCD 4 A_Wander(CHF_DONTTURN);
+		SCZC A 0 A_Jump(48,"spawnstill");
+		SCZC A 0 A_Jump(48,1);
+		loop;
+		SCZC A 0 A_StartSound("grunt/active",CHAN_VOICE);
+	spawnstill:
+		SCZC D 5 A_Jump(48,"spawnwander");
+		SCZC A 0 A_Look();
+		SCZC E 5 A_SetAngle(angle+random(-20,20));
+		SCZC EE 5 A_Look();
+		loop;
+	melee:
+		"####" E 6 A_FaceTarget();
+		"####" F 5 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(10,18)*2,"enemy/zombiesci/meleeblow","skeleton/swing","piercing",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 4;
+		"####" G 7;
+		"####" GGGG 0 A_CustomMeleeAttack(random(10,18),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" F 4;
+		"####" G 7;
+		"####" GGGG 0 A_CustomMeleeAttack(random(10,18),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 10;
+		"####" A 0 setstatelabel("see");
+	latch:
+		"####" EEF 1{
+			A_FaceTarget();
+			A_ChangeVelocity(1,0,0,CVF_RELATIVE);
+			if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("grunt/sight",CHAN_WEAPON);
+			if(!random(0,200)){
+				A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
+				A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
+				setstatelabel("see");
+				return;
+			}
+			if(
+				!target
+				||target.health<1
+				||distance3d(target)>40
+			){
+					setstatelabel("meleeend");
+					return;
+			}
+			A_ScaleVelocity(0.2,AAPTR_TARGET);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
+			A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
+		}loop;
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(1.0);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+}
+}
+
+//Scientist Lady with Cleaver
+//The rapid hack and slash nature of knife lady, now with MUCH more damage, and
+//slightly more speed to boot. Idk, blame zerk. Big danger, avoid getting slashed
+//if you can.
+
+class Hideous_ZombieLadyCleaver : Hideous_ZombieLadyKnife
+{
+	default
+	{
+		//$Category "Monsters/Hideous Destructor"
+			//$Title "Possessed Scientist(Cleaver)"
+			//$Sprite "FSZCA1"
+		health 100;
+		gibhealth 130;
+		scale 1.0;
+		HitObituary "%o was taken to the chop-shop.";
+		Obituary "%o was taken to the chop-shop.";
+	}
+	
+states
+	{
+		spawn:
+	spawn2:
+		FSZC A 0 A_JumpIf(!bambush,"spawnwander");
+		FSZC A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		FSZC A 1 A_Look();
+		FSZC ABCD 8 A_Wander(CHF_DONTTURN);
+		FSZC A 0 A_Jump(48,"spawnstill");
+		FSZC A 0 A_Jump(48,1);
+		loop;
+		FSZC A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
+	spawnstill:
+		FSZC D 5 A_Jump(48,"spawnwander");
+		FSZC A 0 A_Look();
+		FSZC E 5 A_SetAngle(angle+random(-20,20));
+		FSZC EE 5 A_Look();
+		loop;
+	melee:
+		"####" E 3 A_FaceTarget();
+		"####" F 5 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(9,27)*2,"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 4;
+		"####" G 5;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,27),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" F 4;
+		"####" G 5;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,27),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 4;
+		"####" G 5;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,27),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 9;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(9,27),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 2;
+		"####" A 0 setstatelabel("see");
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(1.0);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+	}
+}
+
+//Scientist with Hammer
+//Easily the deadliest of the victim scientists. He moves slower, but you'd be
+//surprised how little a space helmet protects your head from a ten-ton steel
+//hammer colliding with your head. Additionally he has a high amount of health
+//and resilience due to a zerk drip, same as the Dragon Guard.
+
+class Hideous_ZombieHammer : Hideous_ZombieLadyKnife
+{
+	default
+	{
+			//$Category "Monsters/Hideous Destructor"
+			//$Title "Possessed Scientist(Hammer)"
+			//$Sprite "SCZHA1"
+			seesound "grunt/sight";
+			painsound "grunt/pain";
+			deathsound "grunt/death";
+			activesound "grunt/active";
+			health 100;
+			gibhealth 100;
+			scale 1.0;
+			speed 17;
+			HitObituary "%o, stop! Hammertime!";
+			Obituary "%o, stop! Hammertime!";
+	}
+	states
+	{
+		spawn:
+	spawn2:
+		SCZH A 0 A_JumpIf(!bambush,"spawnwander");
+		SCZH A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		SCZH A 1 A_Look();
+		SCZH ABCD 4 A_Wander(CHF_DONTTURN);
+		SCZH A 0 A_Jump(48,"spawnstill");
+		SCZH A 0 A_Jump(48,1);
+		loop;
+		SCZH A 0 A_StartSound("grunt/active",CHAN_VOICE);
+	spawnstill:
+		SCZH D 10 A_Jump(48,"spawnwander");
+		SCZH A 0 A_Look();
+		SCZH E 10 A_SetAngle(angle+random(-20,20));
+		SCZH EE 10 A_Look();
+		loop;
+	melee:
+		"####" E 6 A_FaceTarget();
+		"####" F 4 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(15,50)*2,"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 10;
+		"####" G 9;
+		"####" GGGG 0 A_CustomMeleeAttack(random(15,50),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+		"####" F 10;
+		"####" G 8;
+		"####" F 0{
+			A_CustomMeleeAttack(random(15,50)*2,"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 4;
+		"####" A 0 setstatelabel("see");
+	latch:
+		"####" EEF 1{
+			A_FaceTarget();
+			A_ChangeVelocity(1,0,0,CVF_RELATIVE);
+			if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("grunt/sight",CHAN_WEAPON);
+			if(!random(0,200)){
+				A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
+				A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
+				setstatelabel("see");
+				return;
+			}
+			if(
+				!target
+				||target.health<1
+				||distance3d(target)>40
+			){
+					setstatelabel("meleeend");
+					return;
+			}
+			A_ScaleVelocity(0.2,AAPTR_TARGET);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
+			A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
+		}loop;
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(1.0);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+	latch:
+		"####" EEF 1{
+			A_FaceTarget();
+			A_ChangeVelocity(1,0,0,CVF_RELATIVE);
+			if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("grunt/sight",CHAN_WEAPON);
+			if(!random(0,200)){
+				A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
+				A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
+				setstatelabel("see");
+				return;
+			}
+			if(
+				!target
+				||target.health<1
+				||distance3d(target)>25
+			){
+					setstatelabel("meleeend");
+					return;
+			}
+			A_ScaleVelocity(0.2,AAPTR_TARGET);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
+			A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
+		}loop;
+	}
+}
+
+//Scientist with Syringe
+//The most unassuming but also the most dangerous. Their attack does very little
+//raw damage, but sometimes it will give you a poisonous compound that suddenly causes you to drop to the ground, leaving you open to
+//attacks. In addition they make very little noise, making it much easier for you to get snuck up on from behind.
+
+class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
+{
+action void BoopWithDrugs(int stunvalue, int fatiguevalue) {
+    // I'm using a bool here to make the conditional more clear
+    // Doing it this way is optional but easier to read
+	
+
+    bool validToStun = (
+        target &&
+        target is "HDPlayerPawn" &&
+        target.health > 1 &&
+        Distance2D (target) < (target.radius + radius) + 24
+    );
+
+    if (validToStun) {
+        hdplayerpawn tat = HDPlayerPawn(target);
+        tat.stunned += stunvalue;
+        tat.fatigue += fatiguevalue;
+        if (tat.incapacitated == 0)
+        {
+			console.printf("benis");
+            A_StartSound("Derp/repair2",CHAN_BODY);
+            SetStateLabel("InjectedWait");
+        }
+    }
+}
+	default
+	{
+	//$Category "Monsters/Hideous Destructor"
+	//$Title "Possessed Scientist(Poison)"
+	//$Sprite "FSZSA1"
+	speed 14;
+	SeeSound "";
+	HitObituary "%o, oops. Zat was not medicine..!";
+	Obituary "%o, oops. Zat was not medicine..!";
+	}
+	states
+	{
+		spawn:
+	spawn2:
+		FSZS A 0 A_JumpIf(!bambush,"spawnwander");
+		FSZS A 0 A_Jump(256,"spawnstill");
+	spawnwander:
+		FSZS A 1 A_Look();
+		FSZS ABCD 4 A_Wander(CHF_DONTTURN);
+		FSZS A 0 A_Jump(48,"spawnstill");
+		FSZS A 0 A_Jump(48,1);
+		loop;
+	spawnstill:
+		FSZS D 5 A_Jump(48,"spawnwander");
+		FSZS A 0 A_Look();
+		FSZS E 5 A_SetAngle(angle+random(-20,20));
+		FSZS EE 5 A_Look();
+		loop;
+		see:
+		"####" A 1{bnopain=false;}
+		"####" A 3;
+		goto seerunnin;
+	melee:
+		"####" E 3 A_FaceTarget();
+		"####" F 4 A_FaceTarget();
+		"####" F 0{
+			A_CustomMeleeAttack(random(1,4)*2,"weapons/chunksplat","skeleton/swing","piercing",true);
+			if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" F 0 { BoopWithDrugs(80,20);}
+		"####" F 3;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+		"####" G 0 {
+				if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" F 0 { BoopWithDrugs(80,20);}
+		"####" F 3;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+		"####" G 0 {
+					if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 0 { BoopWithDrugs(80,20);}
+		"####" F 3;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+		"####" G 0 {
+						if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" F 0 { BoopWithDrugs(80,20);}
+		"####" F 9;
+		"####" G 1;
+		"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+		"####" G 0 {
+						if(
+				(target&&distance3d(target)<40)
+				&&(random(0,2))
+			){
+				setstatelabel("latch");
+			}
+		}
+		"####" G 0 {
+			if(
+				(target&&distance3d(target)>40)
+			){
+				setstatelabel("seerunnin");
+			}
+		}
+		"####" G 0 A_Jump(30,"meleeend");
+		"####" G 0 A_Jump(256,"melee");
+	meleeend:
+		"####" E 5;
+		"####" A 0 setstatelabel("see");
+	InjectedWait:
+		"####" A 4;
+		"####" B 5;
+		"####" C 5;
+		"####" D 3;
+		"####" D 0 {
+		    bool validToStun = (
+        target &&
+        target is "HDPlayerPawn" &&
+        target.health > 1 &&
+        Distance2D (target) < (target.radius + radius) + 24
+    );
+
+    if (validToStun) {
+        hdplayerpawn tat = HDPlayerPawn(target);
+    
+			if(tat)
+				{
+				console.printf("yeet");
+				tat.incapacitated = 1;
+				tat.incaptimer = 140;
+				}
+				
+		}	
+		}
+		goto See;
+	ungib:
+		"####" W 6{
+			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
+				vel.x,vel.y,vel.z+3,0,
+				SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
+			);
+		}
+		"####" VU 8;
+		"####" TSR 6;
+		"####" Q 0 A_SetScale(0.9);
+		"####" QPO 4;
+		goto checkraise;
+	xdeath:
+		"####" O 1 A_XScream();
+		"####" O 0 A_NoBlocking();
+		"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
+		"####" S 0 A_SetScale(0.6);
+		"####" STUV 2;
+		goto xdead;
+	xxxdeath:
+		"####" O 0 A_XScream();
+		"####" O 4 A_NoBlocking();
+		"####" PQRS 3;
+		"####" S 0 A_SetScale(0.6);
+		"####" TUV 3;
+	xdead:
+		"####" W 5 canraise{
+			//if(abs(vel.z)<2)frame++;
+		}loop;
+	}
+}
+
+//Already Dead Scientists for frag-related funtimes
+class Dead_ZombieLadyKnife:Hideous_ZombieLadyKnife
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_ZombieLadyWrench:Hideous_ZombieLadyWrench
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_ZombieLadyCleaver:Hideous_ZombieLadyCleaver
+{
+		override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_ZombieLadySyringe:Hideous_ZombieLadySyringe
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_ZombieAxe:Hideous_ZombieAxe
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_ZombieCrowbar:Hideous_ZombieCrowbar
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_ZombieHammer:Hideous_ZombieHammer
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+}
+}
+class Dead_HumanVictim:RandomSpawner
+{
+	default
+	{
+		Dropitem "Dead_ZombieLadyKnife",256,80;
+		DropItem "Dead_ZombieLadyWrench",256,80;
+		DropItem "Dead_ZombieLadyCleaver",256,80;
+		DropItem "Dead_ZombieLadySyringe",256,80;
+		DropItem "Dead_ZombieAxe",256,100;
+		DropItem "Dead_ZombieCrowbar",256,100;
+		DropItem "Dead_ZombieHammer",256,100;
+	}
+}

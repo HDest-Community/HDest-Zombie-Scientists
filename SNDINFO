@@ -1,0 +1,10 @@
+enemy/zombiescifemale/slash DSKNIFE
+enemy/zombiescifemale/active FEMZACT
+enemy/zombiescifemale/death FEMZDHT
+enemy/zombiescifemale/death2 FEMZDT2
+enemy/zombiescifemale/pain FEMZPAIN
+enemy/zombiescifemale/sight FEMZSIT
+enemy/zombiescifemale/sight2 FEMZSI2
+enemy/zombiesci/meleeblow DSCBAR
+$random enemy/zombiescifemale/die { enemy/zombiescifemale/death enemy/zombiescifemale/death2}
+$random enemy/zombiescifemale/see { enemy/zombiescifemale/sight enemy/zombiescifemale/sight2}

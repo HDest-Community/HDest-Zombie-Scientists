@@ -17,6 +17,9 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist_Male
 		HitObituary "$OB_ZOMBIESCIENTIST_FIREAXE_HIT";
 		Obituary "$OB_ZOMBIESCIENTIST_FIREAXE";
 
+		Hideous_ZombieScientist.mindamage 16;
+		Hideous_ZombieScientist.maxdamage 30;
+
 		DropItem "HDFireAxeDropper";
 	}
 
@@ -29,49 +32,26 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist_Male
 			#### E 3 A_FaceTarget();
 			#### F 5 A_FaceTarget();
 			#### F 0{
-				A_CustomMeleeAttack(random(16,30)*2,meleesound,"skeleton/swing","teeth",true);
+				A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, "skeleton/swing", "teeth", true);
 				if(
-					(target&&distance3d(target)<40)
-					&&(random(0,2))
+					(target && distance3d(target) < latchrange)
+					&&(random(0, 2))
 				){
 					setstatelabel("latch");
 				}
 			}
 			#### F 6;
 			#### G 6;
-			#### GGGG 0 A_CustomMeleeAttack(random(16,30),meleesound,"skeleton/swing","teeth",true);
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, "skeleton/swing", "teeth", true);
 			#### G 0 {
 				if(
-					(target&&distance3d(target)>40)
+					(target && distance3d(target) > meleerange)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			#### G 0 A_Jump(30,"meleeend");
-			#### G 0 A_Jump(256,"melee");
-		latch:
-			#### EEF 1{
-				A_FaceTarget();
-				A_ChangeVelocity(1,0,0,CVF_RELATIVE);
-				if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound(seesound,CHAN_WEAPON);
-				if(!random(0,200)){
-					A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
-					A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
-					setstatelabel("see");
-					return;
-				}
-				if(
-					!target
-					||target.health<1
-					||distance3d(target)>40
-				){
-						setstatelabel("meleeend");
-						return;
-				}
-				A_ScaleVelocity(0.2,AAPTR_TARGET);
-				A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
-				A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
-			}loop;
+			#### G 0 A_Jump(30, "meleeend");
+			#### G 0 A_Jump(256, "melee");
 	}
 }
 

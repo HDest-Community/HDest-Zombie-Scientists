@@ -13,7 +13,7 @@ class Hideous_ZombieLadyKnife : Hideous_ZombieScientist_Female
 
 		tag "$TAG_ZOMBIESCIENTIST_KNIFE";
 		Obituary "$OB_ZOMBIESCIENTIST_KNIFE";
-		
+
 		Dropitem "HDCombatKnifeDropper";
 	}
 
@@ -23,10 +23,40 @@ class Hideous_ZombieLadyKnife : Hideous_ZombieScientist_Female
 		spawn:
 			FSZK A 0;
 			goto spawn2;
+		melee:
+			#### E 2 A_FaceTarget();
+			#### F 3 A_FaceTarget();
+			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "piercing", true);
+			#### F 0 A_CheckLatch();
+			#### F 9;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
+			#### F 9;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
+			#### F 9;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
+			#### F 9;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
+			#### G 0 A_Jump(256, "melee");
 	}
 }
 
-class HDCombatKnifeDropper:Actor
+class Dead_ZombieLadyKnife : Hideous_ZombieLadyKnife
+{
+	override void postbeginplay() {
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class HDCombatKnifeDropper : Actor
 {
 	states
 	{

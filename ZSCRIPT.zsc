@@ -12,7 +12,8 @@ version "4.11"
 #include "zscript/sirus/monsters/MaleCrowbar.zsc"
 #include "zscript/sirus/monsters/MaleHammer.zsc"
 
-#include "zscript/sirus/monsters/DeadScientists.zsc"
+// Spawn Dummy Actors
+#include "zscript/sirus/spawners/Spawners.zsc"
 
 // Spawn Handler
 #include "zscript/sirus/SpawnHandler.zsc"

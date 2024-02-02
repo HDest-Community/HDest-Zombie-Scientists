@@ -1,0 +1,103 @@
+// Spawn Bias (for enemies that replace)
+OptionValue "SpawnBias"
+{
+    -1,    "Disabled"
+    0,    "Replace All"
+    2,    "1 in 3"
+    4,    "1 in 5"
+    9,    "1 in 10"
+    14,   "1 in 15"
+    19,   "1 in 20"
+    24,   "1 in 25"
+    49,   "1 in 50"
+    99,   "1 in 100"
+    149,  "1 in 150"
+    199,  "1 in 200"
+}
+
+AddOptionMenu "OptionsMenu" {
+    Submenu "$ZOMBIESCIENTISTS_MENU", "ZombiesScientistsMenu"
+}
+
+AddOptionMenu "HDAddonMenu" {
+    Submenu "$ZOMBIESCIENTISTS_MENU", "ZombiesScientistsMenu"
+}
+
+
+OptionMenu ZombiesScientistsMenu
+{
+    Title "$ZOMBIESCIENTISTS_MENU"
+
+    StaticText "$MENU_MONSTERS_TITLE", "Yellow"
+    StaticText ""
+    Submenu "$TAG_ZOMBIESCIENTIST", "ZombieScientist", 0, 1
+    StaticText ""
+
+    StaticText "$MENU_RESETOPTIONS_TITLE", "red"
+    StaticText ""
+    SafeCommand "$ZOMBIESCIENTISTS_RESETALLOPTIONS", "ZSC_Reset_Cvars"
+}
+
+
+OptionMenu ZombieScientist
+{
+    Title "$TAG_ZOMBIESCIENTIST"
+
+    StaticText "$MENU_NOTICE", "Yellow"
+    StaticText "$MENU_SPAWNRATE_TEXT1", "White"
+    StaticText "$MENU_SPAWNRATE_TEXT2", "White"
+    StaticText ""
+
+    StaticText "$MENU_MONSPAWNOPTIONS", "Yellow"
+    StaticText "$MENU_ZOMBIESCIENTIST_ZOMBIEMAN_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_zombieman_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_zombieman_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_SHOTGUNGUY_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_shotgunguy_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_shotgunguy_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_IMP_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_imp_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_imp_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_DEMON_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_demon_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_demon_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_CASINGS_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_casings_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_casings_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_GORE_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_gore_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_gore_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_HELMFRAG_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_helmfrag_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_helmfrag_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTIST_BLUEFRAG_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiesci_bluefrag_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_bluefrag_spawn_bias"
+    StaticText ""
+
+    StaticText "$MENU_CORPSESPAWNOPTIONS", "Yellow"
+    StaticText "$MENU_ZOMBIESCIENTISTCORPSE_CASINGS_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiescicorpse_casings_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_casings_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTISTCORPSE_GORE_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiescicorpse_gore_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_gore_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTISTCORPSE_HELMFRAG_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiescicorpse_helmfrag_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_helmfrag_spawn_bias"
+    StaticText "$MENU_ZOMBIESCIENTISTCORPSE_BLUEFRAG_SPAWNTEXT", "White"
+    Option "$MENU_SPAWNRATE", "zombiescicorpse_bluefrag_spawn_bias", "SpawnBias"
+    SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_bluefrag_spawn_bias"
+    StaticText ""
+
+    StaticText "$MENU_PERSISTENCYOPTIONS", "Yellow"
+    StaticText "$MENU_PERSISTENCY_TEXT", "White"
+    Option "$MENU_MONPERSISTENCY", "zombiesci_persistent_spawning", "OnOff"
+    Option "$MENU_CORPSEPERSISTENCY", "zombiescicorpse_persistent_spawning", "OnOff"
+    SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar zombiesci_persistent_spawning; resetcvar zombiescicorpse_persistent_spawning"
+    StaticText ""
+    StaticText ""
+
+    StaticText "$MENU_RESETOPTIONS", "Yellow"
+    SafeCommand "$MENU_RESETALLOPTIONS", "zombiesci_reset_cvars"
+}

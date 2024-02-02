@@ -1,24 +1,78 @@
-[en default]
+[enu default]
 
-TAG_ZOMBIESCIENTIST = "Possessed Scientist";
+// Tags
+TAG_ZOMBIESCIENTIST                                 = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_CLEAVER                         = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_CROWBAR                         = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_FIREAXE                         = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_HAMMER                          = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_KNIFE                           = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_SYRINGE                         = "Zombie Scientist";
+TAG_ZOMBIESCIENTIST_WRENCH                          = "Zombie Scientist";
 
-OB_ZOMBIESCIENTIST_CLEAVER = "%o was taken to the chop-shop.";
-OB_ZOMBIESCIENTIST_CLEAVER_HIT = "%o was taken to the chop-shop.";
+// Obituaries
+OB_ZOMBIESCIENTIST_CLEAVER                          = "%o was taken to the chop-shop.";
+OB_ZOMBIESCIENTIST_CLEAVER_HIT                      = "%o was taken to the chop-shop.";
 
-OB_ZOMBIESCIENTIST_CROWBAR = "%o didn't make it to the test chamber.";
-OB_ZOMBIESCIENTIST_CROWBAR_HIT = "%o didn't make it to the test chamber.";
+OB_ZOMBIESCIENTIST_CROWBAR                          = "%o didn't make it to the test chamber.";
+OB_ZOMBIESCIENTIST_CROWBAR_HIT                      = "%o didn't make it to the test chamber.";
 
-OB_ZOMBIESCIENTIST_FIREAXE = "%o was axe-murdered.";
-OB_ZOMBIESCIENTIST_FIREAXE_HIT = "%o was axe-murdered.";
+OB_ZOMBIESCIENTIST_FIREAXE                          = "%o was axe-murdered.";
+OB_ZOMBIESCIENTIST_FIREAXE_HIT                      = "%o was axe-murdered.";
 
-OB_ZOMBIESCIENTIST_HAMMER = "%o, stop! Hammertime!";
-OB_ZOMBIESCIENTIST_HAMMER_HIT = "%o, stop! Hammertime!";
+OB_ZOMBIESCIENTIST_HAMMER                           = "%o, stop! Hammertime!";
+OB_ZOMBIESCIENTIST_HAMMER_HIT                       = "%o, stop! Hammertime!";
 
-OB_ZOMBIESCIENTIST_KNIFE = "%o met the shing-shing of a knife down a narrow corridor.";
-OB_ZOMBIESCIENTIST_KNIFE_HIT = "%o met the shing-shing of a knife down a narrow corridor.";
+OB_ZOMBIESCIENTIST_KNIFE                            = "%o met the shing-shing of a knife down a narrow corridor.";
+OB_ZOMBIESCIENTIST_KNIFE_HIT                        = "%o met the shing-shing of a knife down a narrow corridor.";
 
-OB_ZOMBIESCIENTIST_SYRINGE = "%o, oops. Zat was not medicine..!";
-OB_ZOMBIESCIENTIST_SYRINGE_HIT = "%o, oops. Zat was not medicine..!";
+OB_ZOMBIESCIENTIST_SYRINGE                          = "%o, oops. Zat was not medicine..!";
+OB_ZOMBIESCIENTIST_SYRINGE_HIT                      = "%o, oops. Zat was not medicine..!";
 
-OB_ZOMBIESCIENTIST_WRENCH = "%o had a wrench thrown in %p works.";
-OB_ZOMBIESCIENTIST_WRENCH_HIT = "%o had a wrench thrown in %p works.";
+OB_ZOMBIESCIENTIST_WRENCH                           = "%o had a wrench thrown in %p works.";
+OB_ZOMBIESCIENTIST_WRENCH_HIT                       = "%o had a wrench thrown in %p works.";
+
+// Options Menu Titles
+ZOMBIESCIENTISTS_MENU                               = "\c[Green]Ⓩ\c- Zombie Scientists";
+MENU_MONSTERS_TITLE                                 = "--- Monsters ---";
+MENU_RESETOPTIONS_TITLE                             = "--- Reset Options ---";
+
+// Menu Section Headers
+MENU_SPAWNOPTIONS                                   = "Spawn Options";
+MENU_MONSPAWNOPTIONS                                = "Monster Spawn Options";
+MENU_CORPSESPAWNOPTIONS                             = "Corpse Spawn Options";
+MENU_PERSISTENCYOPTIONS                             = "Spawn Persistence Options";
+MENU_RESETOPTIONS                                   = "Reset Options";
+MENU_RESETALLOPTIONS                                = "Reset all Options";
+
+// Menu Static Text
+MENU_SPAWNRATE_TEXT1                                = "Setting 'spawn rate' to Replace All will suppress";
+MENU_SPAWNRATE_TEXT2                                = "spawns of that given type.";
+MENU_PERSISTENCY_TEXT                               = "Control whether replacements happen after a mapload:";
+
+// Menu Option Labels
+MENU_NOTICE                                         = "Notice:";
+MENU_SPAWNRATE                                      = "Spawn Rate: ";
+MENU_PERSISTENCY                                    = "Persistent Spawns: ";
+MENU_MONPERSISTENCY                                 = "Persistent Monster Spawns: ";
+MENU_CORPSEPERSISTENCY                              = "Persistent Corpse Spawns: ";
+
+// Menu Command Text
+MENU_RESETMONSTER                                   = "Reset Monster Options";
+MENU_RESETCORPSE                                    = "Reset Corpse Options";
+MENU_RESETPERSISTENCY                               = "Reset Persistence Options";
+ZOMBIESCIENTISTS_RESETALLOPTIONS                    = "Reset all options for Zombie Scientists";
+
+MENU_ZOMBIESCIENTIST_ZOMBIEMAN_SPAWNTEXT            = "Control the rate that Zombie Scientists spawn on Zombiemen:";
+MENU_ZOMBIESCIENTIST_SHOTGUNGUY_SPAWNTEXT           = "Control the rate that Zombie Scientists spawn on Shotgunners:";
+MENU_ZOMBIESCIENTIST_IMP_SPAWNTEXT                  = "Control the rate that Zombie Scientists spawn on Imps:";
+MENU_ZOMBIESCIENTIST_DEMON_SPAWNTEXT                = "Control the rate that Zombie Scientists spawn on Babuins & Ninja Pirates:";
+MENU_ZOMBIESCIENTIST_CASINGS_SPAWNTEXT              = "Control the rate that Zombie Scientists spawn on Spent Casings:";
+MENU_ZOMBIESCIENTIST_GORE_SPAWNTEXT                 = "Control the rate that Zombie Scientists spawn on Bits of Gore:";
+MENU_ZOMBIESCIENTIST_HELMFRAG_SPAWNTEXT             = "Control the rate that Zombie Scientists spawn on Armor Bonuses:";
+MENU_ZOMBIESCIENTIST_BLUEFRAG_SPAWNTEXT             = "Control the rate that Zombie Scientists spawn on Health Bonuses:";
+
+MENU_ZOMBIESCIENTISTCORPSE_CASINGS_SPAWNTEXT        = "Control the rate that Dead Zombie Scientists spawn on Spent Casings:";
+MENU_ZOMBIESCIENTISTCORPSE_GORE_SPAWNTEXT           = "Control the rate that Dead Zombie Scientists spawn on Bits of Gore:";
+MENU_ZOMBIESCIENTISTCORPSE_HELMFRAG_SPAWNTEXT       = "Control the rate that Dead Zombie Scientists spawn on Armor Bonuses:";
+MENU_ZOMBIESCIENTISTCORPSE_BLUEFRAG_SPAWNTEXT       = "Control the rate that Dead Zombie Scientists spawn on Health Bonuses:";

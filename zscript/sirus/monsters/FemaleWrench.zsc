@@ -29,59 +29,32 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieScientist_Female
 		melee:
 			#### E 4 A_FaceTarget();
 			#### F 5 A_FaceTarget();
-			#### F 0{
-				A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, "skeleton/swing", "piercing", true);
-				if(
-					(target && distance3d(target) < latchrange)
-					&&(random(0, 2))
-				){
-					setstatelabel("latch");
-				}
-			}
+			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "piercing", true);
+			#### F 0 A_CheckLatch();
 			#### F 5;
 			#### G 7;
-			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, "skeleton/swing", "teeth", true);
-			#### G 0 {
-				if(
-					(target && distance3d(target) > meleerange)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			#### G 0 A_Jump(30, "meleeend");
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
 			#### F 5;
 			#### G 7;
-			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, "skeleton/swing", "teeth", true);
-			#### G 0 A_Jump(30, "meleeend");
-			#### G 0 {
-				if(
-					(target && distance3d(target) > meleerange)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
 			#### F 5;
 			#### G 7;
-			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, "skeleton/swing", "teeth", true);
-			#### G 0 A_Jump(30, "meleeend");
-			#### G 0 {
-				if(
-					(target && distance3d(target) > meleerange)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
 			#### F 5;
 			#### G 7;
-			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, "skeleton/swing", "teeth", true);
-			#### G 0 {
-				if(
-					(target && distance3d(target) > meleerange)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			#### G 0 A_Jump(30, "meleeend");
+			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
 			#### G 0 A_Jump(256, "melee");
+	}
+}
+
+class Dead_ZombieLadyWrench : Hideous_ZombieLadyWrench
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
 	}
 }

@@ -31,31 +31,25 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist_Male
 		melee:
 			#### E 3 A_FaceTarget();
 			#### F 5 A_FaceTarget();
-			#### F 0{
-				A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, "skeleton/swing", "teeth", true);
-				if(
-					(target && distance3d(target) < latchrange)
-					&&(random(0, 2))
-				){
-					setstatelabel("latch");
-				}
-			}
+			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, "skeleton/swing", "teeth", true);
+			#### F 0 A_CheckLatch();
 			#### F 6;
 			#### G 6;
 			#### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, "skeleton/swing", "teeth", true);
-			#### G 0 {
-				if(
-					(target && distance3d(target) > meleerange)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			#### G 0 A_Jump(30, "meleeend");
+			#### G 0 A_CheckEndMelee();
 			#### G 0 A_Jump(256, "melee");
 	}
 }
 
-class HDFireAxeDropper:Actor
+class Dead_ZombieAxe : Hideous_ZombieAxe
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}
+
+class HDFireAxeDropper : Actor
 {
 
 	states

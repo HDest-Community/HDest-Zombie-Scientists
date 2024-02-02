@@ -1,0 +1,15 @@
+server int  zombiesci_zombieman_spawn_bias        = 9;
+server int  zombiesci_shotgunguy_spawn_bias       = 14;
+server int  zombiesci_imp_spawn_bias              = 4;
+server int  zombiesci_demon_spawn_bias            = 4;
+server int  zombiesci_casings_spawn_bias          = 49;
+server int  zombiesci_gore_spawn_bias             = 49;
+server int  zombiesci_helmfrag_spawn_bias         = 19;
+server int  zombiesci_bluefrag_spawn_bias         = 24;
+server bool zombiesci_persistent_spawning         = false;
+
+server int  zombiescicorpse_casings_spawn_bias    = 4;
+server int  zombiescicorpse_gore_spawn_bias       = 99;
+server int  zombiescicorpse_helmfrag_spawn_bias   = 19;
+server int  zombiescicorpse_bluefrag_spawn_bias   = 19;
+server bool zombiescicorpse_persistent_spawning   = false;

@@ -1,10 +1,11 @@
 version "4.11"
 
-// Base Class
-#include "zscript/sirus/monsters/FemaleKnife.zsc"
+// Base Classes
+#include "zscript/sirus/monsters/ZombieScientist.zsc"
 
 // Zombie Scientists
 #include "zscript/sirus/monsters/FemaleCleaver.zsc"
+#include "zscript/sirus/monsters/FemaleKnife.zsc"
 #include "zscript/sirus/monsters/FemaleSyringe.zsc"
 #include "zscript/sirus/monsters/FemaleWrench.zsc"
 #include "zscript/sirus/monsters/MaleAxe.zsc"

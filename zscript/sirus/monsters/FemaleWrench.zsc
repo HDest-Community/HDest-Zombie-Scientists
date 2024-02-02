@@ -1,42 +1,32 @@
 //Scientist w/ Wrench
 //Much more damaging than the knife-wielding one, but also slower to attack.
 
-class Hideous_ZombieLadyWrench : Hideous_ZombieLadyKnife
+class Hideous_ZombieLadyWrench : Hideous_ZombieScientist_Female
 {
 	default
 	{
 		//$Category "Monsters/Hideous Destructor"
 		//$Title "Possessed Scientist(Wrench)"
 		//$Sprite "FSZWA1"
-		HitObituary "%o had a wrench thrown in %p works.";
-		Obituary "%o had a wrench thrown in %p works.";
-		DropItem "PortableStimpack", 1;
+
+		MeleeSound "enemy/zombiesci/male/melee";
+
+		HitObituary "$OB_ZOMBIESCIENTIST_WRENCH_HIT";
+		Obituary "$OB_ZOMBIESCIENTIST_WRENCH";
+
+		// DropItem "PortableStimpack", 1;
 	}
 
 	states
 	{
 		spawn:
-		spawn2:
-			FSZW A 0 A_JumpIf(!bambush,"spawnwander");
-			FSZW A 0 A_Jump(256,"spawnstill");
-		spawnwander:
-			FSZW A 1 A_HDLook();
-			FSZW ABCD 4 A_Wander(CHF_DONTTURN);
-			FSZW A 0 A_Jump(48,"spawnstill");
-			FSZW A 0 A_Jump(48,1);
-			loop;
-			FSZW A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
-		spawnstill:
-			FSZW D 10 A_Jump(48,"spawnwander");
-			FSZW A 0 A_HDLook();
-			FSZW E 10 A_SetAngle(angle+random(-20,20));
-			FSZW EE 10 A_HDLook();
-			loop;
+			FSZW A 0;
+			goto spawn2;
 		melee:
-			"####" E 4 A_FaceTarget();
-			"####" F 5 A_FaceTarget();
-			"####" F 0{
-				A_CustomMeleeAttack(random(9,20)*2,"enemy/zombiesci/meleeblow","skeleton/swing","piercing",true);
+			#### E 4 A_FaceTarget();
+			#### F 5 A_FaceTarget();
+			#### F 0{
+				A_CustomMeleeAttack(random(9,20)*2,meleesound,"skeleton/swing","piercing",true);
 				if(
 					(target&&distance3d(target)<70)
 					&&(random(0,2))
@@ -44,84 +34,52 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieLadyKnife
 					setstatelabel("latch");
 				}
 			}
-			"####" F 5;
-			"####" G 7;
-			"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+			#### F 5;
+			#### G 7;
+			#### GGGG 0 A_CustomMeleeAttack(random(9,20),meleesound,"skeleton/swing","teeth",true);
 			
-			"####" G 0 {
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" F 5;
-			"####" G 7;
-			"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
+			#### G 0 A_Jump(30,"meleeend");
+			#### F 5;
+			#### G 7;
+			#### GGGG 0 A_CustomMeleeAttack(random(9,20),meleesound,"skeleton/swing","teeth",true);
 			
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 {
+			#### G 0 A_Jump(30,"meleeend");
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" F 5;
-			"####" G 7;
-			"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 {
+			#### F 5;
+			#### G 7;
+			#### GGGG 0 A_CustomMeleeAttack(random(9,20),meleesound,"skeleton/swing","teeth",true);
+			#### G 0 A_Jump(30,"meleeend");
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" F 5;
-			"####" G 7;
-			"####" GGGG 0 A_CustomMeleeAttack(random(9,20),"enemy/zombiesci/meleeblow","skeleton/swing","teeth",true);
-			"####" G 0 {
+			#### F 5;
+			#### G 7;
+			#### GGGG 0 A_CustomMeleeAttack(random(9,20),meleesound,"skeleton/swing","teeth",true);
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 A_Jump(256,"melee");
-		meleeend:
-			"####" E 10;
-			"####" A 0 setstatelabel("see");
-		ungib:
-			"####" W 6{
-				A_SpawnItemEx("MegaBloodSplatter",0,0,4,
-					vel.x,vel.y,vel.z+3,0,
-					SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
-				);
-			}
-			"####" VU 8;
-			"####" TSR 6;
-			"####" Q 0 A_SetScale(1.0);
-			"####" QPO 4;
-			goto checkraise;
-		xdeath:
-			"####" O 1 A_XScream();
-			"####" O 0 A_NoBlocking();
-			"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
-			"####" S 0 A_SetScale(0.6);
-			"####" STUV 2;
-			goto xdead;
-		xxxdeath:
-			"####" O 0 A_XScream();
-			"####" O 4 A_NoBlocking();
-			"####" PQRS 3;
-			"####" S 0 A_SetScale(0.6);
-			"####" TUV 3;
-		xdead:
-			"####" W 5 canraise{
-				//if(abs(vel.z)<2)frame++;
-			}loop;
+			#### G 0 A_Jump(30,"meleeend");
+			#### G 0 A_Jump(256,"melee");
 	}
 }

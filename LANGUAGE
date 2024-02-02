@@ -1,0 +1,24 @@
+[en default]
+
+TAG_ZOMBIESCIENTIST = "Possessed Scientist";
+
+OB_ZOMBIESCIENTIST_CLEAVER = "%o was taken to the chop-shop.";
+OB_ZOMBIESCIENTIST_CLEAVER_HIT = "%o was taken to the chop-shop.";
+
+OB_ZOMBIESCIENTIST_CROWBAR = "%o didn't make it to the test chamber.";
+OB_ZOMBIESCIENTIST_CROWBAR_HIT = "%o didn't make it to the test chamber.";
+
+OB_ZOMBIESCIENTIST_FIREAXE = "%o was axe-murdered.";
+OB_ZOMBIESCIENTIST_FIREAXE_HIT = "%o was axe-murdered.";
+
+OB_ZOMBIESCIENTIST_HAMMER = "%o, stop! Hammertime!";
+OB_ZOMBIESCIENTIST_HAMMER_HIT = "%o, stop! Hammertime!";
+
+OB_ZOMBIESCIENTIST_KNIFE = "%o met the shing-shing of a knife down a narrow corridor.";
+OB_ZOMBIESCIENTIST_KNIFE_HIT = "%o met the shing-shing of a knife down a narrow corridor.";
+
+OB_ZOMBIESCIENTIST_SYRINGE = "%o, oops. Zat was not medicine..!";
+OB_ZOMBIESCIENTIST_SYRINGE_HIT = "%o, oops. Zat was not medicine..!";
+
+OB_ZOMBIESCIENTIST_WRENCH = "%o had a wrench thrown in %p works.";
+OB_ZOMBIESCIENTIST_WRENCH_HIT = "%o had a wrench thrown in %p works.";

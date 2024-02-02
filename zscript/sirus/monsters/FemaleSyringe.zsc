@@ -3,7 +3,7 @@
 //raw damage, but sometimes it will give you a poisonous compound that suddenly causes you to drop to the ground, leaving you open to
 //attacks. In addition they make very little noise, making it much easier for you to get snuck up on from behind.
 
-class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
+class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
 {
 	action void BoopWithDrugs(int stunvalue, int fatiguevalue) {
 		// I'm using a bool here to make the conditional more clear
@@ -33,39 +33,27 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 		//$Category "Monsters/Hideous Destructor"
 		//$Title "Possessed Scientist(Poison)"
 		//$Sprite "FSZSA1"
+
 		speed 14;
+
 		SeeSound "";
-		HitObituary "%o, oops. Zat was not medicine..!";
-		Obituary "%o, oops. Zat was not medicine..!";
+		ActiveSound "";
+
+		HitObituary "$OB_ZOMBIESCIENTIST_SYRINGE_HIT";
+		Obituary "$OB_ZOMBIESCIENTIST_SYRINGE";
+
 		DropItem "PortableStimpack", 1;
 	}
 
 	states
 	{
 		spawn:
-		spawn2:
-			FSZS A 0 A_JumpIf(!bambush,"spawnwander");
-			FSZS A 0 A_Jump(256,"spawnstill");
-		spawnwander:
-			FSZS A 1 A_HDLook();
-			FSZS ABCD 4 A_Wander(CHF_DONTTURN);
-			FSZS A 0 A_Jump(48,"spawnstill");
-			FSZS A 0 A_Jump(48,1);
-			loop;
-		spawnstill:
-			FSZS D 5 A_Jump(48,"spawnwander");
-			FSZS A 0 A_HDLook();
-			FSZS E 5 A_SetAngle(angle+random(-20,20));
-			FSZS EE 5 A_HDLook();
-			loop;
-			see:
-			"####" A 1{bnopain=false;}
-			"####" A 3;
-			goto seerunnin;
+			FSZS A 0;
+			goto spawn2;
 		melee:
-			"####" E 3 A_FaceTarget();
-			"####" F 4 A_FaceTarget();
-			"####" F 0{
+			#### E 3 A_FaceTarget();
+			#### F 4 A_FaceTarget();
+			#### F 0{
 				A_CustomMeleeAttack(random(1,4)*2,"weapons/chunksplat","skeleton/swing","piercing",true);
 				if(
 					(target&&distance3d(target)<40)
@@ -74,11 +62,11 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 					setstatelabel("latch");
 				}
 			}
-			"####" F 0 { BoopWithDrugs(80,20);}
-			"####" F 3;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
-			"####" G 0 {
+			#### F 0 { BoopWithDrugs(80,20);}
+			#### F 3;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+			#### G 0 {
 					if(
 					(target&&distance3d(target)<40)
 					&&(random(0,2))
@@ -86,19 +74,19 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 					setstatelabel("latch");
 				}
 			}
-			"####" G 0 {
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" F 0 { BoopWithDrugs(80,20);}
-			"####" F 3;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
-			"####" G 0 {
+			#### G 0 A_Jump(30,"meleeend");
+			#### F 0 { BoopWithDrugs(80,20);}
+			#### F 3;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+			#### G 0 {
 						if(
 					(target&&distance3d(target)<40)
 					&&(random(0,2))
@@ -106,19 +94,19 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 					setstatelabel("latch");
 				}
 			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 {
+			#### G 0 A_Jump(30,"meleeend");
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" F 0 { BoopWithDrugs(80,20);}
-			"####" F 3;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
-			"####" G 0 {
+			#### F 0 { BoopWithDrugs(80,20);}
+			#### F 3;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+			#### G 0 {
 							if(
 					(target&&distance3d(target)<40)
 					&&(random(0,2))
@@ -126,19 +114,19 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 					setstatelabel("latch");
 				}
 			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 {
+			#### G 0 A_Jump(30,"meleeend");
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" F 0 { BoopWithDrugs(80,20);}
-			"####" F 9;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
-			"####" G 0 {
+			#### F 0 { BoopWithDrugs(80,20);}
+			#### F 9;
+			#### G 1;
+			#### GGGG 0 A_CustomMeleeAttack(random(2,5),"weapons/chunksplat","skeleton/swing","piercing",true);
+			#### G 0 {
 							if(
 					(target&&distance3d(target)<40)
 					&&(random(0,2))
@@ -146,24 +134,24 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 					setstatelabel("latch");
 				}
 			}
-			"####" G 0 {
+			#### G 0 {
 				if(
 					(target&&distance3d(target)>40)
 				){
 					setstatelabel("seerunnin");
 				}
 			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 A_Jump(256,"melee");
+			#### G 0 A_Jump(30,"meleeend");
+			#### G 0 A_Jump(256,"melee");
 		meleeend:
-			"####" E 5;
-			"####" A 0 setstatelabel("see");
+			#### E 5;
+			#### A 0 setstatelabel("see");
 		InjectedWait:
-			"####" A 4;
-			"####" B 5;
-			"####" C 5;
-			"####" D 3;
-			"####" D 0 {
+			#### A 4;
+			#### B 5;
+			#### C 5;
+			#### D 3;
+			#### D 0 {
 				bool validToStun = (
 					target &&
 					target is "HDPlayerPawn" &&
@@ -184,34 +172,5 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieLadyKnife
 					}	
 			}
 			goto See;
-		ungib:
-			"####" W 6{
-				A_SpawnItemEx("MegaBloodSplatter",0,0,4,
-					vel.x,vel.y,vel.z+3,0,
-					SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
-				);
-			}
-			"####" VU 8;
-			"####" TSR 6;
-			"####" Q 0 A_SetScale(0.9);
-			"####" QPO 4;
-			goto checkraise;
-		xdeath:
-			"####" O 1 A_XScream();
-			"####" O 0 A_NoBlocking();
-			"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
-			"####" S 0 A_SetScale(0.6);
-			"####" STUV 2;
-			goto xdead;
-		xxxdeath:
-			"####" O 0 A_XScream();
-			"####" O 4 A_NoBlocking();
-			"####" PQRS 3;
-			"####" S 0 A_SetScale(0.6);
-			"####" TUV 3;
-		xdead:
-			"####" W 5 canraise{
-				//if(abs(vel.z)<2)frame++;
-			}loop;
 	}
 }

@@ -1,248 +1,33 @@
 //Zombie Scientist with Knife
-//Also serves as a base for all the others to work off of.
-
-class Hideous_ZombieLadyKnife : NinjaPirate
+class Hideous_ZombieLadyKnife : Hideous_ZombieScientist_Female
 {
-	HDPlayerPawn tat;
-
 	default
 	{
 		//$Category "Monsters/Hideous Destructor"
 		//$Title "Possessed Scientist(Knife)"
 		//$Sprite "FSZKA1"
-		hdmobbase.shields 0;
-		tag "scientist";
-		seesound "enemy/zombiescifemale/see";
-		painsound "enemy/zombiescifemale/pain";
-		deathsound "enemy/zombiescifemale/die";
-		activesound "enemy/zombiescifemale/active";
-		deathheight 14;
+
 		health 90;
 		gibhealth 100;
-		height 54;
-		radius 12;
-		meleerange 40;
 		scale 0.95;
-		speed 26;
-		mass 150;
-		damage 10;
-		painchance "bashing", 20;
-		painchance 155;
-		HitObituary "%o met the shing-shing of a knife down a narrow corridor.";
-		Obituary "%o met the shing-shing of a knife down a narrow corridor.";
+
+		tag "$TAG_ZOMBIESCIENTIST_KNIFE";
+		Obituary "$OB_ZOMBIESCIENTIST_KNIFE";
+		
 		Dropitem "HDCombatKnifeDropper";
 	}
 
-	override string GetObituary(actor victim,actor inflictor,name mod,bool playerattack){
-		return Actor.GetObituary (victim, inflictor, mod, playerattack);
-	}
 
 	states
 	{
-		falldown:
-			#### H 5;
-			#### I 5 A_Scream();
-			#### JJKKK 2 A_SetSize(-1,max(deathheight,height-40));
-			#### L 0 A_SetSize(-1,deathheight);
-			#### L 10 A_KnockedDown();
-			wait;
-		standup:
-			#### K 6;
-			#### J 0 A_Jump(160,2);
-			#### J 0 A_StartSound(seesound,CHAN_VOICE);
-			#### JI 4 A_Recoil(-0.3);
-			#### HE 6;
-			#### A 0 A_Jump(256,"see");
 		spawn:
-		spawn2:
-			FSZK A 0 A_JumpIf(!bambush,"spawnwander");
-			FSZK A 0 A_Jump(256,"spawnstill");
-		spawnwander:
-			FSZK A 1 A_HDLook();
-			FSZK ABCD 8 A_Wander(CHF_DONTTURN);
-			FSZK A 0 A_Jump(48,"spawnstill");
-			FSZK A 0 A_Jump(48,1);
-			loop;
-			FSZK A 0 A_StartSound("enemy/zombiescifemale/active",CHAN_VOICE);
-		spawnstill:
-			FSZK D 10 A_Jump(48,"spawnwander");
-			FSZK A 0 A_HDLook();
-			FSZK E 10 A_SetAngle(angle+random(-20,20));
-			FSZK EE 10 A_HDLook();
-			loop;
-		see:
-			"####" A 1 {
-				// This checks if there's still a valid target
-				// and if the target is the right class
-				// (since monsters can infight)
-				if (target && target is "HDPlayerPawn") {
-					// this casts the variable correctly
-					// since target is an Actor class
-					// we need to specify that we're specifically
-					// casting target using the HDPlayerPawn class    
-					tat = HDPlayerPawn(target);
-				}
-			}
-			"####" A 1{bnopain=false;}
-			goto seerunnin;
-		seerunnin:
-			"####" ABCD 3 fast {hdmobai.chase(self);}
-			"####" A 1;
-			"####" A 0 {
-				if(
-					(target&&distance3d(target)>55)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			---- A 0 setstatelabel("see");
-		melee:
-			"####" E 2 A_FaceTarget();
-			"####" F 3 A_FaceTarget();
-			"####" F 0{
-				A_CustomMeleeAttack(random(6,10)*2,"enemy/zombiescifemale/slash","skeleton/swing","piercing",true);
-				if(
-					(target&&distance3d(target)<40)
-					&&(random(0,2))
-				){
-					setstatelabel("latch");
-				}
-			}
-			"####" F 9;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
-			"####" G 0 {
-				if(
-					(target&&distance3d(target)>55)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" F 9;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 {
-				if(
-					(target&&distance3d(target)>55)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			"####" F 9;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 {
-				if(
-					(target&&distance3d(target)>55)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			"####" F 9;
-			"####" G 1;
-			"####" GGGG 0 A_CustomMeleeAttack(random(6,10),"enemy/zombiescifemale/slash","skeleton/swing","teeth",true);
-			"####" G 0 {
-				if(
-					(target&&distance3d(target)>55)
-				){
-					setstatelabel("seerunnin");
-				}
-			}
-			"####" G 0 A_Jump(30,"meleeend");
-			"####" G 0 A_Jump(256,"melee");
-		meleeend:
-			"####" E 10;
-			"####" A 0 setstatelabel("see");
-		latch:
-			"####" EEF 1{
-				A_FaceTarget();
-				A_ChangeVelocity(1,0,0,CVF_RELATIVE);
-				if(!random(0,19))A_Pain();else if(!random(0,9))A_StartSound("enemy/zombiescifemale/see",CHAN_WEAPON);
-				if(!random(0,200)){
-					A_ChangeVelocity(-1,0,0,CVF_RELATIVE);
-					A_ChangeVelocity(-2,0,2,CVF_RELATIVE,AAPTR_TARGET);
-					setstatelabel("see");
-					return;
-				}
-				if(
-					!target
-					||target.health<1
-					||distance3d(target)>25
-				){
-						setstatelabel("meleeend");
-						return;
-				}
-				A_ScaleVelocity(0.2,AAPTR_TARGET);
-				A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1),0,AAPTR_TARGET);
-				A_DamageTarget(random(0,5),random(0,3)?"teeth":"falling",0,"none","none",AAPTR_DEFAULT,AAPTR_DEFAULT);
-			}loop;
-		pain:
-			"####" G 1 {
-				if(health<70)
-					A_Jump(75,"falldown");
-			}
-			"####" G 3 A_Pain();
-			goto see;
-		death:
-		deathend:
-			"####" H 8;
-			"####" I 8 A_Scream();
-			"####" J 4 {
-			A_SpawnItemEx("MegaBloodSplatter",0,0,4,
-					vel.x,vel.y,vel.z+3,0,
-					SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM)
-					;}
-			"####" K 4 A_NoBlocking(false);
-			"####" L 4;
-			"####" MN 6;
-		dead:
-		death.spawndead:
-			"####" N 3 canraise A_JumpIf(floorz>pos.z-6,1);
-			loop;
-			"####" N 5 canraise A_JumpIf(floorz<=pos.z-6,"dead");
-			loop;
-		raise:
-			"####" N 4 A_SetTranslucent(1,0);
-			"####" NMLKJIHG 5;
-			goto checkraise;
-		ungib:
-			"####" W 6{
-				A_SpawnItemEx("MegaBloodSplatter",0,0,4,
-					vel.x,vel.y,vel.z+3,0,
-					SXF_NOCHECKPOSITION|SXF_ABSOLUTEMOMENTUM
-				);
-			}
-			"####" VU 8;
-			"####" TSR 6;
-			"####" Q 0 A_SetScale(0.95);
-			"####" QPO 4;
-			goto checkraise;
-		xdeath:
-			"####" O 1 A_XScream();
-			"####" O 0 A_NoBlocking();
-			"####" OPQR 3 spawn("MegaBloodSplatter",pos+(0,0,34),ALLOW_REPLACE);
-			"####" S 0 A_SetScale(0.6);
-			"####" STUV 2;
-			goto xdead;
-		xxxdeath:
-			"####" O 0 A_XScream();
-			"####" O 4 A_NoBlocking();
-			"####" PQRS 3;
-			"####" S 0 A_SetScale(0.6);
-			"####" TUV 3;
-		xdead:
-			"####" W 5 canraise{
-				//if(abs(vel.z)<2)frame++;
-			}loop;
+			FSZK A 0;
+			goto spawn2;
 	}
 }
 
 class HDCombatKnifeDropper:Actor
 {
-
 	states
 	{
 		spawn:

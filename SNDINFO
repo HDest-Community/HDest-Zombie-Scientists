@@ -1,10 +1,16 @@
-enemy/zombiescifemale/slash DSKNIFE
-enemy/zombiescifemale/active FEMZACT
-enemy/zombiescifemale/death FEMZDHT
-enemy/zombiescifemale/death2 FEMZDT2
-enemy/zombiescifemale/pain FEMZPAIN
-enemy/zombiescifemale/sight FEMZSIT
-enemy/zombiescifemale/sight2 FEMZSI2
-enemy/zombiesci/meleeblow DSCBAR
-$random enemy/zombiescifemale/die { enemy/zombiescifemale/death enemy/zombiescifemale/death2}
-$random enemy/zombiescifemale/see { enemy/zombiescifemale/sight enemy/zombiescifemale/sight2}
+enemy/zombiesci/female/active FEMZACT
+enemy/zombiesci/female/death FEMZDHT
+enemy/zombiesci/female/death2 FEMZDT2
+enemy/zombiesci/female/pain FEMZPAIN
+enemy/zombiesci/female/sight FEMZSIT
+enemy/zombiesci/female/sight2 FEMZSI2
+enemy/zombiesci/female/melee DSKNIFE
+
+$random enemy/zombiesci/female/die { enemy/zombiesci/female/death enemy/zombiesci/female/death2}
+$random enemy/zombiesci/female/see { enemy/zombiesci/female/sight enemy/zombiesci/female/sight2}
+
+$alias enemy/zombiesci/male/active grunt/active
+$alias enemy/zombiesci/male/die grunt/die
+$alias enemy/zombiesci/male/pain grunt/pain
+$alias enemy/zombiesci/male/see grunt/sight
+enemy/zombiesci/male/melee DSCBAR

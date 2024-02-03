@@ -22,6 +22,6 @@ $alias enemy/zombiesci/male/see grunt/sight
 $alias enemy/zombiesci/male/miss skeleton/swing
 $alias enemy/zombiesci/male/sawidle weapons/sawidle
 $alias enemy/zombiesci/male/sawhit weapons/sawhit
-$alias enemy/zombiesci/male/sawmiss weapons/sawful
+$alias enemy/zombiesci/male/sawmiss weapons/sawhit
 
 $volume enemy/zombiesci/male/sawidle 0.33

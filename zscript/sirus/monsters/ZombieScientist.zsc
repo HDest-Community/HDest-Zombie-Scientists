@@ -46,6 +46,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 		}
 
 		invoker.A_ScaleVelocity(0.2, AAPTR_TARGET);
+		invoker.A_StartSound(meleesound, CHAN_WEAPON);
 		invoker.A_ChangeVelocity(random(-1, 1), random(-1, 1), random(-1, 1), 0, AAPTR_TARGET);
 		invoker.A_DamageTarget(random(0, 5), random(0, 3) ? "teeth" : "falling", 0, "none", "none", AAPTR_DEFAULT, AAPTR_DEFAULT);
 	}
@@ -151,19 +152,21 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 			#### A 0 SetStateLabel("see");
 		melee:
 		meleeend:
-			#### E 10;
+			#### FED 4;
 			#### A 0 SetStateLabel("see");
 		latch:
-			#### FG 2 A_Latch();
+			#### BE 2;
+			#### F 2 A_Latch();
+			#### FEED 2;
 			loop;
 		missile:
 			#### ABCD 2 A_Lunge();
 			#### A 0 SetStateLabel("see");
 		jump:
-			#### E 3 A_FaceTarget(16, 16);
-			#### E 3 A_Changevelocity(cos(pitch) * 2, 0, sin(-pitch) * 2, CVF_RELATIVE);
-			#### E 2 A_FaceTarget(6, 6, FAF_TOP);
-			#### E 1 A_ChangeVelocity(cos(pitch) * 8, 0, sin(-pitch - frandom(-4, 1)) * 8, CVF_RELATIVE);
+			#### A 3 A_FaceTarget(16, 16);
+			#### B 3 A_Changevelocity(cos(pitch) * 2, 0, sin(-pitch) * 2, CVF_RELATIVE);
+			#### C 2 A_FaceTarget(6, 6, FAF_TOP);
+			#### D 1 A_ChangeVelocity(cos(pitch) * 8, 0, sin(-pitch - frandom(-4, 1)) * 8, CVF_RELATIVE);
 			#### ABCD 2 A_HDChase();
 			#### A 0 SetStateLabel("missile");
 		pain:

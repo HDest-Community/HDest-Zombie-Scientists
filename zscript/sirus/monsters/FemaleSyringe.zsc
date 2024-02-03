@@ -21,8 +21,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
 			tat.fatigue += fatiguevalue;
 			if (tat.incapacitated == 0)
 			{
-				if (hd_debug) console.printf("benis");
-				A_StartSound("Derp/repair2",CHAN_BODY);
+				A_StartSound(meleesound, CHAN_BODY);
 				SetStateLabel("InjectedWait");
 			}
 		}
@@ -40,7 +39,6 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
 			hdplayerpawn tat = HDPlayerPawn(target);
 		
 			if(tat) {
-				if (hd_debug) console.printf("yeet");
 				tat.incapacitated = 1;
 				tat.incaptimer = 140;
 			}
@@ -75,34 +73,25 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
 			FSZS A 0;
 			goto spawn2;
 		melee:
-			#### E 3 A_FaceTarget();
-			#### E 4 A_FaceTarget();
-			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "piercing", true);
+			#### BE 3 A_FaceTarget();
+			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
 			#### F 0 A_CheckLatch();
 			#### F 0 A_BoopWithDrugs(80, 20);
-			#### F 3;
-			#### G 1;
-			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			// #### G 0 A_CheckLatch();
-			// #### G 0 A_CheckEndMelee();
-			// #### F 0 A_BoopWithDrugs(80, 20);
-			// #### F 3;
-			// #### G 1;
-			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			// #### G 0 A_CheckLatch();
-			// #### G 0 A_CheckEndMelee();
-			// #### F 0 A_BoopWithDrugs(80, 20);
-			// #### F 3;
-			// #### G 1;
-			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			// #### G 0 A_CheckLatch();
-			// #### G 0 A_CheckEndMelee();
-			// #### F 0 A_BoopWithDrugs(80,20);
-			// #### F 9;
-			// #### G 1;
-			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			// #### G 0 A_CheckLatch();
+			#### BE 4;
+			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
 			#### G 0 A_CheckEndMelee();
+			#### F 0 A_BoopWithDrugs(80, 20);
+			#### BE 4;
+			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
+			#### G 0 A_CheckEndMelee();
+			#### F 0 A_BoopWithDrugs(80, 20);
+			#### BE 4;
+			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
+			#### G 0 A_CheckEndMelee();
+			#### F 0 A_BoopWithDrugs(80, 20);
+			#### BE 4;
+			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
+			#### E 0 A_CheckEndMelee();
 			#### G 0 A_Jump(256, "melee");
 		InjectedWait:
 			#### A 4;

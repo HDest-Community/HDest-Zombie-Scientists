@@ -27,17 +27,14 @@ class Hideous_ZombieCrowbar : Hideous_ZombieScientist_Male
 			SCZC A 0;
 			goto spawn2;
 		melee:
-			#### E 6 A_FaceTarget();
-			#### E 5 A_FaceTarget();
-			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "bashing", true);
+			#### DE 3 A_FaceTarget();
+			#### F 3 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "mashing", true);
 			#### F 0 A_CheckLatch();
-			#### F 4;
-			#### G 7;
-			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
-			// #### G 0 A_CheckEndMelee();
-			// #### F 4;
-			// #### G 7;
-			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### EDE 4;
+			#### F 4 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "bashing", true);
+			#### G 0 A_CheckEndMelee();
+			#### EDE 5;
+			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "bashing", true);
 			#### G 0 A_CheckEndMelee();
 			#### G 0 A_Jump(256, "melee");
 	}

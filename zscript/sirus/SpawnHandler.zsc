@@ -108,21 +108,9 @@ class ZombieScientistHandler : EventHandler {
         // Zombie Scientists
         Array<ZSCSpawnEnemyEntry> spawns_zombiesci;
         spawns_zombiesci.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('ZombieSemiStormtrooper', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('ZombieAutoStormtrooper', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('ZombieSMGStormtrooper', zombiesci_zombieman_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('Jackboot', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('JackAndJillboot', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('UndeadJackbootman', zombiesci_shotgunguy_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('Serpentipede', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('Ardentipede', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('Regentipede', zombiesci_imp_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('Babuin', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('SpecBabuin', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci.push(addEnemyEntry('NinjaPirate', zombiesci_demon_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
@@ -136,146 +124,6 @@ class ZombieScientistHandler : EventHandler {
         spawns_zombiescicorpse.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
         spawns_zombiescicorpse.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
         addEnemy('Dead_HumanVictim', spawns_zombiescicorpse, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_cleaver;
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_cleaver.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieLadyCleaver', spawns_zombiesci_cleaver, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_cleaver;
-        // spawns_zombiescicorpse_cleaver.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_cleaver.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_cleaver.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_cleaver.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieLadyCleaver', spawns_zombiescicorpse_cleaver, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_knife;
-        // spawns_zombiesci_knife.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_knife.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieLadyKnife', spawns_zombiesci_knife, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_knife;
-        // spawns_zombiescicorpse_knife.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_knife.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_knife.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_knife.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieLadyKnife', spawns_zombiescicorpse_knife, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_syringe;
-        // spawns_zombiesci_syringe.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_syringe.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieLadySyringe', spawns_zombiesci_syringe, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_syringe;
-        // spawns_zombiescicorpse_syringe.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_syringe.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_syringe.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_syringe.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieLadySyringe', spawns_zombiescicorpse_syringe, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_wrench;
-        // spawns_zombiesci_wrench.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_wrench.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieLadyWrench', spawns_zombiesci_wrench, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_wrench;
-        // spawns_zombiescicorpse_wrench.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_wrench.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_wrench.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_wrench.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieLadyWrench', spawns_zombiescicorpse_wrench, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_axe;
-        // spawns_zombiesci_axe.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_axe.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieAxe', spawns_zombiesci_axe, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_axe;
-        // spawns_zombiescicorpse_axe.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_axe.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_axe.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_axe.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieAxe', spawns_zombiescicorpse_axe, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_crowbar;
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_crowbar.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieCrowbar', spawns_zombiesci_crowbar, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_crowbar;
-        // spawns_zombiescicorpse_crowbar.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_crowbar.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_crowbar.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_crowbar.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieCrowbar', spawns_zombiescicorpse_crowbar, zombiescicorpse_persistent_spawning);
-
-        // // Zombie Scientists
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiesci_hammer;
-        // spawns_zombiesci_hammer.push(addEnemyEntry('Zombieman', zombiesci_zombieman_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('ShotgunGuy', zombiesci_shotgunguy_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('DoomImp', zombiesci_imp_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('Demon', zombiesci_demon_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('HDCasingBits', zombiesci_casings_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
-        // spawns_zombiesci_hammer.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        // addEnemy('Hideous_ZombieHammer', spawns_zombiesci_hammer, zombiesci_persistent_spawning);
-
-        // // Zombie Scientist Corpses
-        // Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse_hammer;
-        // spawns_zombiescicorpse_hammer.push(addEnemyEntry('HDCasingBits', zombiescicorpse_casings_spawn_bias));
-        // spawns_zombiescicorpse_hammer.push(addEnemyEntry('HDGoreBits', zombiescicorpse_gore_spawn_bias));
-        // spawns_zombiescicorpse_hammer.push(addEnemyEntry('HelmFrag', zombiescicorpse_helmfrag_spawn_bias));
-        // spawns_zombiescicorpse_hammer.push(addEnemyEntry('BlueFrag', zombiescicorpse_bluefrag_spawn_bias));
-        // addEnemy('Dead_ZombieHammer', spawns_zombiescicorpse_hammer, zombiescicorpse_persistent_spawning);
     }
 
     // Random stuff, stores it and forces negative values just to be 0.

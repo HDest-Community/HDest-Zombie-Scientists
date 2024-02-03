@@ -1,3 +1,6 @@
+$alias enemy/zombiesci/step/dry humanoid/step
+$alias enemy/zombiesci/step/wet humanoid/squishstep
+
 enemy/zombiesci/female/active FEMZACT
 enemy/zombiesci/female/death FEMZDHT
 enemy/zombiesci/female/death2 FEMZDT2
@@ -5,14 +8,20 @@ enemy/zombiesci/female/pain FEMZPAIN
 enemy/zombiesci/female/sight FEMZSIT
 enemy/zombiesci/female/sight2 FEMZSI2
 enemy/zombiesci/female/melee DSKNIFE
-enemy/zombiesci/female/miss skeleton/swing
+$alias enemy/zombiesci/female/miss skeleton/swing
 
 $random enemy/zombiesci/female/die { enemy/zombiesci/female/death enemy/zombiesci/female/death2}
 $random enemy/zombiesci/female/see { enemy/zombiesci/female/sight enemy/zombiesci/female/sight2}
+
+enemy/zombiesci/male/melee DSCBAR
 
 $alias enemy/zombiesci/male/active grunt/active
 $alias enemy/zombiesci/male/die grunt/die
 $alias enemy/zombiesci/male/pain grunt/pain
 $alias enemy/zombiesci/male/see grunt/sight
-enemy/zombiesci/male/melee DSCBAR
-enemy/zombiesci/male/miss skeleton/swing
+$alias enemy/zombiesci/male/miss skeleton/swing
+$alias enemy/zombiesci/male/sawidle weapons/sawidle
+$alias enemy/zombiesci/male/sawhit weapons/sawhit
+$alias enemy/zombiesci/male/sawmiss weapons/sawful
+
+$volume enemy/zombiesci/male/sawidle 0.33

@@ -14,6 +14,9 @@ TAG_ZOMBIESCIENTIST_WRENCH                          = "Zombie Scientist";
 OB_ZOMBIESCIENTIST_CLEAVER                          = "%o was taken to the chop-shop.";
 OB_ZOMBIESCIENTIST_CLEAVER_HIT                      = "%o was taken to the chop-shop.";
 
+OB_ZOMBIESCIENTIST_CHAINSAW                         = "%o was massacred.";
+OB_ZOMBIESCIENTIST_CHAINSAW_HIT                     = "%o was massacred.";
+
 OB_ZOMBIESCIENTIST_CROWBAR                          = "%o didn't make it to the test chamber.";
 OB_ZOMBIESCIENTIST_CROWBAR_HIT                      = "%o didn't make it to the test chamber.";
 

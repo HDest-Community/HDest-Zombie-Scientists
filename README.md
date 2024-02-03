@@ -10,4 +10,12 @@ Tips: The dangerous ones are the ones with the hammer, the axe and the syringe. 
 
 ## Credits:
 
-Female Zombie w/ Cleaver, Female Zombie w/ Knife, Female Zombie w/ Syringe, Female Zombie w/ Wrench, Male Zombie w/ Axe, Male Zombie w/ Crowbar, Male Zombie w/ Hammer: Scilliano's scientist pack
+Female Zombie w/ Cleaver: Scilliano
+Female Zombie w/ Knife: Scilliano
+Female Zombie w/ Syringe: Scilliano
+Female Zombie w/ Wrench: Scilliano
+Male Zombie w/ Axe: Scilliano
+Male Zombie w/ Crowbar: Scilliano
+Male Zombie w/ Hammer: Scilliano
+
+Male Zombie w/ Chainsaw: Scilliano, Solmir, Keeper

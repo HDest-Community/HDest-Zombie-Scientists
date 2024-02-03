@@ -1,0 +1,73 @@
+//Scientist w/ Chainsaw
+//Best described as "Axe scientist but better."
+
+class Hideous_ZombieChainsaw : Hideous_ZombieScientist_Male
+{
+
+	int sawTicker;
+	Sound sawIdle;property sawIdle:sawIdle;
+
+	override void Tick() {
+		super.Tick();
+
+		if (health > 0 && !isFrozen()) {
+			if (sawTicker > 4) {
+				A_StartSound(sawIdle);
+				sawTicker = 0;
+			} else {
+				sawTicker++;
+			}
+		}
+	}
+
+	default
+	{
+		//$Category "Monsters/Hideous Destructor"
+		//$Title "Possessed Scientist(Chainsaw)"
+		//$Sprite "SCZCS1"
+
+		speed 12;
+		
+		HitObituary "$OB_ZOMBIESCIENTIST_CHAINSAW_HIT";
+		Obituary "$OB_ZOMBIESCIENTIST_CHAINSAW";
+		
+		meleesound "enemy/zombiesci/male/sawhit";
+
+		Hideous_ZombieScientist.mindamage 20;
+		Hideous_ZombieScientist.maxdamage 50;
+
+		Hideous_ZombieScientist.misssound "enemy/zombiesci/male/sawmiss";
+		Hideous_ZombieChainsaw.sawIdle "enemy/zombiesci/male/sawidle";
+		
+		DropItem "Lumberjack";
+	}
+
+	states
+	{
+		spawn:
+			SCZS A 0;
+			goto spawn2;
+		melee:
+			#### E 6 A_FaceTarget();
+			#### E 5 A_FaceTarget();
+			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "slashing", true);
+			#### F 0 A_CheckLatch();
+			#### F 4;
+			#### G 7;
+			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			// #### G 0 A_CheckEndMelee();
+			// #### F 4;
+			// #### G 7;
+			// #### GGGG 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "teeth", true);
+			#### G 0 A_CheckEndMelee();
+			#### G 0 A_Jump(256, "melee");
+	}
+}
+
+class Dead_ZombieChainsaw : Hideous_ZombieChainsaw
+{
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_Die("spawndead");
+	}
+}

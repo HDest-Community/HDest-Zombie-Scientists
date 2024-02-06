@@ -1,65 +1,59 @@
 //Zombie Scientist with Knife
-class Hideous_ZombieLadyKnife : Hideous_ZombieScientist_Female
-{
-	default
-	{
-		//$Category "Monsters/Hideous Destructor"
-		//$Title "Possessed Scientist(Knife)"
-		//$Sprite "FSZKA1"
+class Hideous_ZombieLadyKnife : Hideous_ZombieScientist_Female {
+    default {
+        //$Category "Monsters/Hideous Destructor"
+        //$Title "Possessed Scientist(Knife)"
+        //$Sprite "FSZKA1"
 
-		health 90;
-		gibhealth 100;
-		scale 0.95;
+        health 90;
+        gibhealth 100;
+        scale 0.95;
 
-		tag "$TAG_ZOMBIESCIENTIST_KNIFE";
-		HitObituary "$OB_ZOMBIESCIENTIST_KNIFE_HIT";
-		Obituary "$OB_ZOMBIESCIENTIST_KNIFE";
+        tag "$TAG_ZOMBIESCIENTIST_KNIFE";
+        HitObituary "$OB_ZOMBIESCIENTIST_KNIFE_HIT";
+        Obituary "$OB_ZOMBIESCIENTIST_KNIFE";
 
-		Dropitem "HDCombatKnifeDropper";
-	}
+        Dropitem "HDCombatKnifeDropper";
+    }
 
 
-	states
-	{
-		spawn:
-			FSZK A 0;
-			goto spawn2;
-		melee:
-			#### BE 3 A_FaceTarget();
-			#### F 4 A_WeaponAttack(random(1, 5), "slashing");
-			#### FEBE 2;
-			#### F 4 A_WeaponAttack(random(1, 4), "slashing");
-			#### FEBE 3;
-			#### F 4 A_WeaponAttack(random(1, 3), "slashing");
-			#### FEBE 4;
-			#### F 4 A_WeaponAttack(random(1, 5), "slashing");
-			#### FE 7;
-			loop;
-	}
+    states {
+        spawn:
+            FSZK A 0;
+            goto spawn2;
+        melee:
+            #### BE 3 A_FaceTarget();
+            #### F 4 A_WeaponAttack(random(1, 5), "slashing");
+            #### FEBE 2;
+            #### F 4 A_WeaponAttack(random(1, 4), "slashing");
+            #### FEBE 3;
+            #### F 4 A_WeaponAttack(random(1, 3), "slashing");
+            #### FEBE 4;
+            #### F 4 A_WeaponAttack(random(1, 5), "slashing");
+            #### FE 7;
+            loop;
+    }
 }
 
-class Dead_ZombieLadyKnife : Hideous_ZombieLadyKnife
-{
-	override void postbeginplay() {
-		super.postbeginplay();
-		A_Die("spawndead");
-	}
+class Dead_ZombieLadyKnife : Hideous_ZombieLadyKnife {
+    override void postbeginplay() {
+        super.postbeginplay();
+        A_Die("spawndead");
+    }
 }
 
-class HDCombatKnifeDropper : Actor
-{
-	states
-	{
-		spawn:
-			TNT1 A 0;
-			TNT1 A 1 {
-				string HDCombatKnifeName = "HDCombatKnife";
-				class<Actor> cls = HDCombatKnifeName;
-				if (cls)
-				{
-					A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-				}
-			}
-			stop;
-	}
+class HDCombatKnifeDropper : Actor {
+    states {
+        spawn:
+            TNT1 A 0;
+            TNT1 A 1 {
+                string HDCombatKnifeName = "HDCombatKnife";
+                class<Actor> cls = HDCombatKnifeName;
+                if (cls)
+                {
+                    A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+                }
+            }
+            stop;
+    }
 }

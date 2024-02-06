@@ -5,62 +5,56 @@
 
 class Hideous_ZombieAxe : Hideous_ZombieScientist_Male
 {
-	default
-	{
-		//$Category "Monsters/Hideous Destructor"
-		//$Title "Possessed Scientist(Axe)"
-		//$Sprite "SCZAA1"
+    default {
+        //$Category "Monsters/Hideous Destructor"
+        //$Title "Possessed Scientist(Axe)"
+        //$Sprite "SCZAA1"
 
-		speed 16;
-		// health 120;
-		// gibhealth 130;
+        speed 16;
+        // health 120;
+        // gibhealth 130;
 
-		tag "$TAG_ZOMBIESCIENTIST_FIREAXE";
-		HitObituary "$OB_ZOMBIESCIENTIST_FIREAXE_HIT";
-		Obituary "$OB_ZOMBIESCIENTIST_FIREAXE";
+        tag "$TAG_ZOMBIESCIENTIST_FIREAXE";
+        HitObituary "$OB_ZOMBIESCIENTIST_FIREAXE_HIT";
+        Obituary "$OB_ZOMBIESCIENTIST_FIREAXE";
 
-		Hideous_ZombieScientist.mindamage 16;
-		Hideous_ZombieScientist.maxdamage 30;
+        Hideous_ZombieScientist.mindamage 16;
+        Hideous_ZombieScientist.maxdamage 30;
 
-		DropItem "HDFireAxeDropper";
-	}
+        DropItem "HDFireAxeDropper";
+    }
 
-	states
-	{
-		spawn:
-			SCZA A 0;
-			goto spawn2;
-		melee:
-			#### BE 4 A_FaceTarget();
-			#### F 10 A_WeaponAttack(random(1, 2), "slashing");
-			#### FE 4;
-			loop;
-	}
+    states {
+        spawn:
+            SCZA A 0;
+            goto spawn2;
+        melee:
+            #### BE 4 A_FaceTarget();
+            #### F 10 A_WeaponAttack(random(1, 2), "slashing");
+            #### FE 4;
+            loop;
+    }
 }
 
-class Dead_ZombieAxe : Hideous_ZombieAxe
-{
-	override void postbeginplay(){
-		super.postbeginplay();
-		A_Die("spawndead");
-	}
+class Dead_ZombieAxe : Hideous_ZombieAxe {
+    override void postbeginplay(){
+        super.postbeginplay();
+        A_Die("spawndead");
+    }
 }
 
-class HDFireAxeDropper : Actor
-{
-
-	states
-	{
-		spawn:
-			TNT1 A 0;
-			TNT1 A 1 {
-				string HDFireAxeName = "HDFireAxe";
-				class<Actor> cls = HDFireAxeName;
-				if (cls)
-				{
-					A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-				}
-			}
-			stop;
-	}
+class HDFireAxeDropper : Actor {
+    states {
+        spawn:
+            TNT1 A 0;
+            TNT1 A 1 {
+                string HDFireAxeName = "HDFireAxe";
+                class<Actor> cls = HDFireAxeName;
+                if (cls)
+                {
+                    A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+                }
+            }
+            stop;
+    }
 }

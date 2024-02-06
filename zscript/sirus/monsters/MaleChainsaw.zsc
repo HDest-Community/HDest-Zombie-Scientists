@@ -1,69 +1,65 @@
 //Scientist w/ Chainsaw
 //Best described as "Axe scientist but better."
 
-class Hideous_ZombieChainsaw : Hideous_ZombieScientist_Male
-{
+class Hideous_ZombieChainsaw : Hideous_ZombieScientist_Male {
 
-	int sawTicker;
-	Sound sawIdle;property sawIdle:sawIdle;
+    int sawTicker;
+    Sound sawIdle;property sawIdle:sawIdle;
 
-	override void Tick() {
-		super.Tick();
+    override void Tick() {
+        super.Tick();
 
-		if (health > 0 && !isFrozen()) {
-			if (sawTicker > 4) {
-				A_StartSound(sawIdle);
-				sawTicker = 0;
-			} else {
-				sawTicker++;
-			}
-		}
-	}
+        if (health > 0 && !isFrozen()) {
+            if (sawTicker > 4) {
+                A_StartSound(sawIdle);
+                sawTicker = 0;
+            } else {
+                sawTicker++;
+            }
+        }
+    }
 
-	default
-	{
-		//$Category "Monsters/Hideous Destructor"
-		//$Title "Possessed Scientist(Chainsaw)"
-		//$Sprite "SCZCS1"
+    default {
+        //$Category "Monsters/Hideous Destructor"
+        //$Title "Possessed Scientist(Chainsaw)"
+        //$Sprite "SCZCS1"
 
-		speed 12;
-		
-		HitObituary "$OB_ZOMBIESCIENTIST_CHAINSAW_HIT";
-		Obituary "$OB_ZOMBIESCIENTIST_CHAINSAW";
-		
-		meleesound "enemy/zombiesci/male/sawhit";
+        speed 12;
+        
+        HitObituary "$OB_ZOMBIESCIENTIST_CHAINSAW_HIT";
+        Obituary "$OB_ZOMBIESCIENTIST_CHAINSAW";
+        
+        meleesound "enemy/zombiesci/male/sawhit";
 
-		Hideous_ZombieScientist.mindamage 20;
-		Hideous_ZombieScientist.maxdamage 50;
+        Hideous_ZombieScientist.mindamage 20;
+        Hideous_ZombieScientist.maxdamage 50;
 
-		Hideous_ZombieScientist.misssound "enemy/zombiesci/male/sawmiss";
-		Hideous_ZombieChainsaw.sawIdle "enemy/zombiesci/male/sawidle";
-		
-		DropItem "Lumberjack";
-	}
+        Hideous_ZombieScientist.misssound "enemy/zombiesci/male/sawmiss";
+        Hideous_ZombieChainsaw.sawIdle "enemy/zombiesci/male/sawidle";
+        
+        DropItem "Lumberjack";
+    }
 
-	states
-	{
-		spawn:
-			SCZS A 0;
-			goto spawn2;
-		melee:
-			#### BE 10 A_FaceTarget();
-			#### FFFF 5 A_WeaponAttack(random(1, 2), "slashing");
-			#### FE 10;
-			loop;
-		latch:
-			#### BE 2;
-			#### F 2 A_Latch(2, "slashing");
-			#### FEED 2;
-			loop;
-	}
+    states {
+        spawn:
+            SCZS A 0;
+            goto spawn2;
+        melee:
+            #### BE 10 A_FaceTarget();
+            #### FFFF 5 A_WeaponAttack(random(1, 2), "slashing");
+            #### FE 10;
+            loop;
+        latch:
+            #### BE 2;
+            #### F 2 A_Latch(2, "slashing");
+            #### FEED 2;
+            loop;
+    }
 }
 
-class Dead_ZombieChainsaw : Hideous_ZombieChainsaw
-{
-	override void postbeginplay(){
-		super.postbeginplay();
-		A_Die("spawndead");
-	}
+class Dead_ZombieChainsaw : Hideous_ZombieChainsaw {
+    override void postbeginplay() {
+        super.postbeginplay();
+        A_Die("spawndead");
+    }
 }

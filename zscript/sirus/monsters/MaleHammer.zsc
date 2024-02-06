@@ -4,61 +4,55 @@
 //hammer colliding with your head. Additionally he has a high amount of health
 //and resilience due to a zerk drip, same as the Dragon Guard.
 
-class Hideous_ZombieHammer : Hideous_ZombieScientist_Male
-{
-	default
-	{
-		//$Category "Monsters/Hideous Destructor"
-		//$Title "Possessed Scientist(Hammer)"
-		//$Sprite "SCZHA1"
+class Hideous_ZombieHammer : Hideous_ZombieScientist_Male {
+    default {
+        //$Category "Monsters/Hideous Destructor"
+        //$Title "Possessed Scientist(Hammer)"
+        //$Sprite "SCZHA1"
 
-		speed 12;
+        speed 12;
 
-		tag "$TAG_ZOMBIESCIENTIST_HAMMER";
-		HitObituary "$OB_ZOMBIESCIENTIST_HAMMER_HIT";
-		Obituary "$OB_ZOMBIESCIENTIST_HAMMER";
+        tag "$TAG_ZOMBIESCIENTIST_HAMMER";
+        HitObituary "$OB_ZOMBIESCIENTIST_HAMMER_HIT";
+        Obituary "$OB_ZOMBIESCIENTIST_HAMMER";
 
-		Hideous_ZombieScientist.mindamage 15;
-		Hideous_ZombieScientist.maxdamage 50;
+        Hideous_ZombieScientist.mindamage 15;
+        Hideous_ZombieScientist.maxdamage 50;
 
-		DropItem "HDSledgehammerDropper";
-	}
+        DropItem "HDSledgehammerDropper";
+    }
 
-	states
-	{
-		spawn:
-			SCZH A 0;
-			goto spawn2;
-		melee:
-			#### CE 5 A_FaceTarget();
-			#### F 15 A_WeaponAttack(random(1, 3), "bashing");
-			#### FE 5;
-			loop;
-	}
+    states {
+        spawn:
+            SCZH A 0;
+            goto spawn2;
+        melee:
+            #### CE 5 A_FaceTarget();
+            #### F 15 A_WeaponAttack(random(1, 3), "bashing");
+            #### FE 5;
+            loop;
+    }
 }
 
-class Dead_ZombieHammer : Hideous_ZombieHammer
-{
-	override void postbeginplay(){
-		super.postbeginplay();
-		A_Die("spawndead");
-	}
+class Dead_ZombieHammer : Hideous_ZombieHammer {
+    override void postbeginplay() {
+        super.postbeginplay();
+        A_Die("spawndead");
+    }
 }
 
-class HDSledgehammerDropper : Actor
-{
-	states
-	{
-		spawn:
-			TNT1 A 0;
-			TNT1 A 1 {
-				string HDSledgehammerName = "HDSledgehammer";
-				class<Actor> cls = HDSledgehammerName;
-				if (cls)
-				{
-					A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-				}
-			}
-			stop;
-	}
+class HDSledgehammerDropper : Actor {
+    states {
+        spawn:
+            TNT1 A 0;
+            TNT1 A 1 {
+                string HDSledgehammerName = "HDSledgehammer";
+                class<Actor> cls = HDSledgehammerName;
+                if (cls)
+                {
+                    A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+                }
+            }
+            stop;
+    }
 }

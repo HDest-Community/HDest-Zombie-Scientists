@@ -1,6 +1,7 @@
 # Hideous Destructor Bestiary Expansion: Victimized Scientists
 
-Author: Sirus
+[![Nightly Build](https://github.com/HDest-Community/HDest-Zombie-Scientists/actions/workflows/nightly.yml/badge.svg)](https://github.com/HDest-Community/HDest-Zombie-Scientists/actions/workflows/nightly.yml)
+
 
 ## Enemies:
 
@@ -10,12 +11,13 @@ Tips: The dangerous ones are the ones with the hammer, the axe and the syringe. 
 
 ## Credits:
 
-Female Zombie w/ Cleaver: Scilliano
-Female Zombie w/ Knife: Scilliano
-Female Zombie w/ Syringe: Scilliano
-Female Zombie w/ Wrench: Scilliano
-Male Zombie w/ Axe: Scilliano
-Male Zombie w/ Crowbar: Scilliano
-Male Zombie w/ Hammer: Scilliano
+Original Author: Sirus
 
-Male Zombie w/ Chainsaw: Scilliano, Solmir, Keeper
+- Female Zombie w/ Cleaver: Scilliano  
+- Female Zombie w/ Knife: Scilliano  
+- Female Zombie w/ Syringe: Scilliano  
+- Female Zombie w/ Wrench: Scilliano  
+- Male Zombie w/ Axe: Scilliano  
+- Male Zombie w/ Crowbar: Scilliano  
+- Male Zombie w/ Hammer: Scilliano  
+- Male Zombie w/ Chainsaw: Scilliano, Solmir, Keeper

@@ -24,4 +24,6 @@ $alias enemy/zombiesci/male/sawidle weapons/sawidle
 $alias enemy/zombiesci/male/sawhit weapons/sawhit
 $alias enemy/zombiesci/male/sawmiss weapons/sawhit
 
-$volume enemy/zombiesci/male/sawidle 0.33
+$volume enemy/zombiesci/male/sawhit  0.25
+$volume enemy/zombiesci/male/sawmiss 0.25
+$volume enemy/zombiesci/male/sawidle 0.1

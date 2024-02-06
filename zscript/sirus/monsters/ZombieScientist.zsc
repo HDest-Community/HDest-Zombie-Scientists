@@ -9,8 +9,8 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 
 	Sound missSound; property missSound:missSound;
 
-	action void A_WeaponAttack(int minDamage, int maxDamage, string damageType) {
-		A_CustomMeleeAttack(random(minDamage, maxDamage), invoker.meleesound, invoker.misssound, damageType);
+	action void A_WeaponAttack(int damageMulti, string damageType) {
+		A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);
 		A_CheckLatch();
 		A_CheckEndMelee();
 	}
@@ -69,7 +69,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 		A_ScaleVelocity(0.2, AAPTR_TARGET);
 		A_StartSound(meleesound, CHAN_WEAPON);
 		A_ChangeVelocity(random(-1, 1), random(-1, 1), random(-1, 1), 0, AAPTR_TARGET);
-		A_DamageTarget(random(minDamage, maxDamage) * dmgMulti, damageType, 0, "none", "none", AAPTR_DEFAULT, AAPTR_DEFAULT);
+		A_DamageTarget(random(invoker.minDamage, invoker.maxDamage) * dmgMulti, damageType, 0, "none", "none", AAPTR_DEFAULT, AAPTR_DEFAULT);
 	}
 
 	action void A_Lunge() {

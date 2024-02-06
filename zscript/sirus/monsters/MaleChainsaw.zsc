@@ -54,7 +54,7 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist_Male
 			loop;
 		latch:
 			#### BE 2;
-			#### F 2 A_Latch(mindamage, maxdamage, "slashing");
+			#### F 2 A_Latch(2, "slashing");
 			#### FEED 2;
 			loop;
 	}

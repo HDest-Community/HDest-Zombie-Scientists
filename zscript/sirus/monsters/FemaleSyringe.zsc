@@ -5,8 +5,8 @@
 
 class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female {
 
-	action void A_WeaponAttack(int minDamage, int maxDamage, string damageType) {
-		A_CustomMeleeAttack(random(minDamage, maxDamage), invoker.meleesound, invoker.misssound, damageType);
+	action void A_WeaponAttack(int damageMulti, string damageType) {
+		A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);
 		A_BoopWithDrugs(80, 20);
 		A_CheckLatch();
 		A_CheckEndMelee();

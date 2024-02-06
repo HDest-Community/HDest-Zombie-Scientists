@@ -48,13 +48,15 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist_Male
 			SCZS A 0;
 			goto spawn2;
 		melee:
-			#### BE 4 A_FaceTarget();
-			#### F 12 A_CustomMeleeAttack(random(mindamage, maxdamage) * 2, meleesound, misssound, "slashing", true);
-			#### F 0 A_CheckLatch();
-			#### EBE 5;
-			#### F 15 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "claws", true);
-			#### G 0 A_CheckEndMelee();
-			#### G 0 A_Jump(256, "melee");
+			#### BE 10 A_FaceTarget();
+			#### FFFF 5 A_WeaponAttack(random(1, 2), "slashing");
+			#### FE 10;
+			loop;
+		latch:
+			#### BE 2;
+			#### F 2 A_Latch(mindamage, maxdamage, "slashing");
+			#### FEED 2;
+			loop;
 	}
 }
 

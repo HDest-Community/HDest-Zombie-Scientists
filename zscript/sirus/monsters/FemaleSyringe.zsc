@@ -3,24 +3,27 @@
 //raw damage, but sometimes it will give you a poisonous compound that suddenly causes you to drop to the ground, leaving you open to
 //attacks. In addition they make very little noise, making it much easier for you to get snuck up on from behind.
 
-class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
-{
-	action void A_BoopWithDrugs(int stunvalue, int fatiguevalue) {
-		// I'm using a bool here to make the conditional more clear
-		// Doing it this way is optional but easier to read
-		bool validToStun = (
-			target &&
-			target is "HDPlayerPawn" &&
-			target.health > 1 &&
-			Distance2D (target) < (target.radius + radius) + 24
-		);
+class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female {
 
-		if (validToStun) {
+	action void A_WeaponAttack(int minDamage, int maxDamage, string damageType) {
+		A_CustomMeleeAttack(random(minDamage, maxDamage), invoker.meleesound, invoker.misssound, damageType);
+		A_BoopWithDrugs(80, 20);
+		A_CheckLatch();
+		A_CheckEndMelee();
+	}
+
+	action void A_BoopWithDrugs(int stunValue, int fatigueValue) {
+		if (
+			target is "HDPlayerPawn"
+			&& target.health > 1
+			&& Distance2D (target) < (target.radius + radius) + 24
+		) {
 			hdplayerpawn tat = HDPlayerPawn(target);
-			tat.stunned += stunvalue;
-			tat.fatigue += fatiguevalue;
-			if (tat.incapacitated == 0)
-			{
+
+			tat.stunned += stunValue;
+			tat.fatigue += fatigueValue;
+
+			if (!tat.incapacitated) {
 				A_StartSound(meleesound, CHAN_BODY);
 				SetStateLabel("InjectedWait");
 			}
@@ -28,14 +31,11 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
 	}
 
 	action void A_UnBoopWithDrugs() {
-		bool validToStun = (
-			target &&
-			target is "HDPlayerPawn" &&
-			target.health > 1 &&
-			Distance2D (target) < (target.radius + radius) + 24
-		);
-
-		if (validToStun) {
+		if (
+			target is "HDPlayerPawn"
+			&& target.health > 1
+			&& Distance2D (target) < (target.radius + radius) + 24
+		) {
 			hdplayerpawn tat = HDPlayerPawn(target);
 		
 			if(tat) {
@@ -74,38 +74,18 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female
 			goto spawn2;
 		melee:
 			#### BE 3 A_FaceTarget();
-			#### F 0 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			#### F 0 A_CheckLatch();
-			#### F 0 A_BoopWithDrugs(80, 20);
-			#### BE 4;
-			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			#### G 0 A_CheckEndMelee();
-			#### F 0 A_BoopWithDrugs(80, 20);
-			#### BE 4;
-			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			#### G 0 A_CheckEndMelee();
-			#### F 0 A_BoopWithDrugs(80, 20);
-			#### BE 4;
-			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			#### G 0 A_CheckEndMelee();
-			#### F 0 A_BoopWithDrugs(80, 20);
-			#### BE 4;
-			#### F 5 A_CustomMeleeAttack(random(mindamage, maxdamage), meleesound, misssound, "piercing", true);
-			#### E 0 A_CheckEndMelee();
-			#### G 0 A_Jump(256, "melee");
+			#### F 5 A_WeaponAttack(1, "piercing");
+			#### FE 4;
+			loop;
 		InjectedWait:
-			#### A 4;
-			#### B 5;
-			#### C 5;
-			#### D 3;
+			#### FEED 4;
 			#### D 0 A_UnBoopWithDrugs();
 			goto see;
 	}
 }
 
-class Dead_ZombieLadySyringe : Hideous_ZombieLadySyringe
-{
-	override void postbeginplay(){
+class Dead_ZombieLadySyringe : Hideous_ZombieLadySyringe {
+	override void postbeginplay() {
 		super.postbeginplay();
 		A_Die("spawndead");
 	}

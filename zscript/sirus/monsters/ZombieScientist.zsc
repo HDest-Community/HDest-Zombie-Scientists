@@ -7,57 +7,78 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 	int minDamage; property minDamage:minDamage;
 	int maxDamage; property maxDamage:maxDamage;
 
-    Sound missSound; property missSound:missSound;
+	Sound missSound; property missSound:missSound;
+
+	action void A_WeaponAttack(int minDamage, int maxDamage, string damageType) {
+		A_CustomMeleeAttack(random(minDamage, maxDamage), invoker.meleesound, invoker.misssound, damageType);
+		A_CheckLatch();
+		A_CheckEndMelee();
+	}
 
 	action void A_CheckLatch() {
-		if (invoker.target && invoker.distance3d(invoker.target) < invoker.latchrange && random(0, 2)) invoker.SetStateLabel("latch");
+		if (
+			target
+			&& Distance3d(target) < invoker.latchrange
+			&& random(0, 2)
+		) {
+			SetStateLabel("latch");
+		}
 	}
 
 	action void A_CheckEndMelee() {
-		if (invoker.target && invoker.distance3d(invoker.target) > invoker.meleerange) invoker.SetStateLabel("seerunnin");
+		if (
+			target
+			&& Distance3d(target) > meleerange
+		) {
+			SetStateLabel("seerunnin");
+		}
 
-		invoker.A_Jump(30, "meleeend");
+		A_Jump(30, "meleeend");
 	}
 
-	action void A_Latch() {
-		invoker.A_FaceTarget();
-		invoker.A_ChangeVelocity(1, 0, 0, CVF_RELATIVE);
+	action void A_Latch(int dmgMulti, string damageType) {
+		A_FaceTarget();
+		A_ChangeVelocity(1, 0, 0, CVF_RELATIVE);
 
+		// Sounds of struggle
 		if (!random(0, 19)) {
-			invoker.A_Pain();
+			invoker.A_Vocalize(painsound);
 		} else if (!random(0, 9)) {
-			invoker.A_StartSound(invoker.seesound, CHAN_WEAPON);
+			invoker.A_Vocalize(seesound);
 		}
 
+		// 0.5% chance to detach
 		if (!random(0, 200)) {
-			invoker.A_ChangeVelocity(-1, 0, 0, CVF_RELATIVE);
-			invoker.A_ChangeVelocity(-2, 0, 2, CVF_RELATIVE, AAPTR_TARGET);
-			invoker.SetStateLabel("see");
+			A_ChangeVelocity(-1, 0, 0, CVF_RELATIVE);
+			A_ChangeVelocity(-2, 0, 2, CVF_RELATIVE, AAPTR_TARGET);
+			SetStateLabel("meleeend");
 			return;
 		}
 
+		// If target is dead or too far, detach
 		if (
-			!invoker.target
-			||invoker.target.health < 1
-			||distance3d(invoker.target) > invoker.latchrange
+			!target
+			|| target.health < 1
+			|| Distance3d(target) > invoker.latchrange
 		){
-			invoker.SetStateLabel("meleeend");
+			SetStateLabel("meleeend");
 			return;
 		}
 
-		invoker.A_ScaleVelocity(0.2, AAPTR_TARGET);
-		invoker.A_StartSound(meleesound, CHAN_WEAPON);
-		invoker.A_ChangeVelocity(random(-1, 1), random(-1, 1), random(-1, 1), 0, AAPTR_TARGET);
-		invoker.A_DamageTarget(random(0, 5), random(0, 3) ? "teeth" : "falling", 0, "none", "none", AAPTR_DEFAULT, AAPTR_DEFAULT);
+		// Deal Latch Attack Damage
+		A_ScaleVelocity(0.2, AAPTR_TARGET);
+		A_StartSound(meleesound, CHAN_WEAPON);
+		A_ChangeVelocity(random(-1, 1), random(-1, 1), random(-1, 1), 0, AAPTR_TARGET);
+		A_DamageTarget(random(minDamage, maxDamage) * dmgMulti, damageType, 0, "none", "none", AAPTR_DEFAULT, AAPTR_DEFAULT);
 	}
 
 	action void A_Lunge() {
-		invoker.A_FaceTarget(16, 16);
-		invoker.bnodropoff = false;
-		invoker.A_Changevelocity(1, 0, 0, CVF_RELATIVE);
-		if (invoker.A_JumpIfTargetInLOS("null", 20, 0, 128)) {
+		A_FaceTarget(16, 16);
+		bnodropoff = false;
+		A_Changevelocity(1, 0, 0, CVF_RELATIVE);
+		if (A_JumpIfTargetInLOS("null", 20, 0, 128)) {
 			invoker.A_Vocalize(seesound);
-			invoker.SetStateLabel("jump");
+			SetStateLabel("jump");
 		}
 	}
 
@@ -107,7 +128,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 		standup:
 			#### K 6;
 			#### J 0 A_Jump(160, 2);
-			#### J 0 A_StartSound(seesound, CHAN_VOICE);
+			#### J 0 A_Vocalize(seesound);
 			#### JI 4 A_Recoil(-0.3);
 			#### HE 6;
 			#### A 0 A_Jump(256, "see");
@@ -121,7 +142,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 			#### A 0 A_Jump(48, "spawnstill");
 			#### A 0 A_Jump(48, 1);
 			loop;
-			#### A 0 A_StartSound(activesound, CHAN_VOICE);
+			#### A 0 A_Vocalize(activesound);
 		spawnstill:
 			#### D 10 A_Jump(48, "spawnwander");
 			#### A 0 A_HDLook();
@@ -133,7 +154,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 				// This checks if there's still a valid target
 				// and if the target is the right class
 				// (since monsters can infight)
-				if (target && target is "HDPlayerPawn") {
+				if (target is "HDPlayerPawn") {
 					// this casts the variable correctly
 					// since target is an Actor class
 					// we need to specify that we're specifically
@@ -156,7 +177,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 			#### A 0 SetStateLabel("see");
 		latch:
 			#### BE 2;
-			#### F 2 A_Latch();
+			#### F 2 A_Latch(mindamage, maxdamage, random(0, 3) ? "teeth" : "falling");
 			#### FEED 2;
 			loop;
 		missile:
@@ -173,7 +194,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract
 			#### G 1 {
 				if (health < 70) A_Jump(75, "falldown");
 			}
-			#### G 3 A_Pain();
+			#### G 3 A_Vocalize(painsound);
 			goto see;
 		death:
 		deathend:
@@ -242,7 +263,7 @@ class Hideous_ZombieScientist_Female : Hideous_ZombieScientist abstract
 		activesound "enemy/zombiesci/female/active";
 		meleesound "enemy/zombiesci/female/melee";
 
-        Hideous_ZombieScientist.missSound "enemy/zombiesci/female/miss";
+		Hideous_ZombieScientist.missSound "enemy/zombiesci/female/miss";
 	}
 }
 
@@ -256,6 +277,6 @@ class Hideous_ZombieScientist_Male : Hideous_ZombieScientist abstract
 		activesound "enemy/zombiesci/male/active";
 		meleesound "enemy/zombiesci/male/melee";
 
-        Hideous_ZombieScientist.missSound "enemy/zombiesci/male/miss";
+		Hideous_ZombieScientist.missSound "enemy/zombiesci/male/miss";
 	}
 }

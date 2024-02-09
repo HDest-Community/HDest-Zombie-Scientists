@@ -22,19 +22,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Common logic has been refactored into new base class.
 -   Scientists now properly use `A_HDLook` and `A_HDChase`
 
-## [1.2c]
+## [v1.2c]
 
 ### Changed
 
 -   Updated Class Names for latest HDest.
 
-## [1.2b]
+## [v1.2b]
 
 ### Added
 
 -   Now maintained by the HDest Discord Community Modders.
 
-## [1.2]
+## v1.2.0
 
 ### Added
 
@@ -47,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     were spawning to the point where it harms HidDest's natural dakka state with the
     4mm.
 
-## [1.1]
+## v1.1.0
 
 ### Changed
 
@@ -55,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     also sets all their size to 1.0, for better or worse, save for the knife lady 
     who gets 0.95.
 
-## [1.0]
+## v1.0.0
 
 ### Added
 
@@ -63,8 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/HDest-Community/HDest-Zombie-Scientists/compare/v2.0.0...HEAD
 
-[v2.0.0]: https://github.com/HDest-Community/HDest-Zombie-Scientists/compare/1.2c...v2.0.0
+[v2.0.0]: https://github.com/HDest-Community/HDest-Zombie-Scientists/compare/v1.2c...v2.0.0
 
-[1.2c]: https://github.com/HDest-Community/Zombie-Scientists/compare/v1.2b..v1.2c
+[v1.2c]: https://github.com/HDest-Community/Zombie-Scientists/compare/v1.2b..v1.2c
 
-[1.2b]: https://github.com/HDest-Community/Zombie-Scientists/releases/tag/v1.2b
+[v1.2b]: https://github.com/HDest-Community/Zombie-Scientists/releases/tag/v1.2b

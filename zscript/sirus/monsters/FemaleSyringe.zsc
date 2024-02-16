@@ -3,7 +3,8 @@
 //raw damage, but sometimes it will give you a poisonous compound that suddenly causes you to drop to the ground, leaving you open to
 //attacks. In addition they make very little noise, making it much easier for you to get snuck up on from behind.
 
-class Hideous_ZombieLadySyringe : Hideous_ZombieScientist_Female {
+class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
+    mixin FemaleScientist;
 
     action void A_WeaponAttack(int damageMulti, string damageType) {
         A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);

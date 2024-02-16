@@ -247,7 +247,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
     }
 }
 
-class Hideous_ZombieScientist_Female : Hideous_ZombieScientist abstract {
+mixin class FemaleScientist {
     default {
         seesound "enemy/zombiesci/female/see";
         painsound "enemy/zombiesci/female/pain";
@@ -259,7 +259,7 @@ class Hideous_ZombieScientist_Female : Hideous_ZombieScientist abstract {
     }
 }
 
-class Hideous_ZombieScientist_Male : Hideous_ZombieScientist abstract {
+mixin class MaleScientist {
     default {
         seesound "enemy/zombiesci/male/see";
         painsound "enemy/zombiesci/male/pain";

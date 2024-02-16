@@ -1,5 +1,7 @@
 //Zombie Scientist with Knife
-class Hideous_ZombieLadyKnife : Hideous_ZombieScientist_Female {
+class Hideous_ZombieLadyKnife : Hideous_ZombieScientist {
+    mixin FemaleScientist;
+
     default {
         //$Category "Monsters/Hideous Destructor"
         //$Title "Possessed Scientist(Knife)"

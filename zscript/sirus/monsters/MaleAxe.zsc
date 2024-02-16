@@ -3,8 +3,9 @@
 //damage dealt per blow. Even with blue armor, you'll feel it when he slams the
 //axe head onto your noggin. Don't let him get close.
 
-class Hideous_ZombieAxe : Hideous_ZombieScientist_Male
-{
+class Hideous_ZombieAxe : Hideous_ZombieScientist {
+    mixin MaleScientist;
+
     default {
         //$Category "Monsters/Hideous Destructor"
         //$Title "Possessed Scientist(Axe)"

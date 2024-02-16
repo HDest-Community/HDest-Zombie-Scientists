@@ -1,7 +1,9 @@
 //Scientist w/ Crowbar
 //Best described as "Axe scientist but shittier."
 
-class Hideous_ZombieCrowbar : Hideous_ZombieScientist_Male {
+class Hideous_ZombieCrowbar : Hideous_ZombieScientist {
+    mixin MaleScientist;
+
     default {
         //$Category "Monsters/Hideous Destructor"
         //$Title "Possessed Scientist(Crowbar)"

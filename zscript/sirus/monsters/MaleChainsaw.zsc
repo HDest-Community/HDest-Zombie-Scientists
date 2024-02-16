@@ -1,7 +1,8 @@
 //Scientist w/ Chainsaw
 //Best described as "Axe scientist but better."
 
-class Hideous_ZombieChainsaw : Hideous_ZombieScientist_Male {
+class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
+    mixin MaleScientist;
 
     int sawTicker;
     Sound sawIdle;property sawIdle:sawIdle;

@@ -1,8 +1,9 @@
 //Scientist w/ Wrench
 //Much more damaging than the knife-wielding one, but also slower to attack.
 
-class Hideous_ZombieLadyWrench : Hideous_ZombieScientist_Female
-{
+class Hideous_ZombieLadyWrench : Hideous_ZombieScientist {
+    mixin FemaleScientist;
+
     default
     {
         //$Category "Monsters/Hideous Destructor"
@@ -18,8 +19,6 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieScientist_Female
         tag "$TAG_ZOMBIESCIENTIST_WRENCH";
         HitObituary "$OB_ZOMBIESCIENTIST_WRENCH_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_WRENCH";
-
-        // DropItem "PortableStimpack", 1;
     }
 
     states

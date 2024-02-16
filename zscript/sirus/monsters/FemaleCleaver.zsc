@@ -3,8 +3,9 @@
 //slightly more speed to boot. Idk, blame zerk. Big danger, avoid getting slashed
 //if you can.
 
-class Hideous_ZombieLadyCleaver : Hideous_ZombieScientist_Female
-{
+class Hideous_ZombieLadyCleaver : Hideous_ZombieScientist {
+    mixin FemaleScientist;
+
     default {
         //$Category "Monsters/Hideous Destructor"
         //$Title "Possessed Scientist(Cleaver)"

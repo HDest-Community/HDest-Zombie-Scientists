@@ -4,7 +4,9 @@
 //hammer colliding with your head. Additionally he has a high amount of health
 //and resilience due to a zerk drip, same as the Dragon Guard.
 
-class Hideous_ZombieHammer : Hideous_ZombieScientist_Male {
+class Hideous_ZombieHammer : Hideous_ZombieScientist {
+    mixin MaleScientist;
+
     default {
         //$Category "Monsters/Hideous Destructor"
         //$Title "Possessed Scientist(Hammer)"

@@ -15,7 +15,7 @@ class Hideous_ZombieLadyKnife : Hideous_ZombieScientist {
         HitObituary "$OB_ZOMBIESCIENTIST_KNIFE_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_KNIFE";
 
-        Dropitem "HDCombatKnifeDropper";
+        Hideous_ZombieScientist.dropName "HDCombatKnife";
     }
 
 
@@ -41,21 +41,5 @@ class Dead_ZombieLadyKnife : Hideous_ZombieLadyKnife {
     override void postbeginplay() {
         super.postbeginplay();
         A_Die("spawndead");
-    }
-}
-
-class HDCombatKnifeDropper : Actor {
-    states {
-        spawn:
-            TNT1 A 0;
-            TNT1 A 1 {
-                string HDCombatKnifeName = "HDCombatKnife";
-                class<Actor> cls = HDCombatKnifeName;
-                if (cls)
-                {
-                    A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-                }
-            }
-            stop;
     }
 }

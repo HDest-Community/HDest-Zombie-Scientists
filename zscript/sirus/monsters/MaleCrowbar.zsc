@@ -18,7 +18,7 @@ class Hideous_ZombieCrowbar : Hideous_ZombieScientist {
         Hideous_ZombieScientist.mindamage 10;
         Hideous_ZombieScientist.maxdamage 18;
         
-        DropItem "HDCrowbarDropper";
+        Hideous_ZombieScientist.dropName "NHDACrowbar";
     }
 
     states {
@@ -39,21 +39,5 @@ class Dead_ZombieCrowbar : Hideous_ZombieCrowbar {
     override void postbeginplay() {
         super.postbeginplay();
         A_Die("spawndead");
-    }
-}
-
-class HDCrowbarDropper : Actor {
-    states {
-        spawn:
-            TNT1 A 0;
-            TNT1 A 1 {
-                string HDCrowbarName = "NHDACrowbar";
-                class<Actor> cls = HDCrowbarName;
-                if (cls)
-                {
-                    A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-                }
-            }
-            stop;
     }
 }

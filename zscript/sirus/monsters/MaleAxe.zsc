@@ -22,7 +22,7 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist {
         Hideous_ZombieScientist.mindamage 16;
         Hideous_ZombieScientist.maxdamage 30;
 
-        DropItem "HDFireAxeDropper";
+        Hideous_ZombieScientist.dropName "HDFireAxe";
     }
 
     states {
@@ -41,21 +41,5 @@ class Dead_ZombieAxe : Hideous_ZombieAxe {
     override void postbeginplay(){
         super.postbeginplay();
         A_Die("spawndead");
-    }
-}
-
-class HDFireAxeDropper : Actor {
-    states {
-        spawn:
-            TNT1 A 0;
-            TNT1 A 1 {
-                string HDFireAxeName = "HDFireAxe";
-                class<Actor> cls = HDFireAxeName;
-                if (cls)
-                {
-                    A_SpawnItemEX(cls,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-                }
-            }
-            stop;
     }
 }

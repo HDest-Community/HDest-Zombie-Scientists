@@ -38,7 +38,7 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
         Hideous_ZombieScientist.misssound "enemy/zombiesci/male/sawmiss";
         Hideous_ZombieChainsaw.sawIdle "enemy/zombiesci/male/sawidle";
         
-        DropItem "Lumberjack";
+        Hideous_ZombieScientist.dropName "Lumberjack";
     }
 
     states {

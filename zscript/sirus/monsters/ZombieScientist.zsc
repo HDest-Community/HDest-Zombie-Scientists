@@ -9,6 +9,8 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
 
     Sound missSound; property missSound:missSound;
 
+    Name dropName; property dropName:dropName;
+
     action void A_WeaponAttack(int damageMulti, string damageType) {
         A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);
         A_CheckLatch();
@@ -84,6 +86,13 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
 
     override void CheckFootStepSound() {
         FootStepSound(self, 1.0, "enemy/zombiesci/step/dry", "enemy/zombiesci/step/wet");
+    }
+
+    override void DeathDrop() {
+		if (dropName && !bhasdropped) {
+			bhasdropped = true;
+            DropNewWeapon(dropName);
+        }
     }
 
     default {

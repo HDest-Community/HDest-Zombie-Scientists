@@ -64,7 +64,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         HitObituary "$OB_ZOMBIESCIENTIST_SYRINGE_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_SYRINGE";
 
-        DropItem "PortableStimpack", 1;
+        Hideous_ZombieScientist.dropName "PortableStimpack";
     }
 
     states {

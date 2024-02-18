@@ -90,8 +90,8 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
 
     override void DeathDrop() {
         Class<Actor> dropCls = dropName;
-		if (dropCls && !bhasdropped) {
-			bhasdropped = true;
+        if (dropCls && !bhasdropped) {
+            bhasdropped = true;
             DropNewWeapon(dropName);
         }
     }

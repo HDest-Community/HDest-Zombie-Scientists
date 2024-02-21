@@ -29,10 +29,13 @@ class Hideous_ZombieHammer : Hideous_ZombieScientist {
             SCZH A 0;
             goto spawn2;
         melee:
-            #### CE 5 A_FaceTarget();
-            #### F 15 A_WeaponAttack(random(1, 3), "bashing");
-            #### FE 5;
+            #### EE 5 A_FaceLastTargetPos();
+            #### F 15 A_WeaponAttack(random(1, 3), "bashing", 0.0);
+            #### FC random(10, 15);
             loop;
+        meleeend:
+            #### FC random(10, 15);
+            goto see;
     }
 }
 

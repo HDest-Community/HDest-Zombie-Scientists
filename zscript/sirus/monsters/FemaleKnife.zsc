@@ -24,16 +24,13 @@ class Hideous_ZombieLadyKnife : Hideous_ZombieScientist {
             FSZK A 0;
             goto spawn2;
         melee:
-            #### BE 3 A_FaceTarget();
-            #### F 4 A_WeaponAttack(random(1, 5), "slashing");
-            #### FEBE 2;
-            #### F 4 A_WeaponAttack(random(1, 4), "slashing");
-            #### FEBE 3;
-            #### F 4 A_WeaponAttack(random(1, 3), "slashing");
-            #### FEBE 4;
-            #### F 4 A_WeaponAttack(random(1, 5), "slashing");
-            #### FE 7;
+            #### EE 3 A_FaceLastTargetPos();
+            #### F 4 A_WeaponAttack(random(1, 5), "slashing", 0.125);
+            #### FB random(2, 6);
             loop;
+        meleeend:
+            #### FB random(2, 6);
+            goto see;
     }
 }
 

@@ -26,12 +26,13 @@ class Hideous_ZombieCrowbar : Hideous_ZombieScientist {
             SCZC A 0;
             goto spawn2;
         melee:
-            #### DE 3 A_FaceTarget();
-            #### F 3 A_WeaponAttack(random(1, 4), "bashing");
-            #### FEDE 4;
-            #### F 4 A_WeaponAttack(random(1, 3), "bashing");
-            #### FE 5;
+            #### EE 3 A_FaceLastTargetPos();
+            #### F 3 A_WeaponAttack(random(1, 4), "bashing", 0.0);
+            #### FD random(4, 8);
             loop;
+        meleeend:
+            #### FD random(4, 8);
+            goto see;
     }
 }
 

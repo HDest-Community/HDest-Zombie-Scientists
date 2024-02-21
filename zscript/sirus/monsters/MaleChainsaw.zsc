@@ -5,7 +5,9 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
     mixin MaleScientist;
 
     int sawTicker;
-    Sound sawIdle;property sawIdle:sawIdle;
+    
+    Sound sawIdle;   property sawIdle:sawIdle;
+    Sound misssound; property misssound:misssound;
 
     override void Tick() {
         super.Tick();
@@ -18,6 +20,12 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
                 sawTicker++;
             }
         }
+    }
+
+    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {
+        A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);
+        A_CheckLatch(latchChance);
+        A_CheckEndMelee();
     }
 
     default {
@@ -35,7 +43,7 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
         Hideous_ZombieScientist.mindamage 20;
         Hideous_ZombieScientist.maxdamage 50;
 
-        Hideous_ZombieScientist.misssound "enemy/zombiesci/male/sawmiss";
+        Hideous_ZombieChainsaw.misssound "enemy/zombiesci/male/sawmiss";
         Hideous_ZombieChainsaw.sawIdle "enemy/zombiesci/male/sawidle";
         
         Hideous_ZombieScientist.dropName "Lumberjack";

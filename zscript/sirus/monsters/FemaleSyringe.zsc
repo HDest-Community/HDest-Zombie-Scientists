@@ -7,7 +7,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
     mixin FemaleScientist;
 
     action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {
-        A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);
+        invoker.A_FireballerScratch(null, random(invoker.minDamage, invoker.maxDamage) * damageMulti, ballchance: 0, damagetype: damageType);
         A_BoopWithDrugs(80, 20);
         A_CheckLatch(latchChance);
         A_CheckEndMelee();

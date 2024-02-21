@@ -7,8 +7,6 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
     int minDamage; property minDamage:minDamage;
     int maxDamage; property maxDamage:maxDamage;
 
-    Sound missSound; property missSound:missSound;
-
     Name dropName; property dropName:dropName;
 
     action void A_WeaponAttack(int damageMulti, string damageType, float latchChance = 0.333) {
@@ -263,8 +261,6 @@ mixin class FemaleScientist {
         deathsound "enemy/zombiesci/female/die";
         activesound "enemy/zombiesci/female/active";
         meleesound "enemy/zombiesci/female/melee";
-
-        Hideous_ZombieScientist.missSound "enemy/zombiesci/female/miss";
     }
 }
 
@@ -275,7 +271,5 @@ mixin class MaleScientist {
         deathsound "enemy/zombiesci/male/die";
         activesound "enemy/zombiesci/male/active";
         meleesound "enemy/zombiesci/male/melee";
-
-        Hideous_ZombieScientist.missSound "enemy/zombiesci/male/miss";
     }
 }

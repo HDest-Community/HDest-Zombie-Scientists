@@ -8,10 +8,34 @@ class ZombieCivilian : RandomSpawner {
     }
 }
 
-class ZombieScientistSingle : Actor {
+class ZombieScientistSingle : IdleDummy {
+    
+    int maxSpawns; property maxSpawns:maxSpawns;
+    int numSpawned;
+
+    override void PostBeginPlay() {
+        super.PostBeginPlay();
+
+        angle = random(1, 360);
+    }
+
+    action void A_SpawnScientist(name className, int dist = 0) {
+        let spawnAngle = (invoker.numSpawned % invoker.maxSpawns) * (360 / invoker.maxSpawns) + angle;
+        
+        if (hd_debug) console.printf("Spawning Scientist #"..(invoker.numSpawned + 1).." of "..invoker.maxSpawns.." with angle="..spawnAngle.." & dist="..dist);
+        
+        let offs = AngleToVector(spawnAngle, dist);
+        Spawn(className, pos + offs);
+        invoker.numSpawned++;
+    }
+
+    default {
+        ZombieScientistSingle.maxSpawns 1;
+    }
+
     states {
         spawn:
-            TNT1 A 1;
+            TNT1 A 0 nodelay;
         spawncivilianforreal:
             TNT1 A 0 A_Jump(100,"spawnknifelady");
             TNT1 A 0 A_Jump(100,"spawnaxeman");
@@ -21,36 +45,41 @@ class ZombieScientistSingle : Actor {
             TNT1 A 0 A_Jump(90,"spawnhammerman");
             TNT1 A 0 A_Jump(80,"spawnsyringelady");
             TNT1 A 0 A_Jump(60,"spawnsawman");
-            TNT1 A 0 A_Jump(256,"spawncivilianforreal");
+            goto spawncivilianforreal;
 
         spawnknifelady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyKnife",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyKnife");
             stop;
         spawnaxeman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieAxe",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieAxe");
             stop;
         spawncrowbarman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieCrowbar",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieCrowbar");
             stop;
         spawncleaverlady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyCleaver",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyCleaver");
             stop;
         spawnwrenchlady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyWrench",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyWrench");
             stop;
         spawnhammerman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieHammer",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieHammer");
             stop;
         spawnsyringelady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadySyringe",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadySyringe");
             stop;
         spawnsawman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieChainsaw",0,0);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieChainsaw");
             stop;
     }
 }
 
 class ZombieScientistDouble : ZombieScientistSingle {
+
+    default {
+        ZombieScientistSingle.maxSpawns 2;
+    }
+
     states {
         spawncivilianforreal2:
             TNT1 A 0 A_Jump(100,"spawnknifelady2");
@@ -61,61 +90,66 @@ class ZombieScientistDouble : ZombieScientistSingle {
             TNT1 A 0 A_Jump(90,"spawnhammerman2");
             TNT1 A 0 A_Jump(80,"spawnsyringelady2");
             TNT1 A 0 A_Jump(60,"spawnsawman2");
-            TNT1 A 0 A_Jump(256,"spawncivilianforreal2");
+            loop;
 
         spawnknifelady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyKnife",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyKnife", 35);
+            goto Spawncivilianforreal2;
         spawnaxeman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieAxe",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieAxe", 35);
+            goto Spawncivilianforreal2;
         spawncrowbarman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieCrowbar",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieCrowbar", 35);
+            goto Spawncivilianforreal2;
         spawncleaverlady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyCleaver",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyCleaver", 35);
+            goto Spawncivilianforreal2;
         spawnwrenchlady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyWrench",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyWrench", 35);
+            goto Spawncivilianforreal2;
         spawnhammerman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieHammer",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieHammer", 35);
+            goto Spawncivilianforreal2;
         spawnsyringelady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadySyringe",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadySyringe", 35);
+            goto Spawncivilianforreal2;
         spawnsawman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieChainsaw",-30,-30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieChainsaw", 35);
+            goto Spawncivilianforreal2;
 
         spawnknifelady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyKnife",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyKnife", 35);
             stop;
         spawnaxeman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieAxe",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieAxe", 35);
             stop;
         spawncrowbarman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieCrowbar",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieCrowbar", 35);
             stop;
         spawncleaverlady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyCleaver",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyCleaver", 35);
             stop;
         spawnwrenchlady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyWrench",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyWrench", 35);
             stop;
         spawnhammerman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieHammer",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieHammer", 35);
             stop;
         spawnsyringelady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadySyringe",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadySyringe", 35);
             stop;
         spawnsawman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieChainsaw",30,30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieChainsaw", 35);
             stop;
     }
 }
 
 class ZombieScientistTriple : ZombieScientistDouble {
+
+    default {
+        ZombieScientistSingle.maxSpawns 3;
+    }
+
     states {
         spawncivilianforreal3:
             TNT1 A 0 A_Jump(100,"spawnknifelady3");
@@ -126,81 +160,81 @@ class ZombieScientistTriple : ZombieScientistDouble {
             TNT1 A 0 A_Jump(90,"spawnhammerman3");
             TNT1 A 0 A_Jump(80,"spawnsyringelady3");
             TNT1 A 0 A_Jump(60,"spawnsawman3");
-            TNT1 A 0 A_Jump(256,"spawncivilianforreal3");
+            loop;
 
         spawnknifelady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyKnife",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyKnife", 30);
+            goto Spawncivilianforreal2;
         spawnaxeman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieAxe",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieAxe", 30);
+            goto Spawncivilianforreal2;
         spawncrowbarman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieCrowbar",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieCrowbar", 30);
+            goto Spawncivilianforreal2;
         spawncleaverlady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyCleaver",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyCleaver", 30);
+            goto Spawncivilianforreal2;
         spawnwrenchlady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyWrench",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyWrench", 30);
+            goto Spawncivilianforreal2;
         spawnhammerman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieHammer",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieHammer", 30);
+            goto Spawncivilianforreal2;
         spawnsyringelady:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadySyringe",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadySyringe", 30);
+            goto Spawncivilianforreal2;
         spawnsawman:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieChainsaw",30,0);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal2");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieChainsaw", 30);
+            goto Spawncivilianforreal2;
 
         spawnknifelady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyKnife",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyKnife", 30);
+            goto Spawncivilianforreal3;
         spawnaxeman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieAxe",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieAxe", 30);
+            goto Spawncivilianforreal3;
         spawncrowbarman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieCrowbar",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieCrowbar", 30);
+            goto Spawncivilianforreal3;
         spawncleaverlady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyCleaver",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyCleaver", 30);
+            goto Spawncivilianforreal3;
         spawnwrenchlady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyWrench",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyWrench", 30);
+            goto Spawncivilianforreal3;
         spawnhammerman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieHammer",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieHammer", 30);
+            goto Spawncivilianforreal3;
         spawnsyringelady2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadySyringe",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadySyringe", 30);
+            goto Spawncivilianforreal3;
         spawnsawman2:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieChainsaw",-30,30);
-            TNT1 A 0 A_Jump(256,"Spawncivilianforreal3");
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieChainsaw", 30);
+            goto Spawncivilianforreal3;
 
         spawnknifelady3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyKnife",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyKnife", 30);
             stop;
         spawnaxeman3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieAxe",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieAxe", 30);
             stop;
         spawncrowbarman3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieCrowbar",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieCrowbar", 30);
             stop;
         spawncleaverlady3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyCleaver",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyCleaver", 30);
             stop;
         spawnwrenchlady3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadyWrench",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadyWrench", 30);
             stop;
         spawnhammerman3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieHammer",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieHammer", 30);
             stop;
         spawnsyringelady3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieLadySyringe",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieLadySyringe", 30);
             stop;
         spawnsawman3:
-            TNT1 A 1 A_SpawnItemEx("Hideous_ZombieChainsaw",-30,-30);
+            TNT1 A 1 A_SpawnScientist("Hideous_ZombieChainsaw", 30);
             stop;
     }
 }

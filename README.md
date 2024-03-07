@@ -13,11 +13,13 @@ Tips: The dangerous ones are the ones with the hammer, the axe and the syringe. 
 
 Original Author: Sirus
 
-- Female Zombie w/ Cleaver: Scilliano  
-- Female Zombie w/ Knife: Scilliano  
-- Female Zombie w/ Syringe: Scilliano  
-- Female Zombie w/ Wrench: Scilliano  
-- Male Zombie w/ Axe: Scilliano  
-- Male Zombie w/ Crowbar: Scilliano  
-- Male Zombie w/ Hammer: Scilliano  
-- Male Zombie w/ Chainsaw: Scilliano, Solmir, Keeper
+- Zombie Scientist (Cleaver): Scilliano  
+- Zombie Scientist (Knife): Scilliano  
+- Zombie Scientist (Syringe): Scilliano  
+- Zombie Scientist (Wrench): Scilliano  
+- Zombie Scientist (Unarmed): Scilliano, horselessheadsman  
+- Zombie Scientist (Axe): Scilliano  
+- Zombie Scientist (Crowbar): Scilliano  
+- Zombie Scientist (Sledgehammer): Scilliano  
+- Zombie Scientist (Chainsaw): Scilliano, Solmyr, Keeper  
+ 

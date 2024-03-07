@@ -115,7 +115,7 @@ class ZombieScientistHandler : EventHandler {
         spawns_zombiesci.push(addEnemyEntry('HDGoreBits', zombiesci_gore_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('HelmFrag', zombiesci_helmfrag_spawn_bias));
         spawns_zombiesci.push(addEnemyEntry('BlueFrag', zombiesci_bluefrag_spawn_bias));
-        addEnemy('ZombieCivilian', spawns_zombiesci, zombiesci_persistent_spawning);
+        addEnemy('ZombieScientistSpawner', spawns_zombiesci, zombiesci_persistent_spawning);
 
         // Zombie Scientist Corpses
         Array<ZSCSpawnEnemyEntry> spawns_zombiescicorpse;

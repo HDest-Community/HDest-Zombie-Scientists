@@ -19,12 +19,12 @@ class ZombieScientistSpawner : IdleDummy {
 
     action void A_SpawnScientists(int dist) {
         let failedAttempts = 0;
-        let className = 'SCIENTIST';
+        let className = '';
 
         while(invoker.numSpawned < invoker.maxSpawns && failedAttempts < 10) {
 
             // Determine Scientist Variant to spawn
-            if (className == 'SCIENTIST') {
+            if (className == '') {
                 let i = random(1, 660);
                 if (i >= 560) className = 'Hideous_ZombieLadyKnife';
                 else if (i >= 460) className = 'Hideous_ZombieAxe';
@@ -49,7 +49,7 @@ class ZombieScientistSpawner : IdleDummy {
                 
                 if (hd_debug) Console.PrintF("Failed to spawn Zombie Scientist #"..invoker.numSpawned..", retrying");
             } else {
-                className = 'SCIENTIST';
+                className = '';
                 invoker.numSpawned++;
                 failedAttempts = 0;
             }

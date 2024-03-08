@@ -18,27 +18,41 @@ class ZombieScientistSpawner : IdleDummy {
     }
 
     action void A_SpawnScientists(int dist) {
+        let failedAttempts = 0;
+        let className = 'SCIENTIST';
 
-        while (invoker.numSpawned < invoker.maxSpawns) {
-            let spawnAngle = (invoker.numSpawned % invoker.maxSpawns) * (360 / invoker.maxSpawns) + angle;
+        while(invoker.numSpawned < invoker.maxSpawns && failedAttempts < 10) {
 
-            let className = '';
+            // Determine Scientist Variant to spawn
+            if (className == 'SCIENTIST') {
+                let i = random(1, 660);
+                if (i >= 560) className = 'Hideous_ZombieLadyKnife';
+                else if (i >= 460) className = 'Hideous_ZombieAxe';
+                else if (i >= 360) className = 'Hideous_ZombieCrowbar';
+                else if (i >= 290) className = 'Hideous_ZombieLadyCleaver';
+                else if (i >= 230) className = 'Hideous_ZombieLadyWrench';
+                else if (i >= 140) className = 'Hideous_ZombieHammer';
+                else if (i >= 60) className = 'Hideous_ZombieLadySyringe';
+                else className = 'Hideous_ZombieChainsaw';
+            }
 
-            let i = random(1, 660);
-            if (i >= 560) className = 'Hideous_ZombieLadyKnife';
-            else if (i >= 460) className = 'Hideous_ZombieAxe';
-            else if (i >= 360) className = 'Hideous_ZombieCrowbar';
-            else if (i >= 290) className = 'Hideous_ZombieLadyCleaver';
-            else if (i >= 230) className = 'Hideous_ZombieLadyWrench';
-            else if (i >= 140) className = 'Hideous_ZombieHammer';
-            else if (i >= 60) className = 'Hideous_ZombieLadySyringe';
-            else className = 'Hideous_ZombieChainsaw';
-            
-            if (hd_debug) console.printf("Spawning "..className.." #"..(invoker.numSpawned + 1).." of "..invoker.maxSpawns.." with angle="..spawnAngle.." & dist="..dist);
+            // Pick a random spot around origin to spawn
+            let spawnPos = Vec3Offset(FRandom(-64, 64), FRandom(-64, 64), 0);
 
-            let offs = AngleToVector(spawnAngle, dist);
-            Spawn(className, pos + offs);
-            invoker.numSpawned++;
+            if (hd_debug) Console.PrintF("Attempt #"..(failedAttempts + 1).." to spawn Zombie Scientist #"..(invoker.numSpawned + 1).." of "..invoker.maxSpawns.." with offsets="..spawnPos);
+
+            // Try to spawn the mob.  If it failed to spawn, or spawned outside of the level, or spawned stuck, remove it and try again.
+            let spawned = Spawn(className, spawnPos);
+            if (!spawned || !Level.IsPointInLevel(spawned.pos) || !spawned.TestMobjLocation()) {
+                spawned.Destroy();
+                failedAttempts++;
+                
+                if (hd_debug) Console.PrintF("Failed to spawn Zombie Scientist #"..invoker.numSpawned..", retrying");
+            } else {
+                className = 'SCIENTIST';
+                invoker.numSpawned++;
+                failedAttempts = 0;
+            }
         }
     }
 

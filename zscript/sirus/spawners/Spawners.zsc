@@ -19,22 +19,8 @@ class ZombieScientistSpawner : IdleDummy {
 
     action void A_SpawnScientists(int dist) {
         let failedAttempts = 0;
-        let className = '';
 
         while(invoker.numSpawned < invoker.maxSpawns && failedAttempts < 10) {
-
-            // Determine Scientist Variant to spawn
-            if (className == '') {
-                let i = random(1, 660);
-                if (i >= 560) className = 'Hideous_ZombieLadyKnife';
-                else if (i >= 460) className = 'Hideous_ZombieAxe';
-                else if (i >= 360) className = 'Hideous_ZombieCrowbar';
-                else if (i >= 290) className = 'Hideous_ZombieLadyCleaver';
-                else if (i >= 230) className = 'Hideous_ZombieLadyWrench';
-                else if (i >= 140) className = 'Hideous_ZombieHammer';
-                else if (i >= 60) className = 'Hideous_ZombieLadySyringe';
-                else className = 'Hideous_ZombieChainsaw';
-            }
 
             // Pick a random spot around origin to spawn
             let spawnPos = Vec3Offset(FRandom(-64, 64), FRandom(-64, 64), 0);
@@ -42,14 +28,13 @@ class ZombieScientistSpawner : IdleDummy {
             if (hd_debug) Console.PrintF("Attempt #"..(failedAttempts + 1).." to spawn Zombie Scientist #"..(invoker.numSpawned + 1).." of "..invoker.maxSpawns.." at pos="..spawnPos);
 
             // Try to spawn the mob.  If it failed to spawn, or spawned outside of the level, or spawned stuck, remove it and try again.
-            let spawned = Spawn(className, spawnPos);
+            let spawned = Spawn('ZombieScientistRandom', spawnPos);
             if (!spawned || !Level.IsPointInLevel(spawned.pos) || !spawned.TestMobjLocation()) {
                 spawned.Destroy();
                 failedAttempts++;
                 
                 if (hd_debug) Console.PrintF("Failed to spawn Zombie Scientist #"..invoker.numSpawned..", retrying");
             } else {
-                className = '';
                 invoker.numSpawned++;
                 failedAttempts = 0;
             }
@@ -60,6 +45,19 @@ class ZombieScientistSpawner : IdleDummy {
         spawn:
             TNT1 A 0 nodelay A_SpawnScientists(maxSpawns > 1 ? 35 : 0);
             stop;
+    }
+}
+
+class ZombieScientistRandom : RandomSpawner {
+    default {
+        DropItem 'Hideous_ZombieLadyKnife', 256, 100;
+        DropItem 'Hideous_ZombieAxe', 256, 100;
+        DropItem 'Hideous_ZombieCrowbar', 256, 100;
+        DropItem 'Hideous_ZombieLadyCleaver', 256, 70;
+        DropItem 'Hideous_ZombieLadyWrench', 256, 60;
+        DropItem 'Hideous_ZombieHammer', 256, 90;
+        DropItem 'Hideous_ZombieLadySyringe', 256, 80;
+        DropItem 'Hideous_ZombieChainsaw', 256, 60;
     }
 }
 

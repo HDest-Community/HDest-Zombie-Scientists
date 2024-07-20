@@ -1,20 +1,20 @@
 version "4.11"
 
 // Base Classes
-#include "zscript/sirus/monsters/ZombieScientist.zsc"
+#include "zscript/sirus/zombieScientists/monsters/ZombieScientist.zsc"
 
 // Zombie Scientists
-#include "zscript/sirus/monsters/FemaleCleaver.zsc"
-#include "zscript/sirus/monsters/FemaleKnife.zsc"
-#include "zscript/sirus/monsters/FemaleSyringe.zsc"
-#include "zscript/sirus/monsters/FemaleWrench.zsc"
-#include "zscript/sirus/monsters/MaleAxe.zsc"
-#include "zscript/sirus/monsters/MaleCrowbar.zsc"
-#include "zscript/sirus/monsters/MaleHammer.zsc"
-#include "zscript/sirus/monsters/MaleChainsaw.zsc"
+#include "zscript/sirus/zombieScientists/monsters/FemaleCleaver.zsc"
+#include "zscript/sirus/zombieScientists/monsters/FemaleKnife.zsc"
+#include "zscript/sirus/zombieScientists/monsters/FemaleSyringe.zsc"
+#include "zscript/sirus/zombieScientists/monsters/FemaleWrench.zsc"
+#include "zscript/sirus/zombieScientists/monsters/MaleAxe.zsc"
+#include "zscript/sirus/zombieScientists/monsters/MaleCrowbar.zsc"
+#include "zscript/sirus/zombieScientists/monsters/MaleHammer.zsc"
+#include "zscript/sirus/zombieScientists/monsters/MaleChainsaw.zsc"
 
-// Spawn Dummy Actors
-#include "zscript/sirus/spawners/Spawners.zsc"
+// Spawners
+#include "zscript/sirus/zombieScientists/Spawners.zsc"
 
 // Spawn Handler
-#include "zscript/sirus/SpawnHandler.zsc"
+#include "zscript/sirus/zombieScientists/SpawnHandler.zsc"

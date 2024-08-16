@@ -60,6 +60,12 @@ MENU_PERSISTENCY                                    = "Persistent Spawns: ";
 MENU_MONPERSISTENCY                                 = "Persistent Monster Spawns: ";
 MENU_CORPSEPERSISTENCY                              = "Persistent Corpse Spawns: ";
 
+// Menu Option Values
+MENU_ENABLED                                        = "Enabled";
+MENU_DISABLED                                       = "Disabled";
+MENU_REPLACEALL                                     = "Replace All";
+MENU_WITHALL                                        = "With All";
+
 // Menu Command Text
 MENU_RESETMONSTER                                   = "Reset Monster Options";
 MENU_RESETCORPSE                                    = "Reset Corpse Options";

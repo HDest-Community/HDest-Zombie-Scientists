@@ -6,4 +6,4 @@ runs:
   - uses: actions/checkout@v4
   - uses: montudor/action-zip@v1
     with:
-      args: zip -r "HDest-Zombie-Scientists-${{ env.SUFFIX }}.pk3" . -i sounds/* sprites/* zscript/* CHANGELOG.md CVARINFO KEYCONF LANGUAGE LICENSE MAPINFO MENUDEF README.md SNDINFO UASINFO ZSCRIPT.zsc
+      args: zip -r "HDest-Zombie-Scientists-${{ env.SUFFIX }}.pk3" . -i sounds/* sprites/* zscript/* CHANGELOG.md CVARINFO KEYCONF LANGUAGE LICENSE MAPINFO MENUDEF README.md SNDINFO TRNSLATE UASINFO ZSCRIPT.zsc

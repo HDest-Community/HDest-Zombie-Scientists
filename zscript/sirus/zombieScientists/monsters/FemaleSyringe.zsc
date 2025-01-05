@@ -3,8 +3,50 @@
 //raw damage, but sometimes it will give you a poisonous compound that suddenly causes you to drop to the ground, leaving you open to
 //attacks. In addition they make very little noise, making it much easier for you to get snuck up on from behind.
 
+class ZombieLadySyringeDrug {
+    name injectorName;
+    int injectAmount;
+    name drugTranslation;
+
+    static ZombieLadySyringeDrug create(name injectorName, int injectAmount, name drugTranslation) {
+        let drug = ZombieLadySyringeDrug(new('ZombieLadySyringeDrug'));
+
+        if (drug) {
+            drug.injectorName = injectorName;
+            drug.injectAmount = injectAmount;
+            drug.drugTranslation = drugTranslation;
+        }
+
+        return drug;
+    }
+}
+
 class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
     mixin FemaleScientist;
+
+    ZombieLadySyringeDrug drug;
+
+    override void PostBeginPlay() {
+        super.PostBeginPlay();
+        
+        drug = SelectSyringeDrug();
+
+        A_SetTranslation(drug.drugTranslation);
+    }
+
+    private ZombieLadySyringeDrug SelectSyringeDrug() {
+        switch (random(0, 1)) {
+            case 0:
+                return ZombieLadySyringeDrug.create('InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim');
+            case 1:
+                return ZombieLadySyringeDrug.create('InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk');
+            default:
+                A_Log('Unknown Syringe Drug!');
+                break;
+        }
+
+        return null;
+    }
 
     action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {
         invoker.A_FireballerScratch(null, random(invoker.minDamage, invoker.maxDamage) * damageMulti, ballchance: 0, damagetype: damageType);
@@ -21,13 +63,12 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         ) {
             hdplayerpawn tat = HDPlayerPawn(target);
 
-            tat.stunned += stunValue;
-            tat.fatigue += fatigueValue;
+            actor a = spawn(invoker.drug.injectorName, tat.pos, ALLOW_REPLACE);
+            a.accuracy = 40;
+            a.target = HDPlayerPawn(tat);
 
-            if (!tat.incapacitated) {
-                A_StartSound(meleesound, CHAN_BODY);
-                SetStateLabel("InjectedWait");
-            }
+            A_StartSound(meleesound, CHAN_BODY);
+            SetStateLabel("InjectedWait");
         }
     }
 
@@ -39,10 +80,15 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         ) {
             hdplayerpawn tat = HDPlayerPawn(target);
         
-            if(tat) {
+            if (tat) {
                 tat.incapacitated = 1;
                 tat.incaptimer = 140;
+
+                // Escape from player before they can retalliate
+                HDMobAI.Frighten(tat, 512);
             }
+
+            target = null;
         }    
     }
 

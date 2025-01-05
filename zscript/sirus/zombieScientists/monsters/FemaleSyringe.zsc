@@ -72,7 +72,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
             FSZS A 0;
             goto spawn2;
         melee:
-            #### EE 3 A_FaceLastTargetPos();
+            #### EEE random(2, 3) A_FaceLastTargetPos();
             #### F 5 A_WeaponAttack(1, "piercing", 0.0);
             #### FB random(4, 12);
             loop;

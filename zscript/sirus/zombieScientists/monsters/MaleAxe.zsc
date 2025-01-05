@@ -30,7 +30,7 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist {
             SCZA A 0;
             goto spawn2;
         melee:
-            #### EE 4 A_FaceLastTargetPos();
+            #### EE random(7, 10) A_FaceLastTargetPos();
             #### F 10 A_WeaponAttack(random(1, 2), "slashing", 0.333);
             #### FB random(5, 10);
             loop;

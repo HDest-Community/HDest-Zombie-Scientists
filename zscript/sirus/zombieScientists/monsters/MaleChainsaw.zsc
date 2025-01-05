@@ -54,7 +54,7 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
             SCZS A 0;
             goto spawn2;
         melee:
-            #### EE 10 A_FaceLastTargetPos();
+            #### E random(15, 25) A_FaceLastTargetPos();
             #### FFFF 5 A_WeaponAttack(random(1, 2), "slashing", 0.5);
             #### FB random(10, 20);
             loop;

@@ -1,7 +1,5 @@
 class Hideous_ZombieScientist : HDHumanoid abstract {
 
-    HDPlayerPawn tat;
-
     int targetRange; property targetRange:targetRange;
     int latchRange; property latchRange:latchRange;
     int minDamage; property minDamage:minDamage;
@@ -156,18 +154,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
             #### EE 10 A_HDLook();
             loop;
         see:
-            #### A 1 {
-                // This checks if there's still a valid target
-                // and if the target is the right class
-                // (since monsters can infight)
-                if (target is "HDPlayerPawn") {
-                    // this casts the variable correctly
-                    // since target is an Actor class
-                    // we need to specify that we're specifically
-                    // casting target using the HDPlayerPawn class    
-                    tat = HDPlayerPawn(target);
-                }
-            }
+            #### A 1;
             #### A 1{bnopain=false;}
             goto seerunnin;
         seerunnin:

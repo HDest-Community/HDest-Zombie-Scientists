@@ -7,14 +7,16 @@ class ZombieLadySyringeDrug {
     name injectorName;
     int injectAmount;
     name drugTranslation;
+    name pickupName;
 
-    static ZombieLadySyringeDrug create(name injectorName, int injectAmount, name drugTranslation) {
+    static ZombieLadySyringeDrug create(name pickupName, name injectorName, int injectAmount, name drugTranslation) {
         let drug = ZombieLadySyringeDrug(new('ZombieLadySyringeDrug'));
 
         if (drug) {
             drug.injectorName = injectorName;
             drug.injectAmount = injectAmount;
             drug.drugTranslation = drugTranslation;
+            drug.pickupName = pickupName;
         }
 
         return drug;
@@ -31,15 +33,17 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         
         drug = SelectSyringeDrug();
 
+        dropName = drug.pickupName;
+
         A_SetTranslation(drug.drugTranslation);
     }
 
     private ZombieLadySyringeDrug SelectSyringeDrug() {
         switch (random(0, 1)) {
             case 0:
-                return ZombieLadySyringeDrug.create('InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim');
+                return ZombieLadySyringeDrug.create('PortableStimpack', 'InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim');
             case 1:
-                return ZombieLadySyringeDrug.create('InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk');
+                return ZombieLadySyringeDrug.create('PortableBerserkPack', 'InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk');
             default:
                 A_Log('Unknown Syringe Drug!');
                 break;
@@ -109,8 +113,6 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         tag "$TAG_ZOMBIESCIENTIST_SYRINGE";
         HitObituary "$OB_ZOMBIESCIENTIST_SYRINGE_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_SYRINGE";
-
-        Hideous_ZombieScientist.dropName "PortableStimpack";
     }
 
     states {

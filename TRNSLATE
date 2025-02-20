@@ -1,2 +1,5 @@
-ZScientist_Syringe_Stim = "112:127=152:159"
-ZScientist_Syringe_Zerk = "112:127=32:47"
+ZScientist_Syringe_None        = "112:127=80:111"
+ZScientist_Syringe_Blues       = "112:127=192:207"
+ZScientist_Syringe_SecondFlesh = "112:127=176:191"
+ZScientist_Syringe_Stim        = "112:127=152:159"
+ZScientist_Syringe_Zerk        = "112:127=32:47"

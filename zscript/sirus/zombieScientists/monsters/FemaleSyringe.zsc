@@ -26,37 +26,71 @@ class ZombieLadySyringeDrug {
 class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
     mixin FemaleScientist;
 
-    ZombieLadySyringeDrug drug;
+    Array<ZombieLadySyringeDrug> drugs;
+
+    ZombieLadySyringeDrug selectedDrug;
 
     override void PostBeginPlay() {
         super.PostBeginPlay();
+
+        InitDrugs();
         
-        drug = SelectSyringeDrug();
-
-        dropName = drug.pickupName;
-
-        A_SetTranslation(drug.drugTranslation);
+        SelectSyringeDrug();
     }
 
-    private ZombieLadySyringeDrug SelectSyringeDrug() {
-        switch (random(0, 1)) {
-            case 0:
-                return ZombieLadySyringeDrug.create('PortableStimpack', 'InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim');
-            case 1:
-                return ZombieLadySyringeDrug.create('PortableBerserkPack', 'InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk');
-            default:
-                A_Log('Unknown Syringe Drug!');
-                break;
-        }
+    override void Tick() {
+        super.Tick();
 
-        return null;
+        if (!selectedDrug) A_SetTranslation('ZScientist_Syringe_None');
+    }
+
+    override void DeathDrop() {
+        if (!bhasdropped) {
+            bhasdropped = true;
+
+            forEach(drug : drugs) DropNewWeapon(drug.pickupName);
+            drugs.clear();
+        }
+    }
+
+    private void InitDrugs() {
+        drugs.clear();
+
+        do {
+            let j = random(0, 1 << 4);
+
+            // 1/16 = Single Bottle of Blues
+            // 1/8  = Single Injection of 2FA
+            // 1/4  = Single Injection of Berserk
+            // 1/2  = Single Injection of Stim
+            if (j >> 4)      drugs.push(ZombieLadySyringeDrug.create('HDHealingPotion', 'HealingMagic', HDHM_BOTTLE, 'ZScientist_Syringe_Blues'));
+            else if (j >> 3) drugs.push(ZombieLadySyringeDrug.create('HDMedikitter', 'SecondFleshBeast', 1, 'ZScientist_Syringe_SecondFlesh'));
+            else if (j >> 2) drugs.push(ZombieLadySyringeDrug.create('PortableStimpack', 'InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim'));
+            else if (j >> 1) drugs.push(ZombieLadySyringeDrug.create('PortableBerserkPack', 'InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk'));
+        } while (!random(0, drugs.size()));
+    }
+
+    private void  SelectSyringeDrug() {
+        let oldDrug = selectedDrug;
+
+        selectedDrug = drugs[random(0, drugs.size() - 1)];
+
+        A_SetTranslation(selectedDrug.drugTranslation);
+
+        if (oldDrug != selectedDrug) A_StartSound("weapons/pocket", 9);
     }
 
     action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {
         invoker.A_FireballerScratch(null, random(invoker.minDamage, invoker.maxDamage) * damageMulti, ballchance: 0, damagetype: damageType);
-        A_BoopWithDrugs(80, 20);
+
+        if (invoker.selectedDrug) A_BoopWithDrugs(80, 20);
+
         A_CheckLatch(latchChance);
         A_CheckEndMelee();
+    }
+
+    action void A_SwapDrug() {
+        invoker.SelectSyringeDrug();
     }
 
     action void A_BoopWithDrugs(int stunValue, int fatigueValue) {
@@ -64,14 +98,22 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
             target is "HDPlayerPawn"
             && target.health > 1
             && Distance2D (target) < (target.radius + radius) + 24
+            && invoker.selectedDrug
         ) {
             hdplayerpawn tat = HDPlayerPawn(target);
 
-            actor a = spawn(invoker.drug.injectorName, tat.pos, ALLOW_REPLACE);
-            a.accuracy = 40;
-            a.target = HDPlayerPawn(tat);
+            if ((Class<IdleDummy>)(invoker.selectedDrug.injectorName)) {
+                actor a = spawn(invoker.selectedDrug.injectorName, tat.pos, ALLOW_REPLACE);
+                a.accuracy = 40;
+                a.target = tat;
+            } else {
+                tat.A_GiveInventory(invoker.selectedDrug.injectorName, invoker.selectedDrug.injectAmount);
+            }
+    
+            invoker.drugs.delete(invoker.drugs.find(invoker.selectedDrug));
+            invoker.selectedDrug = null;
 
-            A_StartSound(meleesound, CHAN_BODY);
+            A_StartSound("enemy/zombiesci/female/inject", CHAN_BODY);
             SetStateLabel("InjectedWait");
         }
     }
@@ -81,6 +123,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
             target is "HDPlayerPawn"
             && target.health > 1
             && Distance2D (target) < (target.radius + radius) + 24
+            && invoker.selectedDrug
         ) {
             hdplayerpawn tat = HDPlayerPawn(target);
         
@@ -108,7 +151,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
 
         SeeSound "";
         ActiveSound "";
-        MeleeSound "weapons/chunksplat";
+        MeleeSound "enemy/zombiesci/female/melee";
 
         tag "$TAG_ZOMBIESCIENTIST_SYRINGE";
         HitObituary "$OB_ZOMBIESCIENTIST_SYRINGE_HIT";
@@ -119,6 +162,23 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         spawn:
             FSZS A 0;
             goto spawn2;
+        spawnstill:
+            // #### A 0 A_JumpIf((!invoker.selectedDrug && invoker.drugs.size()) || !random(0, 6), 'swap');
+            goto super::spawnstill;
+        spawnwander:
+            #### A 0 A_JumpIf((!invoker.selectedDrug && invoker.drugs.size()) || !random(0, 6), 'swap');
+            goto super::spawnwander;
+        // see:
+        //     #### A 0 A_JumpIf((!invoker.selectedDrug && invoker.drugs.size()), 'swap');
+        //     goto super::see;
+        swap:
+            #### A random(4, 8);
+            #### E random(6, 12);
+            #### B random(4, 8) A_SwapDrug();
+            #### E random(6, 12);
+            #### A random(4, 8);
+            #### A 0 A_JumpIf(!target, 'spawnwander');
+            goto see;
         melee:
             #### EEE random(2, 3) A_FaceLastTargetPos();
             #### F 5 A_WeaponAttack(1, "piercing", 0.0);

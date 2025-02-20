@@ -9,6 +9,8 @@ enemy/zombiesci/female/sight FEMZSIT
 enemy/zombiesci/female/sight2 FEMZSI2
 enemy/zombiesci/female/melee DSKNIFE
 
+$alias enemy/zombiesci/female/inject weapons/chunksplat
+
 $random enemy/zombiesci/female/die { enemy/zombiesci/female/death enemy/zombiesci/female/death2}
 $random enemy/zombiesci/female/see { enemy/zombiesci/female/sight enemy/zombiesci/female/sight2}
 

@@ -33,7 +33,7 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
         //$Title "Possessed Scientist(Chainsaw)"
         //$Sprite "SCZCS1"
 
-        speed 12;
+        speed 10;
         
         HitObituary "$OB_ZOMBIESCIENTIST_CHAINSAW_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_CHAINSAW";

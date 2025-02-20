@@ -11,7 +11,7 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist {
         //$Title "Possessed Scientist(Axe)"
         //$Sprite "SCZAA1"
 
-        speed 16;
+        speed 12;
         // health 120;
         // gibhealth 130;
 

@@ -64,7 +64,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
             // 1/4  = Single Injection of Berserk
             // 1/2  = Single Injection of Stim
             if (j >> 4)      drugs.push(ZombieLadySyringeDrug.create('HDHealingPotion', 'HealingMagic', HDHM_BOTTLE, 'ZScientist_Syringe_Blues'));
-            else if (j >> 3) drugs.push(ZombieLadySyringeDrug.create('HDMedikitter', 'SecondFleshBeast', 1, 'ZScientist_Syringe_SecondFlesh'));
+            else if (j >> 3) drugs.push(ZombieLadySyringeDrug.create('HDMedikitter', 'SecondFleshBeast', 5, 'ZScientist_Syringe_SecondFlesh'));
             else if (j >> 2) drugs.push(ZombieLadySyringeDrug.create('PortableStimpack', 'InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim'));
             else if (j >> 1) drugs.push(ZombieLadySyringeDrug.create('PortableBerserkPack', 'InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk'));
         } while (!random(0, drugs.size()));

@@ -71,13 +71,17 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
     }
 
     private void  SelectSyringeDrug() {
-        let oldDrug = selectedDrug;
-
-        selectedDrug = drugs[random(0, drugs.size() - 1)];
-
-        A_SetTranslation(selectedDrug.drugTranslation);
-
-        if (oldDrug != selectedDrug) A_StartSound("weapons/pocket", 9);
+        if (drugs.size()) {
+            let oldDrug = selectedDrug;
+    
+            selectedDrug = drugs[random(0, drugs.size() - 1)];
+    
+            A_SetTranslation(selectedDrug.drugTranslation);
+    
+            if (oldDrug != selectedDrug) A_StartSound("weapons/pocket", 9);
+        } else {
+            selectedDrug = null;
+        }
     }
 
     action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {

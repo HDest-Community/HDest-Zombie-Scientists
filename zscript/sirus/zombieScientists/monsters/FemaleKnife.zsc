@@ -25,7 +25,7 @@ class Hideous_ZombieLadyKnife : Hideous_ZombieScientist {
             goto spawn2;
         melee:
             #### EEE random(2, 3) A_FaceLastTargetPos();
-            #### F 4 A_WeaponAttack(random(1, 5), "slashing", 0.125);
+            #### F 4 A_WeaponAttack(random(1, 5), random(0, 2) ? "slashing" : "piercing", 0.125);
             #### FB random(2, 6);
             loop;
         meleeend:

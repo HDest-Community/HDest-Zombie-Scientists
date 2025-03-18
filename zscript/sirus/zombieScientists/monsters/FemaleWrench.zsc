@@ -27,12 +27,12 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieScientist {
             FSZW A 0;
             goto spawn2;
         melee:
-            #### EE random(6, 8) A_FaceLastTargetPos();
-            #### F 4 A_WeaponAttack(random(1, 4), "bashing", 0.0);
-            #### FB random(4, 8);
+            #### EE random(8, 10) A_FaceLastTargetPos();
+            #### F 6 A_WeaponAttack(random(1, 4), "bashing", 0.0, 0.25);
+            #### FB random(8, 12);
             loop;
         meleeend:
-            #### FB random(4, 8);
+            #### FB random(8, 12) A_Recoil(-frandom(0, 1));
             goto see;
     }
 }

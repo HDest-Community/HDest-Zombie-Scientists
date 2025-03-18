@@ -84,13 +84,13 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         }
     }
 
-    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {
+    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance = 0.333, float comboChance = 0.333) {
         invoker.A_FireballerScratch(null, random(invoker.minDamage, invoker.maxDamage) * damageMulti, ballchance: 0, damagetype: damageType);
 
         if (invoker.selectedDrug) A_BoopWithDrugs(80, 20);
 
         A_CheckLatch(latchChance);
-        A_CheckEndMelee();
+        A_CheckEndMelee(comboChance);
     }
 
     action void A_SwapDrug() {
@@ -180,12 +180,12 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
             #### A 0 A_JumpIf(!target, 'spawnwander');
             goto see;
         melee:
-            #### EEE random(2, 3) A_FaceLastTargetPos();
-            #### F 5 A_WeaponAttack(1, "piercing", 0.0);
+            #### EEEE random(2, 3) A_FaceLastTargetPos();
+            #### F 5 A_WeaponAttack(1, "piercing", 0.0, 0.0);
             #### FB random(4, 12);
             loop;
         meleeend:
-            #### FB random(4, 12);
+            #### FB random(4, 12) A_Recoil(-frandom(0, 1));
             goto see;
         InjectedWait:
             #### FEEB 4;

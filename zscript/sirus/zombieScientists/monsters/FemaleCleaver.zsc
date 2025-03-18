@@ -24,12 +24,12 @@ class Hideous_ZombieLadyCleaver : Hideous_ZombieScientist {
             FSZC A 0;
             goto spawn2;
         melee:
-            #### EEE random(2, 3) A_FaceLastTargetPos();
-            #### F 4 A_WeaponAttack(random(1, 3), "slashing", 0.25);
-            #### FB random(2, 4);
+            #### EE random(6, 12) A_FaceLastTargetPos();
+            #### F 6 A_WeaponAttack(random(1, 3), "slashing", 0.25, 0.4);
+            #### FB random(8, 12);
             loop;
         meleeend:
-            #### FB random(2, 4);
+            #### FB random(8, 12) A_Recoil(-frandom(0, 1));
             goto see;
     }
 }

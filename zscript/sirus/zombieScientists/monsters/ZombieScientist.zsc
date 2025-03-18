@@ -7,13 +7,13 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
 
     Name dropName; property dropName:dropName;
 
-    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance = 0.333) {
+    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance = 0.1171875, float comboChance = 0.333) {
         invoker.A_FireballerScratch(null, random(invoker.minDamage, invoker.maxDamage) * damageMulti, ballchance: 0, damagetype: damageType);
         A_CheckLatch(latchChance);
-        A_CheckEndMelee();
+        A_CheckEndMelee(comboChance);
     }
 
-    action void A_CheckLatch(float latchChance = 0.333) {
+    action void A_CheckLatch(float latchChance = 0.1171875) {
         if (
             target
             && Distance3d(target) < invoker.latchrange
@@ -23,7 +23,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
         }
     }
 
-    action void A_CheckEndMelee() {
+    action void A_CheckEndMelee(float comboChance = 0.333) {
         if (
             target
             && Distance3d(target) > meleerange
@@ -31,7 +31,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
             SetStateLabel("seerunnin");
         }
 
-        A_Jump(30, "meleeend");
+        A_Jump(frandom(0, 1) < comboChance, "meleeend");
     }
 
     action void A_Latch(int dmgMulti, string damageType) {

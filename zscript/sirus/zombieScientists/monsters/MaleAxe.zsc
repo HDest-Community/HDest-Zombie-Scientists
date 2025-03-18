@@ -31,11 +31,11 @@ class Hideous_ZombieAxe : Hideous_ZombieScientist {
             goto spawn2;
         melee:
             #### EE random(7, 10) A_FaceLastTargetPos();
-            #### F 10 A_WeaponAttack(random(1, 2), "slashing", 0.333);
-            #### FB random(5, 10);
+            #### F 10 A_WeaponAttack(random(1, 2), "slashing", 0.333, 0.2);
+            #### FB random(12, 16);
             loop;
         meleeend:
-            #### FB random(5, 10);
+            #### FB random(12, 16) A_Recoil(-frandom(0, 1));
             goto see;
     }
 }

@@ -22,10 +22,10 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
         }
     }
 
-    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance) {
+    action void A_WeaponAttack(int damageMulti, string damageType, float latchChance = 0.333, float comboChance = 0.333) {
         A_CustomMeleeAttack(random(invoker.minDamage, invoker.maxDamage) * damageMulti, invoker.meleesound, invoker.misssound, damageType);
         A_CheckLatch(latchChance);
-        A_CheckEndMelee();
+        A_CheckEndMelee(comboChance);
     }
 
     default {
@@ -55,11 +55,11 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
             goto spawn2;
         melee:
             #### E random(15, 25) A_FaceLastTargetPos();
-            #### FFFF 5 A_WeaponAttack(random(1, 2), "slashing", 0.5);
+            #### FFFF 5 A_WeaponAttack(random(1, 2), "slashing", 0.5, 0.1);
             #### FB random(10, 20);
             loop;
         meleeend:
-            #### FB random(10, 20);
+            #### FB random(10, 20) A_Recoil(-frandom(0, 1));
             goto see;
         latch:
             #### F random(2, 4);

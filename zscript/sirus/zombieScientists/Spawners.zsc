@@ -50,27 +50,27 @@ class ZombieScientistSpawner : IdleDummy {
 
 class ZombieScientistRandom : RandomSpawner {
     default {
-        DropItem 'Hideous_ZombieLadyKnife', 256, 100;
-        DropItem 'Hideous_ZombieAxe', 256, 100;
-        DropItem 'Hideous_ZombieCrowbar', 256, 100;
-        DropItem 'Hideous_ZombieLadyCleaver', 256, 70;
-        DropItem 'Hideous_ZombieLadyWrench', 256, 60;
-        DropItem 'Hideous_ZombieHammer', 256, 90;
-        DropItem 'Hideous_ZombieLadySyringe', 256, 80;
-        DropItem 'Hideous_ZombieChainsaw', 256, 60;
+        DropItem 'Hideous_ZombieLadyKnife',   256, 10;
+        DropItem 'Hideous_ZombieAxe',         256, 9;
+        DropItem 'Hideous_ZombieCrowbar',     256, 9;
+        DropItem 'Hideous_ZombieLadyCleaver', 256, 8;
+        DropItem 'Hideous_ZombieLadyWrench',  256, 7;
+        DropItem 'Hideous_ZombieLadySyringe', 256, 6;
+        DropItem 'Hideous_ZombieHammer',      256, 6;
+        DropItem 'Hideous_ZombieChainsaw',    256, 5;
     }
 }
 
 //Already Dead Scientists for frag-related funtimes
 class Dead_HumanVictim : RandomSpawner {
     default {
-        Dropitem "Dead_ZombieLadyKnife",256,80;
-        DropItem "Dead_ZombieLadyWrench",256,80;
-        DropItem "Dead_ZombieLadyCleaver",256,80;
-        DropItem "Dead_ZombieLadySyringe",256,80;
-        DropItem "Dead_ZombieAxe",256,100;
-        DropItem "Dead_ZombieCrowbar",256,100;
-        DropItem "Dead_ZombieHammer",256,100;
-        DropItem "Dead_ZombieChainsaw",256,100;
+        Dropitem "Dead_ZombieLadyKnife",   256, 10;
+        DropItem "Dead_ZombieAxe",         256, 9;
+        DropItem "Dead_ZombieCrowbar",     256, 9;
+        DropItem "Dead_ZombieLadyCleaver", 256, 8;
+        DropItem "Dead_ZombieLadyWrench",  256, 7;
+        DropItem "Dead_ZombieLadySyringe", 256, 6;
+        DropItem "Dead_ZombieHammer",      256, 6;
+        DropItem "Dead_ZombieChainsaw",    256, 5;
     }
 }

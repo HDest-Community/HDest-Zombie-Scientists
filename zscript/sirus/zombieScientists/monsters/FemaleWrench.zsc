@@ -19,6 +19,8 @@ class Hideous_ZombieLadyWrench : Hideous_ZombieScientist {
         tag "$TAG_ZOMBIESCIENTIST_WRENCH";
         HitObituary "$OB_ZOMBIESCIENTIST_WRENCH_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_WRENCH";
+
+        Hideous_ZombieScientist.dropName "HDPipeWrench";
     }
 
     states

@@ -17,6 +17,8 @@ class Hideous_ZombieLadyCleaver : Hideous_ZombieScientist {
         tag "$TAG_ZOMBIESCIENTIST_CLEAVER";
         HitObituary "$OB_ZOMBIESCIENTIST_CLEAVER_HIT";
         Obituary "$OB_ZOMBIESCIENTIST_CLEAVER";
+
+        Hideous_ZombieScientist.dropName "HDCleaver";
     }
     
     states {

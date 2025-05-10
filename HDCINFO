@@ -3,16 +3,16 @@
 // newSpawnTable => { "spawnName": "ZSci.DeadZombieScientistRandom", "tableName": "ZSci.DeadZombieScientistRandom", "replaces": "false" }
 
 // Zombie Scientist Cluster Spawns
-addSpawnTableNestedEntry => { "tableName": "HDCore.ZombieManReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_zombieman_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.ShotgunGuyReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_shotgunguy_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.DoomImpReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_imp_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.DemonReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_demon_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.HDCasingBitsReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_casings_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.HDGoreBitsReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_gore_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.ArmorReplacesReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_helmfrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.HealthBonusReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_bluefrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.ZombieManReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_zombieman_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.ShotgunGuyReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_shotgunguy_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.DoomImpReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_imp_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.DemonReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_demon_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.HDCasingBitsReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_casings_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.HDGoreBitsReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_gore_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.ArmorReplacesReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_helmfrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.HealthBonusReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_bluefrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
 
-addSpawnTableNestedEntry => { "tableName": "HDCore.HDCasingBitsReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_casings_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.HDGoreBitsReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_gore_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.ArmorReplacesReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_helmfrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableNestedEntry => { "tableName": "HDCore.HealthBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_bluefrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.HDCasingBitsReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_casings_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.HDGoreBitsReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_gore_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.ArmorReplacesReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_helmfrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCore.HealthBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_bluefrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }

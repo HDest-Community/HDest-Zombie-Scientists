@@ -32,43 +32,43 @@ OptionMenu ZombieScientist
 
     StaticText "$MENU_MONSPAWNOPTIONS", "Yellow"
     StaticText "$MENU_ZOMBIESCIENTIST_ZOMBIEMAN_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_zombieman_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_zombieman_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_zombieman_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_SHOTGUNGUY_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_shotgunguy_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_shotgunguy_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_shotgunguy_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_IMP_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_imp_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_imp_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_imp_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_DEMON_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_demon_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_demon_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_demon_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_CASINGS_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_casings_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_casings_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_casings_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_GORE_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_gore_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_gore_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_gore_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_HELMFRAG_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_helmfrag_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_helmfrag_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_helmfrag_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTIST_BLUEFRAG_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiesci_bluefrag_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiesci_bluefrag_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETMONSTER", "resetcvar zombiesci_bluefrag_spawn_bias"
     StaticText ""
 
     StaticText "$MENU_CORPSESPAWNOPTIONS", "Yellow"
     StaticText "$MENU_ZOMBIESCIENTISTCORPSE_CASINGS_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiescicorpse_casings_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiescicorpse_casings_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_casings_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTISTCORPSE_GORE_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiescicorpse_gore_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiescicorpse_gore_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_gore_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTISTCORPSE_HELMFRAG_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiescicorpse_helmfrag_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiescicorpse_helmfrag_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_helmfrag_spawn_bias"
     StaticText "$MENU_ZOMBIESCIENTISTCORPSE_BLUEFRAG_SPAWNTEXT", "White"
-    ScaleSlider "$MENU_SPAWNRATE", "zombiescicorpse_bluefrag_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
+    Slider "$MENU_SPAWNRATE", "zombiescicorpse_bluefrag_spawn_bias",  0.0, 1000, .01, 3
     SafeCommand "$MENU_RESETCORPSE", "resetcvar zombiescicorpse_bluefrag_spawn_bias"
     StaticText ""
 

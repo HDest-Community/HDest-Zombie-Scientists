@@ -2,17 +2,39 @@
 // newSpawnTable => { "spawnName": "ZSci.ZombieScientistRandom", "tableName": "ZSci.ZombieScientistRandom", "replaces": "false" }
 // newSpawnTable => { "spawnName": "ZSci.DeadZombieScientistRandom", "tableName": "ZSci.DeadZombieScientistRandom", "replaces": "false" }
 
-// Zombie Scientist Cluster Spawns
-addSpawnTableSingleEntry => { "tableName": "HDCore.ZombieManReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_zombieman_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.ShotgunGuyReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_shotgunguy_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.DoomImpReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_imp_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.DemonReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_demon_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.HDCasingBitsReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_casings_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.HDGoreBitsReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_gore_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.ArmorReplacesReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_helmfrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.HealthBonusReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_bluefrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+// newSpawnTable => { "spawnName": "ZombieScientistRandom", "tableName": "ZSci.ZombieScientistRandom" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieLadyKnife", "weight": "10", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieAxe", "weight": "9", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieCrowbar", "weight": "9", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieLadyCleaver", "weight": "8", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieWrench", "weight": "7", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieSyringe", "weight": "6", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieHammer", "weight": "6", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Hideous_ZombieChainsaw", "weight": "5", "persists": "true" }
 
-addSpawnTableSingleEntry => { "tableName": "HDCore.HDCasingBitsReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_casings_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.HDGoreBitsReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_gore_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.ArmorReplacesReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_helmfrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "HDCore.HealthBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_bluefrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+// newSpawnTable => { "spawnName": "Dead_HumanVictim", "tableName": "ZSci.DeadZombieScientistRandom" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieLadyKnife", "weight": "10", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieAxe", "weight": "9", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieCrowbar", "weight": "9", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieLadyCleaver", "weight": "8", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieWrench", "weight": "7", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieSyringe", "weight": "6", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieHammer", "weight": "6", "persists": "true" }
+// addSpawnTableSingleEntry => { "tableName": "ZSci.ZombieScientistRandom", "name": "Dead_ZombieChainsaw", "weight": "5", "persists": "true" }
+
+// Zombie Scientist Cluster Spawns
+addSpawnTableSingleEntry => { "tableName": "ZombieManReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_zombieman_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "ShotgunGuyReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_shotgunguy_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "DoomImpReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_imp_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "DemonReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_demon_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDCasingBits", "name": "ZombieScientistSpawner", "weight": "#zombiesci_casings_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDGoreBits", "name": "ZombieScientistSpawner", "weight": "#zombiesci_gore_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "ArmorReplacesReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_helmfrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HealthBonusReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_bluefrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+
+addSpawnTableSingleEntry => { "tableName": "HDCasingBits", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_casings_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HDGoreBits", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_gore_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "ArmorReplacesReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_helmfrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "HealthBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_bluefrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+
+addSpawnTableSingleEntry => { "tableName": "Critters.WitheredSummonerSpawnTable", "name": "ZombieScientistRandom", "persists": "true" }

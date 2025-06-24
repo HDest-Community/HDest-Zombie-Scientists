@@ -137,7 +137,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         ) {
             hdplayerpawn tat = HDPlayerPawn(target);
 
-            if ((Class<IdleDummy>)(invoker.selectedDrug.injectorName)) {
+            if (HDCore.CheckClassExists(invoker.selectedDrug.injectorName)) {
                 actor a = spawn(invoker.selectedDrug.injectorName, tat.pos, ALLOW_REPLACE);
                 a.accuracy = 40;
                 a.target = tat;

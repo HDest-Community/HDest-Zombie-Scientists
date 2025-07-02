@@ -38,3 +38,9 @@ addSpawnTableSingleEntry => { "tableName": "ArmorReplacesReplaces", "name": "Dea
 addSpawnTableSingleEntry => { "tableName": "HealthBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_bluefrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
 
 addSpawnTableSingleEntry => { "tableName": "Critters.WitheredSummonerSpawnTable", "name": "ZombieScientistRandom", "persists": "true" }
+
+// Bounty Targets
+newMerchantBountyTarget => { "name": "Hideous_ZombieScientist", "value": "100" }
+
+// UaS Flashlight Support
+addFlashlightHumanClass => { "name": "Hideous_ZombieScientist" }

@@ -29,12 +29,12 @@ addSpawnTableSingleEntry => { "tableName": "DoomImpReplaces", "name": "ZombieSci
 addSpawnTableSingleEntry => { "tableName": "DemonReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_demon_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "HDCasingBits", "name": "ZombieScientistSpawner", "weight": "#zombiesci_casings_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "HDGoreBits", "name": "ZombieScientistSpawner", "weight": "#zombiesci_gore_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "ArmorReplacesReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_helmfrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "ArmorBonusReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_helmfrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "HealthBonusReplaces", "name": "ZombieScientistSpawner", "weight": "#zombiesci_bluefrag_spawn_bias", "persists": "#zombiesci_persistent_spawning" }
 
 addSpawnTableSingleEntry => { "tableName": "HDCasingBits", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_casings_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "HDGoreBits", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_gore_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "ArmorReplacesReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_helmfrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "ArmorBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_helmfrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "HealthBonusReplaces", "name": "Dead_HumanVictim", "weight": "#zombiescicorpse_bluefrag_spawn_bias", "persists": "#zombiescicorpse_persistent_spawning" }
 
 addSpawnTableSingleEntry => { "tableName": "Critters.WitheredSummonerSpawnTable", "name": "ZombieScientistRandom", "persists": "true" }

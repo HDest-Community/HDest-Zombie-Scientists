@@ -7,8 +7,8 @@ addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hid
 addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieAxe", "weight": "9", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieCrowbar", "weight": "9", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieLadyCleaver", "weight": "8", "persists": "true" }
-addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieWrench", "weight": "7", "persists": "true" }
-addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieSyringe", "weight": "6", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieLadyWrench", "weight": "7", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieLadySyringe", "weight": "6", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieHammer", "weight": "6", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "ZombieScientistRandom", "name": "Hideous_ZombieChainsaw", "weight": "5", "persists": "true" }
 
@@ -17,8 +17,8 @@ addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_Zom
 addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieAxe", "weight": "9", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieCrowbar", "weight": "9", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadyCleaver", "weight": "8", "persists": "true" }
-addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieWrench", "weight": "7", "persists": "true" }
-addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieSyringe", "weight": "6", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadyWrench", "weight": "7", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadySyringe", "weight": "6", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieHammer", "weight": "6", "persists": "true" }
 addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieChainsaw", "weight": "5", "persists": "true" }
 

@@ -43,4 +43,4 @@ addSpawnTableSingleEntry => { "tableName": "Critters.WitheredSummonerSpawnTable"
 newMerchantBountyTarget => { "name": "Hideous_ZombieScientist", "value": "100" }
 
 // UaS Flashlight Support
-addFlashlightHumanClass => { "name": "Hideous_ZombieScientist" }
+// addFlashlightHumanClass => { "name": "Hideous_ZombieScientist" }

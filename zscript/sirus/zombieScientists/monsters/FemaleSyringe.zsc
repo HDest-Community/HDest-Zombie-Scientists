@@ -142,7 +142,7 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
                 a.accuracy = 40;
                 a.target = tat;
             } else {
-                tat.A_GiveInventory(invoker.selectedDrug.injectorName, invoker.selectedDrug.injectAmount);
+                HDF.give(tat, invoker.selectedDrug.injectorName, invoker.selectedDrug.injectAmount);
             }
     
             invoker.drugs.delete(invoker.drugs.find(invoker.selectedDrug));

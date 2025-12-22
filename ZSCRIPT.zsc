@@ -13,5 +13,8 @@ version "4.14"
 #include "zscript/sirus/zombieScientists/monsters/MaleHammer.zsc"
 #include "zscript/sirus/zombieScientists/monsters/MaleChainsaw.zsc"
 
+// Decorations
+#include "zscript/sirus/zombieScientists/decorations/ImpaledScientist.zsc"
+
 // Spawners
 #include "zscript/sirus/zombieScientists/Spawners.zsc"

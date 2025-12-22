@@ -39,6 +39,35 @@ addSpawnTableSingleEntry => { "tableName": "HealthBonusReplaces", "name": "Dead_
 
 addSpawnTableSingleEntry => { "tableName": "Critters.WitheredSummonerSpawnTable", "name": "ZombieScientistRandom", "persists": "true" }
 
+
+// Decoration Spawns
+addSpawnTableSingleEntry => { "tableName": "DeadStickReplaces", "name": "ImpaledFemaleScientist", "weight": "0.1", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "DeadStickReplaces", "name": "ImpaledMaleScientist", "weight": "0.1", "persists": "true" }
+
+// Map-placed Zombie Scientists
+//  - Lost Civilization
+newSpawnTable => { "spawnName": "ZombieScientist" }
+addSpawnTableSingleEntry => { "tableName": "ZombieScientist", "name": "ZombieScientistRandom", "weight": "10", "persists": "true" }
+
+newSpawnTable => { "spawnName": "ZombieScientist2" }
+addSpawnTableSingleEntry => { "tableName": "ZombieScientist2", "name": "ZombieScientistRandom", "weight": "10", "persists": "true" }
+
+// Map-placed Scientist Corpses
+//  - Antarctica Excavation
+//  - Spectacle Creep
+newSpawnTable => { "spawnName": "DeadFemaleScientist" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadyKnife", "weight": "10", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadyCleaver", "weight": "8", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadyWrench", "weight": "7", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieLadySyringe", "weight": "5", "persists": "true" }
+
+newSpawnTable => { "spawnName": "DeadMaleScientist" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieAxe", "weight": "10", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieCrowbar", "weight": "8", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieHammer", "weight": "7", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "Dead_HumanVictim", "name": "Dead_ZombieChainsaw", "weight": "5", "persists": "true" }
+
+
 // Bounty Targets
 newMerchantBountyTarget => { "name": "Hideous_ZombieScientist", "value": "100" }
 

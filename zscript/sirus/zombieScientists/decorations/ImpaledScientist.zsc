@@ -1,0 +1,45 @@
+class HDImpaledScientist : HDActor {
+    default
+    {
+        radius 12;
+        height 50;
+        projectilepassheight -16;
+        scale 0.9;
+
+        +dontthrust
+        +shootable
+        +nodamage
+        +forceybillboard
+        +solid
+
+        mass 200;
+    }
+}
+
+class HDImpaledMaleScientist : HDImpaledScientist {
+    states {
+        spawn:
+            POLS A random(1, 60) nodelay A_SetAngle(random(1, 360));
+            #### AAAAA 1 A_SpawnItemEx(
+                "BloodSplatSilent",
+                random(-2, 2), random(-2, 2), frandom(32, 40),
+                0, 0, 0,
+                0, SXF_NOCHECKPOSITION, 192
+            );
+            loop;
+    }
+}
+
+class HDImpaledFemaleScientist : HDImpaledScientist {
+    states {
+        spawn:
+            POLF A random(1, 60) nodelay A_SetAngle(random(1, 360));
+            #### AAAAA 1 A_SpawnItemEx(
+                "BloodSplatSilent",
+                random(-2, 2), random(-2, 2), frandom(32, 40),
+                0, 0, 0,
+                0, SXF_NOCHECKPOSITION, 192
+            );
+            loop;
+    }
+}

@@ -45,10 +45,41 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
     }
 
     override void DeathDrop() {
-        if (!bhasdropped) {
-            bhasdropped = true;
+        if (!bHASDROPPED) {
 
-            forEach(drug : drugs) DropNewWeapon(drug.pickupName);
+            let blues = 0;
+            let secondFlesh = 0;
+
+            forEach(drug : drugs) {
+                switch (drug.pickupName) {
+                    case 'HDHealingPotion':
+                        blues += HDHM_MOUTH;
+                        break;
+                    case 'HDMedikitter':
+                        secondFlesh += MEDIKIT_FLESHGIVE;
+                        break;
+                    default:
+                        DropNewItem(drug.pickupName);
+                        break;
+                }
+            }
+
+            while (blues > 0) {
+                let pkp = DropNewWeapon('HDHealingPotion');
+                let amt = clamp(blues, 0, HDHM_BOTTLE);
+
+                pkp.weaponstatus[HDHM_AMOUNT] = amt;
+                blues -= amt;
+            }
+
+            while (secondFlesh > 0) {
+                let pkp = DropNewWeapon('HDMedikitter');
+                let amt = clamp(secondFlesh, 0, MEDIKIT_MAXFLESH);
+
+                pkp.weaponstatus[MEDS_SECONDFLESH] = amt;
+                secondFlesh -= amt;
+            }
+            
             drugs.clear();
         }
     }
@@ -58,13 +89,13 @@ class Hideous_ZombieLadySyringe : Hideous_ZombieScientist {
         do {
             let j = random(0, 1 << 5);
 			//1/32 Instant Comedown for 5 seconds.
-            // 1/16 = Single Bottle of Blues
+            // 1/16 = Single Sip of Blues
             // 1/8  = Single Injection of 2FA
             // 1/4  = Single Injection of Berserk
             // 1/2  = Single Injection of Stim
 			 if (j >> 5)	 drugs.push(ZombieLadySyringeDrug.create('PortableBerserkPack','InjectZerkDummy', HDZerk.HDZERK_COOLOFF,'ZScientist_Syringe_zerk'));
-            else if (j >> 4) drugs.push(ZombieLadySyringeDrug.create('HDHealingPotion', 'HealingMagic', HDHM_BOTTLE, 'ZScientist_Syringe_Blues'));
-            else if (j >> 3) drugs.push(ZombieLadySyringeDrug.create('HDMedikitter', 'SecondFleshBeast', 5, 'ZScientist_Syringe_SecondFlesh'));
+            else if (j >> 4) drugs.push(ZombieLadySyringeDrug.create('HDHealingPotion', 'HealingMagic', HDHM_MOUTH, 'ZScientist_Syringe_Blues'));
+            else if (j >> 3) drugs.push(ZombieLadySyringeDrug.create('HDMedikitter', 'SecondFleshBeast', MEDIKIT_FLESHGIVE, 'ZScientist_Syringe_SecondFlesh'));
             else if (j >> 2) drugs.push(ZombieLadySyringeDrug.create('PortableStimpack', 'InjectStimDummy', HDStim.HDSTIM_DOSE, 'ZScientist_Syringe_Stim'));
             else if (j >> 1) drugs.push(ZombieLadySyringeDrug.create('PortableBerserkPack', 'InjectZerkDummy', HDZerk.HDZERK_MAX, 'ZScientist_Syringe_Zerk'));
         } while (!random(0, drugs.size()));

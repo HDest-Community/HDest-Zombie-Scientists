@@ -41,8 +41,8 @@ addSpawnTableSingleEntry => { "tableName": "Critters.WitheredSummonerSpawnTable"
 
 
 // Decoration Spawns
-addSpawnTableSingleEntry => { "tableName": "DeadStickReplaces", "name": "ImpaledFemaleScientist", "weight": "0.1", "persists": "true" }
-addSpawnTableSingleEntry => { "tableName": "DeadStickReplaces", "name": "ImpaledMaleScientist", "weight": "0.1", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "DeadStickReplaces", "name": "HDImpaledFemaleScientist", "weight": "0.1", "persists": "true" }
+addSpawnTableSingleEntry => { "tableName": "DeadStickReplaces", "name": "HDImpaledMaleScientist", "weight": "0.1", "persists": "true" }
 
 // Map-placed Zombie Scientists
 //  - Lost Civilization

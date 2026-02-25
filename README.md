@@ -13,13 +13,14 @@ Tips: The dangerous ones are the ones with the hammer, the axe and the syringe. 
 
 Original Author: Sirus
 
-- Zombie Scientist (Cleaver): Scilliano  
-- Zombie Scientist (Knife): Scilliano  
-- Zombie Scientist (Syringe): Scilliano  
-- Zombie Scientist (Wrench): Scilliano  
-- Zombie Scientist (Unarmed): Scilliano, horselessheadsman  
-- Zombie Scientist (Axe): Scilliano  
-- Zombie Scientist (Crowbar): Scilliano  
-- Zombie Scientist (Sledgehammer): Scilliano  
-- Zombie Scientist (Chainsaw): Scilliano, Solmyr, Keeper  
- 
+- Zombie Scientist (Cleaver): Scalliano  
+- Zombie Scientist (Knife): Scalliano  
+- Zombie Scientist (Syringe): Scalliano  
+- Zombie Scientist (Wrench): Scalliano  
+- Zombie Scientist (Unarmed): Scalliano, horselessheadsman  
+- Zombie Scientist (Axe): Scalliano  
+- Zombie Scientist (Crowbar): Scalliano  
+- Zombie Scientist (Sledgehammer): Scalliano  
+- Zombie Scientist (Chainsaw): Scalliano, Solmyr, Keeper  
+
+- Impaled Scientists: Scalliano  

@@ -12,13 +12,14 @@ class Hideous_ZombieChainsaw : Hideous_ZombieScientist {
     override void Tick() {
         super.Tick();
 
-        if (health > 0 && !isFrozen()) {
-            if (sawTicker > 4) {
-                A_StartSound(sawIdle);
-                sawTicker = 0;
-            } else {
-                sawTicker++;
-            }
+        if (isFrozen()) return;
+        if (HDMath.IsDead(self)) return;
+
+        if (sawTicker > 4) {
+            A_StartSound(sawIdle);
+            sawTicker = 0;
+        } else {
+            sawTicker++;
         }
     }
 

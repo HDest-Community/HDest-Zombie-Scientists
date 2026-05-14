@@ -16,7 +16,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
     action void A_CheckLatch(float latchChance = 0.1171875) {
         if (
             target
-            && Distance3d(target) < invoker.latchrange
+            && Distance3DSquared(target) < invoker.latchrange ** 2
             && frandom(0, 1) < latchChance
         ) {
             SetStateLabel("latch");
@@ -26,7 +26,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
     action void A_CheckEndMelee(float comboChance = 0.333) {
         if (
             target
-            && Distance3d(target) > meleerange
+            && Distance3DSquared(target) > meleerange ** 2
         ) {
             SetStateLabel("seerunnin");
         }
@@ -57,7 +57,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
         if (
             !target
             || target.health < 1
-            || Distance3d(target) > invoker.latchrange
+            || Distance3DSquared(target) > invoker.latchrange ** 2
         ){
             SetStateLabel("meleeend");
             return;
@@ -157,7 +157,7 @@ class Hideous_ZombieScientist : HDHumanoid abstract {
             #### ABCD 3 A_HDChase();
             #### D 1;
             #### D 0 A_JumpIf(!target, 'spawnwander');
-            #### D 0 A_JumpIf(Distance3D(target) < targetRange, 'see');
+            #### D 0 A_JumpIf(Distance3DSquared(target) < targetRange ** 2, 'see');
             loop;
 
         melee:
